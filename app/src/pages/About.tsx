@@ -5,6 +5,9 @@ import PageTransition from '../components/PageTransition';
 import { Link } from 'react-router-dom';
 import { cn } from '@/src/lib/utils';
 
+// Local Asset Import
+import aboutHeritage from '../assets/about-heritage.jpg';
+
 export default function About() {
   return (
     <PageTransition>
@@ -45,14 +48,13 @@ export default function About() {
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="rounded-[60px] overflow-hidden shadow-2xl relative aspect-square group"
+              className="rounded-[60px] overflow-hidden shadow-2xl relative aspect-square group border-2 border-brand-border"
             >
               <img 
-                src="https://images.unsplash.com/photo-1517524285303-d6fc683dddf8?auto=format&fit=crop&w=1000&q=80" 
-                alt="Our Workshop" 
-                className="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105"
+                src={aboutHeritage} 
+                alt="Doorlogics Personal Service" 
+                className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-brand-primary/10 mix-blend-overlay" />
             </motion.div>
             
             <div className="space-y-12">
