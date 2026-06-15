@@ -4,6 +4,21 @@ import { ArrowRight, ShieldAlert } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import PageTransition from '../components/PageTransition';
 
+// Primary Service Assets
+import homeServiceGate from '../assets/home-service-gate.jpg';
+import homeServiceGarage from '../assets/home-service-garage.jpg';
+import homeServiceMotor from '../assets/home-service-motor.jpg';
+import homeServiceFence from '../assets/home-service-fence.jpg';
+import homeTrustReliability from '../assets/home-trust-reliability.jpg';
+
+// Mini Gallery Assets
+import gallery1 from '../assets/gallery-1.jpg';
+import gallery2 from '../assets/gallery-2.jpg';
+import gallery3 from '../assets/gallery-3.jpg';
+import gallery4 from '../assets/gallery-4.jpg';
+import gallery5 from '../assets/gallery-5.jpg';
+import gallery6 from '../assets/gallery-6.jpg';
+
 export default function Home() {
   return (
     <PageTransition>
@@ -62,12 +77,12 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { title: "Driveway Gates", href: "/gates", img: "https://images.unsplash.com/photo-1558002038-1055907df827?auto=format" },
-              { title: "Garage Doors", href: "/garages", img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format" },
-              { title: "Motor Repairs", href: "/automation", img: "https://images.unsplash.com/photo-1555664424-778a1e5e1b48?auto=format" },
-              { title: "Secure Fencing", href: "/fencing", img: "https://images.unsplash.com/photo-1585255318111-d1c92500c58e?auto=format" }
+              { title: "Driveway Gates", href: "/gates", img: homeServiceGate },
+              { title: "Garage Doors", href: "/garages", img: homeServiceGarage },
+              { title: "Motor Repairs", href: "/automation", img: homeServiceMotor },
+              { title: "Secure Fencing", href: "/fencing", img: homeServiceFence }
             ].map((service, i) => (
               <motion.div
                 key={i}
@@ -75,13 +90,13 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: i * 0.1 }}
-                className="group relative h-[500px] rounded-[40px] overflow-hidden"
+                className="group relative aspect-[3/4] rounded-[40px] overflow-hidden shadow-lg border-2 border-brand-border hover:border-brand-primary/30 transition-all duration-500"
               >
                 <Link to={service.href} className="block w-full h-full">
                   <img 
                     src={service.img} 
                     alt={service.title} 
-                    className="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:scale-105 group-hover:grayscale-0" 
+                    className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-105" 
                   />
                   <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors" />
                   <div className="absolute bottom-10 left-10">
@@ -129,16 +144,75 @@ export default function Home() {
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="aspect-square rounded-[60px] overflow-hidden shadow-2xl relative"
+              className="aspect-square rounded-[60px] overflow-hidden shadow-2xl relative border-2 border-brand-border"
             >
               <img 
-                src="https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format" 
-                alt="Expertise" 
-                className="w-full h-full object-cover grayscale"
+                src={homeTrustReliability} 
+                alt="Expertise and Reliability" 
+                className="w-full h-full object-cover object-center"
               />
-              <div className="absolute inset-0 bg-brand-primary/10 mix-blend-overlay" />
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* Project Mini Gallery Section */}
+      <section className="py-40 bg-brand-dark text-white relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-brand-primary/5 blur-[100px] rounded-full pointer-events-none" />
+        <div className="container mx-auto px-6 relative z-10">
+          
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
+            <div className="max-w-2xl">
+              <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-6">
+                Featured Portfolio.
+              </h2>
+              <p className="text-white/70 text-lg md:text-xl font-bold leading-relaxed">
+                A curated selection of our bespoke installations, showcasing our versatility across different materials and architectural styles.
+              </p>
+            </div>
+            <Link 
+              to="/garages" 
+              className="shrink-0 pb-2 text-[11px] font-black uppercase tracking-[0.4em] text-brand-primary hover:text-white transition-colors flex items-center gap-2"
+            >
+              View Capabilities <ArrowRight size={14} />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { img: gallery1, title: "Horizontal Timber", category: "Garage Doors" },
+              { img: gallery2, title: "Aluzinc Charcoal", category: "Garage Doors" },
+              { img: gallery3, title: "Steel & Timber Insert", category: "Sliding Gates" },
+              { img: gallery4, title: "Vertical Slatted Timber", category: "Sliding Gates" },
+              { img: gallery5, title: "Victorian Security", category: "Pedestrian Gates" },
+              { img: gallery6, title: "Timber Victorian", category: "Swing Gates" }
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="group relative aspect-[4/3] rounded-[32px] overflow-hidden border border-white/10 bg-white/5"
+              >
+                <img 
+                  src={item.img} 
+                  alt={item.title} 
+                  className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-105" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
+                <div className="absolute bottom-8 left-8 right-8 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                  <span className="block text-brand-primary text-[9px] font-black uppercase tracking-[0.3em] mb-2">
+                    {item.category}
+                  </span>
+                  <h4 className="text-white text-xl md:text-2xl font-black uppercase tracking-tight">
+                    {item.title}
+                  </h4>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
         </div>
       </section>
 
