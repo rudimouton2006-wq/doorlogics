@@ -23,7 +23,7 @@ export default function Home() {
   return (
     <PageTransition>
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center pt-24 overflow-hidden bg-white">
+      <section className="relative min-h-screen flex items-center pt-32 pb-20 overflow-hidden bg-white">
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl">
             <motion.div
@@ -31,29 +31,29 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             >
-              <span className="inline-block text-[10px] font-black uppercase tracking-[0.6em] text-brand-slate mb-8">
+              <span className="inline-block text-xs md:text-sm font-black uppercase tracking-[0.4em] text-brand-slate mb-8">
                 Established 1991 • Quality Engineering
               </span>
-              <h1 className="text-[14vw] lg:text-[10vw] font-black text-brand-dark leading-[0.8] mb-12 uppercase tracking-tighter">
+              <h1 className="text-7xl md:text-8xl lg:text-[10vw] font-black text-brand-dark leading-[0.85] mb-10 uppercase tracking-tighter">
                 Expert<br />
                 <span className="text-brand-primary">Security.</span>
               </h1>
-              <p className="text-xl md:text-2xl text-brand-slate max-w-2xl mb-16 leading-relaxed font-bold">
+              <p className="text-lg md:text-2xl text-brand-slate max-w-2xl mb-14 leading-relaxed font-extrabold">
                 We build and maintain high-quality gates and garage doors. Simple, professional solutions designed for your property's safety.
               </p>
               
               <div className="flex flex-wrap items-center gap-6">
                 <Link
                   to="/contact"
-                  className="bg-brand-primary text-white px-12 py-6 rounded-full font-black text-[12px] uppercase tracking-[0.4em] hover:bg-brand-dark transition-all shadow-2xl hover:-translate-y-1"
+                  className="bg-brand-primary text-white px-10 md:px-14 py-5 md:py-6 rounded-full font-black text-xs md:text-sm uppercase tracking-[0.3em] hover:bg-brand-dark transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 active:scale-95 text-center"
                 >
                   Request a Quote
                 </Link>
                 <a
                   href="tel:0834001919"
-                  className="flex items-center gap-3 px-10 py-6 border-2 border-brand-dark text-brand-dark rounded-full hover:bg-brand-secondary hover:border-brand-secondary hover:text-white transition-colors font-black text-[12px] uppercase tracking-[0.4em] group"
+                  className="flex items-center justify-center gap-3 px-8 md:px-12 py-5 md:py-6 border-4 border-brand-dark text-brand-dark rounded-full hover:bg-brand-secondary hover:border-brand-secondary hover:text-white transition-all font-black text-xs md:text-sm uppercase tracking-[0.3em] group active:scale-95"
                 >
-                  <ShieldAlert size={16} className="text-brand-secondary group-hover:text-white transition-colors" />
+                  <ShieldAlert size={20} className="text-brand-secondary group-hover:text-white transition-colors" />
                   Emergency Help
                 </a>
               </div>
@@ -66,18 +66,18 @@ export default function Home() {
       </section>
 
       {/* Simplified Category Grid */}
-      <section className="py-40 bg-white">
+      <section className="py-32 md:py-40 bg-white border-t border-brand-surface">
         <div className="container mx-auto px-6">
-          <div className="max-w-xl mb-24">
-            <h2 className="text-6xl md:text-7xl font-black text-brand-dark uppercase tracking-tighter mb-8">
+          <div className="max-w-2xl mb-20 md:mb-24">
+            <h2 className="text-5xl md:text-7xl font-black text-brand-dark uppercase tracking-tighter mb-8">
               Our Services.
             </h2>
-            <p className="text-brand-slate text-xl font-bold">
-              Professional installation and repairs for all types of perimeter property access.
+            <p className="text-brand-slate text-lg md:text-xl font-extrabold leading-relaxed">
+              Professional installation and repairs for all types of perimeter property access. Built to last.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {[
               { title: "Driveway Gates", href: "/gates", img: homeServiceGate },
               { title: "Garage Doors", href: "/garages", img: homeServiceGarage },
@@ -89,8 +89,8 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: i * 0.1 }}
-                className="group relative aspect-[3/4] rounded-[40px] overflow-hidden shadow-lg border-2 border-brand-border hover:border-brand-primary/30 transition-all duration-500"
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                className="group relative aspect-[3/4] rounded-[40px] overflow-hidden shadow-xl border-4 border-white hover:border-brand-primary/50 transition-all duration-500"
               >
                 <Link to={service.href} className="block w-full h-full">
                   <img 
@@ -98,11 +98,13 @@ export default function Home() {
                     alt={service.title} 
                     className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-105" 
                   />
-                  <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors" />
-                  <div className="absolute bottom-10 left-10">
-                    <h3 className="text-white text-2xl font-black uppercase tracking-tighter mb-2">{service.title}</h3>
-                    <div className="flex items-center gap-2 text-white/60 text-[8px] font-black uppercase tracking-[0.3em]">
-                      Explore Details <ArrowRight size={10} />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent group-hover:opacity-80 transition-opacity duration-300" />
+                  <div className="absolute bottom-8 left-8 right-8">
+                    <h3 className="text-white text-2xl md:text-3xl font-black uppercase tracking-tight mb-3">
+                      {service.title}
+                    </h3>
+                    <div className="flex items-center gap-2 text-white text-xs font-black uppercase tracking-widest group-hover:text-brand-primary transition-colors">
+                      Explore Details <ArrowRight size={14} />
                     </div>
                   </div>
                 </Link>
@@ -113,43 +115,50 @@ export default function Home() {
       </section>
 
       {/* Seamless Trust Section */}
-      <section className="py-40 bg-brand-surface">
+      <section className="py-32 md:py-40 bg-brand-surface">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-32 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-32 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-6xl font-black mb-12 uppercase tracking-tighter leading-[0.9]">
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-black mb-14 uppercase tracking-tighter leading-[0.9] text-brand-dark">
                 Reliability<br />by Design.
               </h2>
               <div className="space-y-12">
                 {[
-                  { label: "Expert Repairs", text: "We fix all major brands of gate and garage motors efficiently." },
-                  { label: "Custom Builds", text: "Bespoke gate manufacturing tailored to your property aesthetics." },
-                  { label: "Direct Support", text: "Speak directly to an expert for immediate technical guidance." }
+                  { label: "Expert Repairs", text: "We fix all major brands of gate and garage motors efficiently, minimizing your downtime." },
+                  { label: "Custom Builds", text: "Bespoke gate and fencing manufacturing tailored exactly to your property's dimensions and aesthetics." },
+                  { label: "Direct Support", text: "Speak directly to an expert for immediate technical guidance. No call centers, just real help." }
                 ].map((item, i) => (
-                  <div key={i} className="flex gap-8">
-                    <div className="text-brand-primary font-black text-2xl opacity-20">0{i+1}</div>
+                  <div key={i} className="flex gap-6 md:gap-8 items-start">
+                    <div className="text-brand-primary font-black text-3xl md:text-4xl opacity-40 leading-none pt-1">
+                      0{i+1}
+                    </div>
                     <div>
-                      <h4 className="text-sm font-black uppercase tracking-widest mb-2">{item.label}</h4>
-                      <p className="text-brand-slate text-sm font-bold leading-relaxed">{item.text}</p>
+                      <h4 className="text-base md:text-lg font-black uppercase tracking-widest mb-3 text-brand-dark">
+                        {item.label}
+                      </h4>
+                      <p className="text-brand-slate text-base md:text-lg font-bold leading-relaxed">
+                        {item.text}
+                      </p>
                     </div>
                   </div>
                 ))}
               </div>
             </motion.div>
+            
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="aspect-square rounded-[60px] overflow-hidden shadow-2xl relative border-2 border-brand-border"
+              className="aspect-square rounded-[60px] overflow-hidden shadow-2xl relative border-4 border-white"
             >
               <img 
                 src={homeTrustReliability} 
                 alt="Expertise and Reliability" 
-                className="w-full h-full object-cover object-center"
+                className="w-full h-full object-cover object-center transition-transform duration-1000 hover:scale-105"
               />
             </motion.div>
           </div>
@@ -157,28 +166,28 @@ export default function Home() {
       </section>
 
       {/* Project Mini Gallery Section */}
-      <section className="py-40 bg-brand-dark text-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-brand-primary/5 blur-[100px] rounded-full pointer-events-none" />
+      <section className="py-32 md:py-40 bg-brand-dark text-white relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-primary/10 blur-[120px] rounded-full pointer-events-none" />
+        
         <div className="container mx-auto px-6 relative z-10">
-          
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 md:mb-20 gap-8 border-b border-white/10 pb-10">
             <div className="max-w-2xl">
               <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-6">
                 Featured Portfolio.
               </h2>
-              <p className="text-white/70 text-lg md:text-xl font-bold leading-relaxed">
-                A curated selection of our bespoke installations, showcasing our versatility across different materials and architectural styles.
+              <p className="text-white/80 text-lg md:text-xl font-extrabold leading-relaxed">
+                A curated selection of our bespoke installations, showcasing our absolute versatility across different materials and architectural styles.
               </p>
             </div>
             <Link 
               to="/garages" 
-              className="shrink-0 pb-2 text-[11px] font-black uppercase tracking-[0.4em] text-brand-primary hover:text-white transition-colors flex items-center gap-2"
+              className="shrink-0 text-xs md:text-sm font-black uppercase tracking-[0.3em] text-brand-primary hover:text-white transition-colors flex items-center gap-3 py-4"
             >
-              View Capabilities <ArrowRight size={14} />
+              View Capabilities <ArrowRight size={18} />
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {[
               { img: gallery1, title: "Horizontal Timber", category: "Garage Doors" },
               { img: gallery2, title: "Aluzinc Charcoal", category: "Garage Doors" },
@@ -193,31 +202,30 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="group relative aspect-[4/3] rounded-[32px] overflow-hidden border border-white/10 bg-white/5"
+                className="group relative aspect-[4/3] rounded-[32px] md:rounded-[40px] overflow-hidden border-2 border-white/10 bg-white/5"
               >
                 <img 
                   src={item.img} 
                   alt={item.title} 
                   className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-105" 
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/30 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="absolute bottom-8 left-8 right-8 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                  <span className="block text-brand-primary text-[9px] font-black uppercase tracking-[0.3em] mb-2">
+                  <span className="block text-brand-primary text-xs font-black uppercase tracking-widest mb-3">
                     {item.category}
                   </span>
-                  <h4 className="text-white text-xl md:text-2xl font-black uppercase tracking-tight">
+                  <h4 className="text-white text-2xl md:text-3xl font-black uppercase tracking-tight leading-none">
                     {item.title}
                   </h4>
                 </div>
               </motion.div>
             ))}
           </div>
-
         </div>
       </section>
 
       {/* Simple Footer Call to Action */}
-      <section className="py-60 bg-white text-center">
+      <section className="py-40 md:py-60 bg-white text-center">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -225,12 +233,12 @@ export default function Home() {
             viewport={{ once: true }}
             className="max-w-2xl mx-auto"
           >
-            <h2 className="text-7xl font-black mb-16 uppercase tracking-tighter">
+            <h2 className="text-6xl md:text-8xl font-black mb-12 uppercase tracking-tighter text-brand-dark">
               Let's talk.
             </h2>
             <Link 
               to="/contact"
-              className="inline-block bg-brand-primary text-white px-16 py-8 rounded-full font-black text-[12px] uppercase tracking-[0.5em] hover:bg-brand-dark transition-all hover:shadow-2xl hover:-translate-y-1 active:scale-95"
+              className="inline-block bg-brand-primary text-white px-14 py-7 rounded-full font-black text-sm md:text-base uppercase tracking-[0.4em] hover:bg-brand-dark transition-all hover:shadow-2xl hover:-translate-y-1 active:scale-95"
             >
               Get in Touch
             </Link>

@@ -23,11 +23,11 @@ export default function Contact() {
     <PageTransition>
       <div className="pt-40 pb-20 bg-white min-h-screen">
         <div className="container mx-auto px-6">
-          <div className="max-w-4xl mb-24">
+          <div className="max-w-5xl mb-32 md:mb-40">
             <motion.span 
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
-              className="text-brand-primary font-display font-black text-[10px] uppercase tracking-[0.6em] block mb-6"
+              className="text-brand-primary font-display font-black text-xs md:text-sm uppercase tracking-[0.4em] block mb-8"
             >
               Direct Communication
             </motion.span>
@@ -35,7 +35,7 @@ export default function Contact() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-6xl md:text-8xl lg:text-9xl font-black text-brand-dark mb-10 leading-[0.8] tracking-tighter uppercase"
+              className="text-7xl md:text-8xl lg:text-[9vw] font-black text-brand-dark mb-12 leading-[0.85] tracking-tighter uppercase"
             >
               Let's Start<br />
               <span className="text-brand-primary">Talking.</span>
@@ -44,27 +44,27 @@ export default function Contact() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-xl md:text-2xl text-brand-slate max-w-2xl leading-relaxed font-bold"
+              className="text-lg md:text-2xl text-brand-slate max-w-3xl leading-relaxed font-extrabold"
             >
               Speak directly with Rika or Madilu at our Bellville office for inquiries, or reach Ronnie for immediate technical emergencies across the Northern Suburbs and greater Cape Town area.
             </motion.p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 mb-20">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 lg:gap-24 mb-20">
             {/* Communication Hub */}
-            <div className="lg:col-span-5 space-y-16">
+            <div className="lg:col-span-5 space-y-20">
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
               >
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-10 h-10 rounded-full bg-brand-primary/10 flex items-center justify-center text-brand-primary">
-                    <MapPin size={18} />
+                <div className="flex items-center gap-6 mb-8">
+                  <div className="w-14 h-14 rounded-2xl bg-brand-primary/10 flex items-center justify-center text-brand-primary">
+                    <MapPin size={24} />
                   </div>
-                  <h3 className="text-xs font-black uppercase text-brand-primary tracking-[0.4em]">Headquarters</h3>
+                  <h3 className="text-sm md:text-base font-black uppercase text-brand-primary tracking-[0.3em]">Headquarters</h3>
                 </div>
-                <p className="text-2xl md:text-3xl font-black text-brand-dark uppercase tracking-tighter leading-tight pl-14">
+                <p className="text-3xl md:text-4xl font-black text-brand-dark uppercase tracking-tighter leading-tight pl-20">
                   3 Wellington Street,<br />
                   Oakdale, Bellville
                 </p>
@@ -75,37 +75,37 @@ export default function Contact() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
               >
-                <div className="flex items-center gap-4 mb-8">
-                  <div className="w-10 h-10 rounded-full bg-brand-primary/10 flex items-center justify-center text-brand-primary">
-                    <Phone size={18} />
+                <div className="flex items-center gap-6 mb-10">
+                  <div className="w-14 h-14 rounded-2xl bg-brand-primary/10 flex items-center justify-center text-brand-primary">
+                    <Phone size={24} />
                   </div>
-                  <h3 className="text-xs font-black uppercase text-brand-primary tracking-[0.4em]">Connect</h3>
+                  <h3 className="text-sm md:text-base font-black uppercase text-brand-primary tracking-[0.3em]">Connect</h3>
                 </div>
                 
-                <div className="space-y-10 pl-14">
+                <div className="space-y-14 pl-20">
                   <div className="group">
-                    <span className="block text-[10px] font-black text-brand-slate uppercase tracking-widest mb-2 flex items-center gap-2">
+                    <span className="block text-xs md:text-sm font-black text-brand-slate uppercase tracking-widest mb-3 flex items-center gap-3">
                       Office <span className="opacity-50">(Rika & Madilu)</span>
                     </span>
-                    <a href="tel:0219192221" className="block text-3xl md:text-4xl font-black text-brand-dark uppercase tracking-tighter group-hover:text-brand-primary transition-colors">
+                    <a href="tel:0219192221" className="block text-4xl md:text-5xl font-black text-brand-dark uppercase tracking-tighter group-hover:text-brand-primary transition-colors">
                       021 919 2221
                     </a>
                   </div>
 
                   <div className="group">
-                    <span className="block text-[10px] font-black text-brand-secondary uppercase tracking-widest mb-2 flex items-center gap-2">
-                      <ShieldAlert size={12} /> Emergency <span className="opacity-50">(Ronnie)</span>
+                    <span className="block text-xs md:text-sm font-black text-brand-secondary uppercase tracking-widest mb-3 flex items-center gap-3">
+                      <ShieldAlert size={16} /> Emergency <span className="opacity-50">(Ronnie)</span>
                     </span>
-                    <a href="tel:0834001919" className="block text-3xl md:text-4xl font-black text-brand-dark uppercase tracking-tighter group-hover:text-brand-secondary transition-colors">
+                    <a href="tel:0834001919" className="block text-4xl md:text-5xl font-black text-brand-dark uppercase tracking-tighter group-hover:text-brand-secondary transition-colors">
                       083 400 1919
                     </a>
                   </div>
 
                   <div className="group">
-                    <span className="block text-[10px] font-black text-brand-slate uppercase tracking-widest mb-2 flex items-center gap-2">
-                      <Mail size={12} /> Direct Email
+                    <span className="block text-xs md:text-sm font-black text-brand-slate uppercase tracking-widest mb-3 flex items-center gap-3">
+                      <Mail size={16} /> Direct Email
                     </span>
-                    <a href="mailto:doorlogics@telkomsa.net" className="block text-xl md:text-2xl font-black text-brand-dark uppercase tracking-tighter group-hover:text-brand-primary transition-colors truncate">
+                    <a href="mailto:doorlogics@telkomsa.net" className="block text-2xl md:text-3xl font-black text-brand-dark uppercase tracking-tighter group-hover:text-brand-primary transition-colors truncate">
                       doorlogics@telkomsa.net
                     </a>
                   </div>
@@ -118,7 +118,7 @@ export default function Contact() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.4, duration: 0.5 }}
-              className="lg:col-span-7 p-8 md:p-14 bg-brand-surface rounded-[40px] md:rounded-[60px] border border-brand-border shadow-2xl relative overflow-hidden"
+              className="lg:col-span-7 p-10 md:p-16 bg-brand-surface rounded-[40px] md:rounded-[60px] border-4 border-white shadow-2xl relative overflow-hidden"
             >
               <AnimatePresence mode="wait">
                 {!isSubmitted ? (
@@ -128,22 +128,22 @@ export default function Contact() {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                     onSubmit={handleSubmit} 
-                    className="space-y-8"
+                    className="space-y-10"
                   >
                     {/* Inquiry Type Selector */}
-                    <div className="space-y-4">
-                      <label className="text-[10px] font-black uppercase text-brand-dark tracking-widest block pl-4">How can we help?</label>
-                      <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+                    <div className="space-y-5">
+                      <label className="text-xs md:text-sm font-black uppercase text-brand-dark tracking-widest block pl-4">How can we help?</label>
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                         {['quote', 'repair', 'service', 'other'].map((type) => (
                           <button
                             key={type}
                             type="button"
                             onClick={() => setInquiryType(type)}
                             className={cn(
-                              "py-4 px-2 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all duration-300",
+                              "py-5 px-2 rounded-2xl text-xs font-black uppercase tracking-widest transition-all duration-300",
                               inquiryType === type 
-                                ? "bg-brand-primary text-white shadow-md scale-100" 
-                                : "bg-white border border-brand-border text-brand-slate hover:border-brand-primary/50 hover:bg-brand-primary/5 scale-95"
+                                ? "bg-brand-primary text-white shadow-lg scale-100" 
+                                : "bg-white border-2 border-brand-border text-brand-slate hover:border-brand-primary/50 hover:bg-brand-primary/5 scale-95"
                             )}
                           >
                             {type}
@@ -153,44 +153,44 @@ export default function Contact() {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                      <div className="space-y-3">
-                        <label className="text-[10px] font-black uppercase text-brand-dark tracking-widest block pl-4">Full Name</label>
-                        <input required type="text" className="w-full bg-white border border-brand-border rounded-full px-8 py-5 font-bold focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/10 transition-all outline-none" placeholder="John Doe" />
+                      <div className="space-y-4">
+                        <label className="text-xs md:text-sm font-black uppercase text-brand-dark tracking-widest block pl-4">Full Name</label>
+                        <input required type="text" className="w-full bg-white border-2 border-brand-border rounded-full px-8 py-6 text-base md:text-lg font-extrabold focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/10 transition-all outline-none" placeholder="John Doe" />
                       </div>
-                      <div className="space-y-3">
-                        <label className="text-[10px] font-black uppercase text-brand-dark tracking-widest block pl-4">Phone Number</label>
-                        <input required type="tel" className="w-full bg-white border border-brand-border rounded-full px-8 py-5 font-bold focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/10 transition-all outline-none" placeholder="082 123 4567" />
+                      <div className="space-y-4">
+                        <label className="text-xs md:text-sm font-black uppercase text-brand-dark tracking-widest block pl-4">Phone Number</label>
+                        <input required type="tel" className="w-full bg-white border-2 border-brand-border rounded-full px-8 py-6 text-base md:text-lg font-extrabold focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/10 transition-all outline-none" placeholder="082 123 4567" />
                       </div>
                     </div>
 
-                    <div className="space-y-3">
-                      <label className="text-[10px] font-black uppercase text-brand-dark tracking-widest block pl-4">Email Address</label>
-                      <input required type="email" className="w-full bg-white border border-brand-border rounded-full px-8 py-5 font-bold focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/10 transition-all outline-none" placeholder="john@example.com" />
+                    <div className="space-y-4">
+                      <label className="text-xs md:text-sm font-black uppercase text-brand-dark tracking-widest block pl-4">Email Address</label>
+                      <input required type="email" className="w-full bg-white border-2 border-brand-border rounded-full px-8 py-6 text-base md:text-lg font-extrabold focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/10 transition-all outline-none" placeholder="john@example.com" />
                     </div>
 
-                    <div className="space-y-3">
-                      <label className="text-[10px] font-black uppercase text-brand-dark tracking-widest block pl-4">Property Address (Optional)</label>
-                      <input type="text" className="w-full bg-white border border-brand-border rounded-full px-8 py-5 font-bold focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/10 transition-all outline-none" placeholder="Suburb or Area" />
+                    <div className="space-y-4">
+                      <label className="text-xs md:text-sm font-black uppercase text-brand-dark tracking-widest block pl-4">Property Address (Optional)</label>
+                      <input type="text" className="w-full bg-white border-2 border-brand-border rounded-full px-8 py-6 text-base md:text-lg font-extrabold focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/10 transition-all outline-none" placeholder="Suburb or Area" />
                     </div>
 
-                    <div className="space-y-3">
-                      <label className="text-[10px] font-black uppercase text-brand-dark tracking-widest block pl-4">Your Message</label>
-                      <textarea required rows={4} className="w-full bg-white border border-brand-border rounded-[32px] px-8 py-6 font-bold focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/10 transition-all outline-none resize-none" placeholder="Please provide details about your requirements..." />
+                    <div className="space-y-4">
+                      <label className="text-xs md:text-sm font-black uppercase text-brand-dark tracking-widest block pl-4">Your Message</label>
+                      <textarea required rows={5} className="w-full bg-white border-2 border-brand-border rounded-[32px] px-8 py-6 text-base md:text-lg font-extrabold focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/10 transition-all outline-none resize-none" placeholder="Please provide details about your requirements..." />
                     </div>
 
                     <button 
                       disabled={isSubmitting}
-                      className="w-full bg-brand-primary text-white py-6 rounded-full font-black text-[11px] uppercase tracking-[0.5em] hover:bg-brand-dark transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 flex items-center justify-center gap-3 disabled:opacity-70 disabled:pointer-events-none"
+                      className="w-full bg-brand-primary text-white py-7 rounded-full font-black text-xs md:text-sm uppercase tracking-[0.4em] hover:bg-brand-dark transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 flex items-center justify-center gap-4 disabled:opacity-70 disabled:pointer-events-none active:scale-95"
                     >
                       {isSubmitting ? (
                         <>
-                          <Loader2 size={18} className="animate-spin" />
+                          <Loader2 size={24} className="animate-spin" />
                           Processing...
                         </>
                       ) : (
                         <>
                           Transmit Message
-                          <Send size={16} />
+                          <Send size={20} />
                         </>
                       )}
                     </button>
@@ -202,16 +202,16 @@ export default function Contact() {
                     animate={{ opacity: 1, scale: 1 }}
                     className="absolute inset-0 flex flex-col items-center justify-center text-center p-12 bg-brand-surface z-10"
                   >
-                    <div className="w-24 h-24 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-8">
-                      <CheckCircle2 size={48} />
+                    <div className="w-32 h-32 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-10">
+                      <CheckCircle2 size={64} />
                     </div>
-                    <h3 className="text-4xl font-black uppercase tracking-tighter text-brand-dark mb-4">Message Received.</h3>
-                    <p className="text-brand-slate font-bold leading-relaxed mb-10 max-w-sm">
+                    <h3 className="text-5xl md:text-6xl font-black uppercase tracking-tighter text-brand-dark mb-6">Message Received.</h3>
+                    <p className="text-brand-slate text-lg md:text-xl font-extrabold leading-relaxed mb-14 max-w-md">
                       Thank you for contacting Doorlogics. Rika or Madilu will review your request and get back to you shortly.
                     </p>
                     <button 
                       onClick={() => setIsSubmitted(false)}
-                      className="text-[10px] font-black uppercase tracking-[0.4em] text-brand-primary hover:text-brand-dark transition-colors"
+                      className="text-xs md:text-sm font-black uppercase tracking-[0.4em] text-brand-primary hover:text-brand-dark transition-colors border-b-2 border-brand-primary pb-1"
                     >
                       Send Another Message
                     </button>
