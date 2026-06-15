@@ -87,8 +87,8 @@ export default function Gates() {
                 transition={{ delay: i * 0.1 }}
                 className="group rounded-[60px] overflow-hidden border-2 border-brand-border bg-white hover:border-brand-primary/30 hover:shadow-2xl transition-all duration-500 flex flex-col"
               >
-                <div className="h-[400px] overflow-hidden">
-                  <img src={gate.img} alt={gate.title} className="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105" />
+                <div className="aspect-[4/3] w-full overflow-hidden">
+                  <img src={gate.img} alt={gate.title} className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-105" />
                 </div>
                 <div className="p-12 flex-grow flex flex-col justify-center">
                   <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-4 text-brand-dark">{gate.title}</h3>

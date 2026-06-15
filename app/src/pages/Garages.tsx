@@ -75,14 +75,13 @@ export default function Garages() {
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="rounded-[60px] overflow-hidden shadow-2xl aspect-square md:aspect-video relative group"
+              className="rounded-[60px] overflow-hidden shadow-2xl aspect-[4/3] md:aspect-video relative group"
             >
               <img 
                 src={garage1} 
                 alt="Quality Garage Door Installation" 
-                className="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105" 
+                className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-105" 
               />
-              <div className="absolute inset-0 bg-brand-primary/10 mix-blend-overlay group-hover:opacity-0 transition-opacity duration-1000" />
             </motion.div>
             
             <div className="space-y-12">
@@ -120,7 +119,7 @@ export default function Garages() {
                 <p className="text-brand-slate text-lg font-bold">A selection of our recent garage door installations.</p>
               </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[garage2, garage3, garage4].map((img, i) => (
                 <motion.div 
                   key={i}
@@ -128,10 +127,9 @@ export default function Garages() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="rounded-[40px] overflow-hidden aspect-square relative group"
+                  className="rounded-[40px] overflow-hidden aspect-[4/3] shadow-lg border-2 border-brand-border hover:border-brand-primary/30 hover:shadow-2xl transition-all duration-500 relative group"
                 >
-                  <img src={img} alt={`Garage project ${i + 2}`} className="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105" />
-                  <div className="absolute inset-0 bg-brand-dark/10 group-hover:bg-transparent transition-colors duration-500" />
+                  <img src={img} alt={`Garage project ${i + 2}`} className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-105" />
                 </motion.div>
               ))}
             </div>
