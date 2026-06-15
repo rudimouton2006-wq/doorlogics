@@ -5,6 +5,12 @@ import PageTransition from '../components/PageTransition';
 import { Link } from 'react-router-dom';
 import { cn } from '@/src/lib/utils';
 
+// Local Asset Imports
+import garage1 from '../assets/garage-1.jpg';
+import garage2 from '../assets/garage-2.jpg';
+import garage3 from '../assets/garage-3.jpg';
+import garage4 from '../assets/garage-4.jpg';
+
 export default function Garages() {
   return (
     <PageTransition>
@@ -72,11 +78,11 @@ export default function Garages() {
               className="rounded-[60px] overflow-hidden shadow-2xl aspect-square md:aspect-video relative group"
             >
               <img 
-                src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format" 
+                src={garage1} 
                 alt="Quality Garage Door Installation" 
                 className="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105" 
               />
-              <div className="absolute inset-0 bg-brand-primary/10 mix-blend-overlay" />
+              <div className="absolute inset-0 bg-brand-primary/10 mix-blend-overlay group-hover:opacity-0 transition-opacity duration-1000" />
             </motion.div>
             
             <div className="space-y-12">
@@ -103,6 +109,31 @@ export default function Garages() {
                   </li>
                 ))}
               </ul>
+            </div>
+          </div>
+
+          {/* Project Gallery Integration */}
+          <div className="mb-40">
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+              <div>
+                <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-brand-dark mb-4">Our Work.</h2>
+                <p className="text-brand-slate text-lg font-bold">A selection of our recent garage door installations.</p>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {[garage2, garage3, garage4].map((img, i) => (
+                <motion.div 
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="rounded-[40px] overflow-hidden aspect-square relative group"
+                >
+                  <img src={img} alt={`Garage project ${i + 2}`} className="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-brand-dark/10 group-hover:bg-transparent transition-colors duration-500" />
+                </motion.div>
+              ))}
             </div>
           </div>
           

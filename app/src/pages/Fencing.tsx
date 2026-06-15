@@ -5,6 +5,12 @@ import PageTransition from '../components/PageTransition';
 import { Link } from 'react-router-dom';
 import { cn } from '@/src/lib/utils';
 
+// Local Asset Imports
+import fence1 from '../assets/fence-1.jpg';
+import fence2 from '../assets/fence-2.jpg';
+import fence3 from '../assets/fence-3.jpg';
+import fence4 from '../assets/fence-4.jpg';
+
 export default function Fencing() {
   return (
     <PageTransition>
@@ -39,19 +45,13 @@ export default function Fencing() {
             </motion.p>
           </div>
 
-          {/* Premium Image Grid */}
+          {/* Upgraded Dynamic 4-Grid Image Matrix */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-40">
             {[
-              { 
-                title: "Clear-View Fencing", 
-                desc: "High-security mesh fencing that provides maximum visibility and anti-climb protection without obstructing your view.",
-                img: "https://images.unsplash.com/photo-1558442086-8ea19a79cd4d?auto=format"
-              },
-              { 
-                title: "Custom Security", 
-                desc: "Specialized boundary fencing tailored to your specific safety and aesthetic needs, built to last decades.",
-                img: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format"
-              }
+              { title: "Timber Inserts", desc: "Modern horizontal timber slats seamlessly integrated with sturdy boundary structures.", img: fence1 },
+              { title: "Architectural Walls", desc: "White masonry with custom curved wooden inserts designed to match the property styling.", img: fence2 },
+              { title: "Perimeter Steel", desc: "High-visibility, maximum security perimeter steel fencing preventing any unauthorized access.", img: fence3 },
+              { title: "Classic Brick & Steel", desc: "Traditional brick pillars combined with heavy-duty anti-climb steel rails.", img: fence4 }
             ].map((fence, i) => (
               <motion.div
                 key={i}
@@ -72,7 +72,7 @@ export default function Fencing() {
             ))}
           </div>
 
-          {/* Upgraded "Dark Mode" Authority Block */}
+          {/* Dark Mode Authority Block */}
           <div className="bg-brand-dark rounded-[64px] p-12 md:p-24 text-white relative overflow-hidden shadow-2xl">
             <div className="absolute top-0 left-0 w-96 h-96 bg-brand-primary/10 blur-[100px] rounded-full pointer-events-none" />
             

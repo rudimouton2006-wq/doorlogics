@@ -5,7 +5,12 @@ import PageTransition from '../components/PageTransition';
 import { Link } from 'react-router-dom';
 import { cn } from '@/src/lib/utils';
 
-// Restored and integrated into the UI
+// Local Asset Imports
+import gate1 from '../assets/gate-1.jpg';
+import gate2 from '../assets/gate-2.jpg';
+import gate3 from '../assets/gate-3.jpg';
+import gate4 from '../assets/gate-4.jpg';
+
 const specs = [
   { icon: <Zap size={28} />, title: "High-Speed Execution", desc: "Operating at up to 36m/min to minimize perimeter vulnerability windows during entry and exit." },
   { icon: <Lock size={28} />, title: "Anti-Lift Geometry", desc: "Proprietary galvanized bracket systems designed specifically to eliminate forced-entry lifting." },
@@ -46,7 +51,7 @@ export default function Gates() {
             </motion.p>
           </div>
 
-          {/* Revived & Upgraded Tactile Spec Cards */}
+          {/* Tactile Spec Cards */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-40">
             {specs.map((spec, i) => (
               <motion.div
@@ -66,19 +71,13 @@ export default function Gates() {
             ))}
           </div>
 
-          {/* Premium Image Grid */}
+          {/* Upgraded Dynamic 4-Grid Image Matrix */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-40">
             {[
-              { 
-                title: "Steel & Custom", 
-                desc: "Heavy-duty security gates manufactured to your exact property specifications.",
-                img: "https://images.unsplash.com/photo-1558002038-1055907df827?auto=format"
-              },
-              { 
-                title: "Versatile Designs", 
-                desc: "Sliding or swing configurations available for any entrance type or size.",
-                img: "https://images.unsplash.com/photo-1506774017592-359defcad06f?auto=format"
-              }
+              { title: "Sliding Timber", desc: "Heavy-duty steel frame with premium hardwood cladding.", img: gate1 },
+              { title: "Double Swing", desc: "Classic double swing configurations with robust hinges.", img: gate2 },
+              { title: "Steel Palisade", desc: "High-security steel perimeter gates, powder-coated to last.", img: gate3 },
+              { title: "Custom Architectural", desc: "Bespoke designs to perfectly match your property's exterior.", img: gate4 }
             ].map((gate, i) => (
               <motion.div
                 key={i}
@@ -99,7 +98,7 @@ export default function Gates() {
             ))}
           </div>
 
-          {/* Upgraded "Dark Mode" Authority Block */}
+          {/* Dark Mode Authority Block */}
           <div className="bg-brand-dark rounded-[64px] p-12 md:p-24 text-white relative overflow-hidden shadow-2xl">
             <div className="absolute top-0 right-0 w-96 h-96 bg-brand-primary/10 blur-[100px] rounded-full pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-secondary/10 blur-[100px] rounded-full pointer-events-none" />

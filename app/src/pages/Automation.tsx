@@ -5,6 +5,12 @@ import { BatteryFull, Smartphone, Radio, ArrowRight } from 'lucide-react';
 import PageTransition from '../components/PageTransition';
 import { cn } from '@/src/lib/utils';
 
+// Local Asset Imports
+import auto1 from '../assets/auto-1.jpg';
+import auto2 from '../assets/auto-2.jpg';
+import auto3 from '../assets/auto-3.jpg';
+import auto4 from '../assets/auto-4.jpg';
+
 export default function Automation() {
   return (
     <PageTransition>
@@ -39,19 +45,13 @@ export default function Automation() {
             </motion.p>
           </div>
 
-          {/* Premium Image Grid */}
+          {/* Upgraded Dynamic 4-Grid Image Matrix */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-40">
             {[
-              { 
-                title: "Gate Automation", 
-                desc: "Powerful, high-speed sliding and swing gate motors from leading manufacturers, designed for heavy-duty cycles.",
-                img: "https://images.unsplash.com/photo-1555664424-778a1e5e1b48?auto=format"
-              },
-              { 
-                title: "Garage Motors", 
-                desc: "Quiet, belt-driven operators for sectional, roll-up and tip-up doors with advanced anti-crush safety protocols.",
-                img: "https://images.unsplash.com/photo-1558442086-8ea19a79cd4d?auto=format"
-              }
+              { title: "Track Systems", desc: "Whisper-quiet nylon roller and heavy-duty track installations perfectly aligned for garage doors.", img: auto1 },
+              { title: "Heavy Sliding Gates", desc: "High-torque industrial motors designed to swiftly move extra-wide and heavy driveway gates.", img: auto2 },
+              { title: "Security Integration", desc: "Seamless motor integration with tough steel and clear-view security gates.", img: auto3 },
+              { title: "Swing Gate Motors", desc: "Synchronized dual-arm rams built for perfectly opening heavy arched timber swing gates.", img: auto4 }
             ].map((item, i) => (
               <motion.div
                 key={i}
@@ -72,7 +72,7 @@ export default function Automation() {
             ))}
           </div>
 
-          {/* Upgraded "Dark Mode" Tech Specs Block */}
+          {/* Tech Specs Block */}
           <div className="bg-brand-dark rounded-[64px] p-12 md:p-24 text-white relative overflow-hidden shadow-2xl">
             <div className="absolute top-0 right-0 w-96 h-96 bg-brand-primary/10 blur-[100px] rounded-full pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-secondary/10 blur-[100px] rounded-full pointer-events-none" />
