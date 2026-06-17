@@ -4,19 +4,21 @@ import { ArrowRight, ShieldAlert } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import PageTransition from '../components/PageTransition';
 
-// Primary Service Assets
+// Primary Service Assets (UPDATED FOR STEP 3)
 import homeServiceGate from '../assets/home-service-gate.jpg';
-import homeServiceGarage from '../assets/home-service-garage.jpg';
-import homeServiceMotor from '../assets/home-service-motor.jpg';
-import homeServiceFence from '../assets/home-service-fence.jpg';
+import splitGarageDoors from '../assets/split-garage-doors.jpg';
+import gateMotorCorrect from '../assets/gate-motor-correct.jpg';
+import clearvuFence from '../assets/clearvu-fence.jpg';
+import homeServiceRepairs from '../assets/home-service-repairs.jpg';
+import homeServiceRemotes from '../assets/home-service-remotes.jpg';
 import homeTrustReliability from '../assets/home-trust-reliability.jpg';
 
-// Mini Gallery Assets
+// Mini Gallery Assets (UPDATED FOR STEP 3)
 import gallery1 from '../assets/gallery-1.jpg';
 import gallery2 from '../assets/gallery-2.jpg';
 import gallery3 from '../assets/gallery-3.jpg';
 import gallery4 from '../assets/gallery-4.jpg';
-import gallery5 from '../assets/gallery-5.jpg';
+import galleryVictorian from '../assets/gallery-victorian.jpg';
 import gallery6 from '../assets/gallery-6.jpg';
 
 export default function Home() {
@@ -34,12 +36,12 @@ export default function Home() {
               <span className="inline-block text-xs md:text-sm font-black uppercase tracking-[0.4em] text-brand-slate mb-8">
                 Established 1991 • Quality Engineering
               </span>
-              <h1 className="text-7xl md:text-8xl lg:text-[10vw] font-black text-brand-dark leading-[0.85] mb-10 uppercase tracking-tighter">
+              <h1 className="text-7xl md:text-8xl lg:text-[9vw] font-black text-brand-dark leading-[0.85] mb-10 uppercase tracking-tighter">
                 Expert<br />
-                <span className="text-brand-primary">Security.</span>
+                <span className="text-brand-primary">Garage Doors & Gates.</span>
               </h1>
               <p className="text-lg md:text-2xl text-brand-slate max-w-2xl mb-14 leading-relaxed font-extrabold">
-                We build and maintain high-quality gates and garage doors. Simple, professional solutions designed for your property's safety.
+                Simple, professional solutions designed for your convenience and safety. Including all types of access control.
               </p>
               
               <div className="flex flex-wrap items-center gap-6">
@@ -77,12 +79,14 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {[
               { title: "Driveway Gates", href: "/gates", img: homeServiceGate },
-              { title: "Garage Doors", href: "/garages", img: homeServiceGarage },
-              { title: "Motor Repairs", href: "/automation", img: homeServiceMotor },
-              { title: "Secure Fencing", href: "/fencing", img: homeServiceFence }
+              { title: "Garage Doors", href: "/garages", img: splitGarageDoors },
+              { title: "Secure Fencing", href: "/fencing", img: clearvuFence },
+              { title: "Automation", href: "/automation", img: gateMotorCorrect },
+              { title: "Repairs", href: "/support", img: homeServiceRepairs },
+              { title: "Remotes", href: "/support", img: homeServiceRemotes }
             ].map((service, i) => (
               <motion.div
                 key={i}
@@ -128,7 +132,7 @@ export default function Home() {
               </h2>
               <div className="space-y-12">
                 {[
-                  { label: "Expert Repairs", text: "We fix all major brands of gate and garage motors efficiently, minimizing your downtime." },
+                  { label: "Expert Repairs", text: "We repair all brands of garage door and gate operator brands ( old or new ) efficiently to minimize your downtime and expense." },
                   { label: "Custom Builds", text: "Bespoke gate and fencing manufacturing tailored exactly to your property's dimensions and aesthetics." },
                   { label: "Direct Support", text: "Speak directly to an expert for immediate technical guidance. No call centers, just real help." }
                 ].map((item, i) => (
@@ -193,7 +197,7 @@ export default function Home() {
               { img: gallery2, title: "Aluzinc Charcoal", category: "Garage Doors" },
               { img: gallery3, title: "Steel & Timber Insert", category: "Sliding Gates" },
               { img: gallery4, title: "Vertical Slatted Timber", category: "Sliding Gates" },
-              { img: gallery5, title: "Victorian Security", category: "Pedestrian Gates" },
+              { img: galleryVictorian, title: "Victorian Security", category: "Pedestrian Gates" },
               { img: gallery6, title: "Timber Victorian", category: "Swing Gates" }
             ].map((item, i) => (
               <motion.div

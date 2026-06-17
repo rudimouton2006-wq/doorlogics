@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { cn } from '@/src/lib/utils';
 
 // Local Asset Imports
-import garage1 from '../assets/garage-1.jpg';
+import splitGarageDoors from '../assets/split-garage-doors.jpg';
 import garage2 from '../assets/garage-2.jpg';
 import garage3 from '../assets/garage-3.jpg';
 import garage4 from '../assets/garage-4.jpg';
@@ -41,14 +41,14 @@ export default function Garages() {
               transition={{ delay: 0.2 }}
               className="text-lg md:text-2xl text-brand-slate max-w-3xl leading-relaxed font-extrabold"
             >
-              We specialize in sectional doors, roll-ups, and specialized repairs for any door type. Built for silent operation, maximum security, and Cape Town's exact weather conditions.
+              We specialize in the installation and maintenance of all types of garage doors. We aim to supply low maintenance, high quality quiet and efficient garage doors at fair prices to withstand Cape Town's weather conditions and your design preferences.
             </motion.p>
           </div>
 
           {/* Upgraded Tactile Feature Cards */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-10 mb-40 md:mb-48">
             {[
-              { icon: <Warehouse size={32} />, title: "Any Door Type", desc: "Decades of experience installing and repairing sectional, roll-up, and classic traditional timber doors." },
+              { icon: <Warehouse size={32} />, title: "Any Door Type", desc: "Decades of experience installing and repairing sectional, roll-up, and Tip-up doors." },
               { icon: <Settings size={32} />, title: "Smooth Tech", desc: "We utilize high-cycle torsion springs and precision nylon rollers for virtually silent, friction-free movement." },
               { icon: <Shield size={32} />, title: "Specialized Builds", desc: "Bespoke engineering for unique garage entrance requirements, ensuring perfect structural alignment." }
             ].map((feature, i) => (
@@ -78,8 +78,8 @@ export default function Garages() {
               className="rounded-[60px] overflow-hidden shadow-2xl aspect-[4/3] md:aspect-video relative group border-4 border-white"
             >
               <img 
-                src={garage1} 
-                alt="Quality Garage Door Installation" 
+                src={splitGarageDoors} 
+                alt="Quality Split Garage Door Installation" 
                 className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-105" 
               />
             </motion.div>

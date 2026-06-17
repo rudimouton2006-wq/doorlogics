@@ -48,10 +48,10 @@ export default function Automation() {
           {/* Upgraded Dynamic 4-Grid Image Matrix */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 mb-40 md:mb-48">
             {[
-              { title: "Track Systems", desc: "Whisper-quiet nylon roller and heavy-duty track installations perfectly aligned for garage doors.", img: auto1 },
+              { title: "Motor Types", desc: "Quiet belt driven or powerful chain driven motors available.", img: auto1 },
               { title: "Heavy Sliding Gates", desc: "High-torque industrial motors designed to swiftly move extra-wide and heavy driveway gates.", img: auto2 },
-              { title: "Security Integration", desc: "Seamless motor integration with tough steel and clear-view security gates.", img: auto3 },
-              { title: "Swing Gate Motors", desc: "Synchronized dual-arm rams built for perfectly opening heavy arched timber swing gates.", img: auto4 }
+              { title: "Security Integration", desc: "Motors and accessories available for your specific safety and security requirements.", img: auto3 },
+              { title: "Swing Gate Motors", desc: "Synchronized dual-arm rams built for perfectly opening heavy swing gates.", img: auto4 }
             ].map((item, i) => (
               <motion.div
                 key={i}

@@ -5,9 +5,15 @@ import logo from '../assets/logo.png';
 export default function Footer() {
   return (
     <footer className="bg-brand-dark text-brand-surface pt-32 pb-14 border-t border-brand-primary/20 relative overflow-hidden">
-      {/* Decorative architectural background element */}
-      <div className="absolute top-0 right-0 p-40 opacity-[0.03] pointer-events-none rotate-12">
-        <img src={logo} alt="" className="h-[600px] w-auto brightness-0 invert" aria-hidden="true" />
+      
+      {/* Decorative architectural background element - FIXED FOR MOBILE */}
+      <div className="absolute top-0 right-0 opacity-[0.03] pointer-events-none translate-x-1/4 -translate-y-1/4 z-0">
+        <img 
+          src={logo} 
+          alt="" 
+          className="w-[600px] md:w-[800px] max-w-none h-auto rotate-12 brightness-0 invert" 
+          aria-hidden="true" 
+        />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
@@ -31,10 +37,16 @@ export default function Footer() {
             <div>
               <h4 className="font-display font-black uppercase tracking-[0.3em] text-brand-primary mb-8 text-sm md:text-base">The Services</h4>
               <ul className="flex flex-col gap-5 text-sm md:text-base font-black uppercase tracking-[0.2em]">
-                {['Garages', 'Gates', 'Fencing', 'Automation'].map((service) => (
-                  <li key={service}>
-                    <Link to={`/${service.toLowerCase()}`} className="text-brand-surface/70 hover:text-white transition-colors hover:translate-x-2 inline-block py-1">
-                      {service}
+                {/* STEP 1 UPDATE: Object array for proper routing and naming */}
+                {[
+                  { name: 'Garage doors', href: '/garages' },
+                  { name: 'Gates', href: '/gates' },
+                  { name: 'Fencing', href: '/fencing' },
+                  { name: 'Automation', href: '/automation' }
+                ].map((service) => (
+                  <li key={service.name}>
+                    <Link to={service.href} className="text-brand-surface/70 hover:text-white transition-colors hover:translate-x-2 inline-block py-1">
+                      {service.name}
                     </Link>
                   </li>
                 ))}

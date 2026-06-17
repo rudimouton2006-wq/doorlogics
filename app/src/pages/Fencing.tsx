@@ -8,7 +8,7 @@ import { cn } from '@/src/lib/utils';
 // Local Asset Imports
 import fence1 from '../assets/fence-1.jpg';
 import fence2 from '../assets/fence-2.jpg';
-import fence3 from '../assets/fence-3.jpg';
+import clearvuFence from '../assets/clearvu-fence.jpg';
 import fence4 from '../assets/fence-4.jpg';
 
 export default function Fencing() {
@@ -49,9 +49,9 @@ export default function Fencing() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 mb-40 md:mb-48">
             {[
               { title: "Timber Inserts", desc: "Modern horizontal timber slats seamlessly integrated with sturdy boundary structures.", img: fence1 },
-              { title: "Architectural Walls", desc: "White masonry with custom curved wooden inserts designed to match the property styling.", img: fence2 },
-              { title: "Perimeter Steel", desc: "High-visibility, maximum security perimeter steel fencing preventing any unauthorized access.", img: fence3 },
-              { title: "Classic Brick & Steel", desc: "Traditional brick pillars combined with heavy-duty anti-climb steel rails.", img: fence4 }
+              { title: "Architectural Walls", desc: "White masonry with Fibre cement Nutec boards or custom curved timber filled panels to match your property styling.", img: fence2 },
+              { title: "Perimeter Steel", desc: "High-visibility, maximum security perimeter steel fencing preventing any unauthorized access.", img: clearvuFence },
+              { title: "Curved steel fencing", desc: "The sky is the limit.", img: fence4 }
             ].map((fence, i) => (
               <motion.div
                 key={i}

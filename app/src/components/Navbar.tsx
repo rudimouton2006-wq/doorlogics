@@ -5,8 +5,9 @@ import { Menu, X, ShieldAlert } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
 import logo from '../assets/logo.png';
 
+// STEP 1 UPDATE: Changed 'Garages' to 'Garage doors'
 const navLinks = [
-  { name: 'Garages', href: '/garages' },
+  { name: 'Garage doors', href: '/garages' },
   { name: 'Gates', href: '/gates' },
   { name: 'Fencing', href: '/fencing' },
   { name: 'Automation', href: '/automation' },
