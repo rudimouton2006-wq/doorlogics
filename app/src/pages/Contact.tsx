@@ -18,10 +18,16 @@ export default function Contact() {
     
     // Convert FormData to a standard JavaScript object
     const data = Object.fromEntries(formData.entries());
+    
+    // --- WEB3FORMS CONFIGURATION ---
+    // PASTE YOUR KEY INSIDE THE QUOTES BELOW:
+    data.access_key = "YOUR_WEB3FORMS_ACCESS_KEY_HERE"; 
+    data.subject = `New Doorlogics Inquiry: ${inquiryType.toUpperCase()}`;
+    data.from_name = "Doorlogics Website";
 
     try {
-      // Live AJAX submission using application/json
-      const response = await fetch("https://formsubmit.co/ajax/doorlogics@telkomsa.net", {
+      // Live AJAX submission to Web3Forms
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { 
           'Content-Type': 'application/json',
@@ -155,9 +161,6 @@ export default function Contact() {
                     onSubmit={handleSubmit} 
                     className="space-y-10"
                   >
-                    {/* FormSubmit Configurations */}
-                    <input type="hidden" name="_subject" value={`New Doorlogics Inquiry: ${inquiryType.toUpperCase()}`} />
-                    <input type="hidden" name="_captcha" value="false" />
                     <input type="hidden" name="Inquiry Type" value={inquiryType} />
 
                     {/* Inquiry Type Selector */}
@@ -195,7 +198,6 @@ export default function Contact() {
 
                     <div className="space-y-4">
                       <label className="text-xs md:text-sm font-black uppercase text-brand-dark tracking-widest block pl-4">Email Address</label>
-                      {/* Name attribute changed to "email" to ensure Reply-To works */}
                       <input name="email" required type="email" className="w-full bg-white border-2 border-brand-border rounded-full px-8 py-6 text-base md:text-lg font-extrabold focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/10 transition-all outline-none" placeholder="john@example.com" />
                     </div>
 
@@ -206,7 +208,6 @@ export default function Contact() {
 
                     <div className="space-y-4">
                       <label className="text-xs md:text-sm font-black uppercase text-brand-dark tracking-widest block pl-4">Your Message</label>
-                      <input type="hidden" name="_template" value="table" />
                       <textarea name="Message Details" required rows={5} className="w-full bg-white border-2 border-brand-border rounded-[32px] px-8 py-6 text-base md:text-lg font-extrabold focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/10 transition-all outline-none resize-none" placeholder="Please provide details about your requirements..." />
                     </div>
 
