@@ -5,7 +5,6 @@ import { Menu, X, ShieldAlert } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
 import logo from '../assets/logo.png';
 
-// STEP 1 UPDATE: Changed 'Garages' to 'Garage doors'
 const navLinks = [
   { name: 'Garage doors', href: '/garages' },
   { name: 'Gates', href: '/gates' },
@@ -38,24 +37,24 @@ export default function Navbar() {
           : "w-full max-w-7xl mt-4 md:mt-8 px-6 bg-transparent h-28 md:h-32 justify-between gap-8"
       )}>
         
-        {/* Recalibrated Morphing Logo - Protected Bounding Box */}
+        {/* HEIGHT-CONSTRAINED LOGO: Prevents vertical overflow entirely */}
         <Link 
           to="/" 
           className={cn(
             "flex items-center origin-left transition-all duration-[1000ms] ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden shrink-0",
             scrolled 
-              ? "w-0 opacity-0 scale-50 pointer-events-none" 
-              : "w-[180px] md:w-[260px] opacity-100 scale-100"
+              ? "max-w-0 opacity-0 scale-50 pointer-events-none" 
+              : "max-w-[300px] opacity-100 scale-100"
           )}
         >
           <img 
             src={logo} 
             alt="Doorlogics Logo" 
-            className="w-full h-auto object-contain drop-shadow-xl" 
+            className="h-16 md:h-20 lg:h-24 w-auto object-contain drop-shadow-xl" 
           />
         </Link>
 
-        {/* Desktop Nav - Upgraded Typography & Hit-boxes */}
+        {/* Desktop Nav */}
         <div className={cn(
           "hidden lg:flex items-center transition-all duration-[1000ms]",
           scrolled ? "gap-8" : "gap-10 xl:gap-12"
@@ -128,7 +127,7 @@ export default function Navbar() {
               </button>
 
               <div className="mb-16 shrink-0">
-                <img src={logo} alt="Doorlogics Logo" className="w-[220px] h-auto object-contain brightness-0 invert opacity-90" />
+                <img src={logo} alt="Doorlogics Logo" className="h-20 w-auto object-contain brightness-0 invert opacity-90" />
               </div>
 
               <ul className="flex flex-col gap-8 shrink-0">

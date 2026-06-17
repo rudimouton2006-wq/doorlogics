@@ -9,14 +9,35 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate network request
-    setTimeout(() => {
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      // Live AJAX submission to the exact email requested
+      const response = await fetch("https://formsubmit.co/ajax/doorlogics@telkomsa.net", {
+        method: "POST",
+        headers: { 
+          'Accept': 'application/json'
+        },
+        body: formData
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        form.reset(); // Clear the form for future use
+      } else {
+        throw new Error("Form submission failed");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Network error. Please check your internet connection and try again, or contact us directly via phone.");
+    } finally {
       setIsSubmitting(false);
-      setIsSubmitted(true);
-    }, 1500);
+    }
   };
 
   return (
@@ -130,6 +151,11 @@ export default function Contact() {
                     onSubmit={handleSubmit} 
                     className="space-y-10"
                   >
+                    {/* FormSubmit Configurations */}
+                    <input type="hidden" name="_subject" value={`New Doorlogics Inquiry: ${inquiryType.toUpperCase()}`} />
+                    <input type="hidden" name="_captcha" value="false" />
+                    <input type="hidden" name="Inquiry Type" value={inquiryType} />
+
                     {/* Inquiry Type Selector */}
                     <div className="space-y-5">
                       <label className="text-xs md:text-sm font-black uppercase text-brand-dark tracking-widest block pl-4">How can we help?</label>
@@ -155,27 +181,27 @@ export default function Contact() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       <div className="space-y-4">
                         <label className="text-xs md:text-sm font-black uppercase text-brand-dark tracking-widest block pl-4">Full Name</label>
-                        <input required type="text" className="w-full bg-white border-2 border-brand-border rounded-full px-8 py-6 text-base md:text-lg font-extrabold focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/10 transition-all outline-none" placeholder="John Doe" />
+                        <input name="Full Name" required type="text" className="w-full bg-white border-2 border-brand-border rounded-full px-8 py-6 text-base md:text-lg font-extrabold focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/10 transition-all outline-none" placeholder="John Doe" />
                       </div>
                       <div className="space-y-4">
                         <label className="text-xs md:text-sm font-black uppercase text-brand-dark tracking-widest block pl-4">Phone Number</label>
-                        <input required type="tel" className="w-full bg-white border-2 border-brand-border rounded-full px-8 py-6 text-base md:text-lg font-extrabold focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/10 transition-all outline-none" placeholder="082 123 4567" />
+                        <input name="Phone Number" required type="tel" className="w-full bg-white border-2 border-brand-border rounded-full px-8 py-6 text-base md:text-lg font-extrabold focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/10 transition-all outline-none" placeholder="082 123 4567" />
                       </div>
                     </div>
 
                     <div className="space-y-4">
                       <label className="text-xs md:text-sm font-black uppercase text-brand-dark tracking-widest block pl-4">Email Address</label>
-                      <input required type="email" className="w-full bg-white border-2 border-brand-border rounded-full px-8 py-6 text-base md:text-lg font-extrabold focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/10 transition-all outline-none" placeholder="john@example.com" />
+                      <input name="Email Address" required type="email" className="w-full bg-white border-2 border-brand-border rounded-full px-8 py-6 text-base md:text-lg font-extrabold focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/10 transition-all outline-none" placeholder="john@example.com" />
                     </div>
 
                     <div className="space-y-4">
                       <label className="text-xs md:text-sm font-black uppercase text-brand-dark tracking-widest block pl-4">Property Address (Optional)</label>
-                      <input type="text" className="w-full bg-white border-2 border-brand-border rounded-full px-8 py-6 text-base md:text-lg font-extrabold focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/10 transition-all outline-none" placeholder="Suburb or Area" />
+                      <input name="Property Address" type="text" className="w-full bg-white border-2 border-brand-border rounded-full px-8 py-6 text-base md:text-lg font-extrabold focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/10 transition-all outline-none" placeholder="Suburb or Area" />
                     </div>
 
                     <div className="space-y-4">
                       <label className="text-xs md:text-sm font-black uppercase text-brand-dark tracking-widest block pl-4">Your Message</label>
-                      <textarea required rows={5} className="w-full bg-white border-2 border-brand-border rounded-[32px] px-8 py-6 text-base md:text-lg font-extrabold focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/10 transition-all outline-none resize-none" placeholder="Please provide details about your requirements..." />
+                      <textarea name="Message Details" required rows={5} className="w-full bg-white border-2 border-brand-border rounded-[32px] px-8 py-6 text-base md:text-lg font-extrabold focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/10 transition-all outline-none resize-none" placeholder="Please provide details about your requirements..." />
                     </div>
 
                     <button 
@@ -185,7 +211,7 @@ export default function Contact() {
                       {isSubmitting ? (
                         <>
                           <Loader2 size={24} className="animate-spin" />
-                          Processing...
+                          Transmitting...
                         </>
                       ) : (
                         <>
