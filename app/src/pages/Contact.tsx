@@ -15,15 +15,19 @@ export default function Contact() {
 
     const form = e.currentTarget;
     const formData = new FormData(form);
+    
+    // Convert FormData to a standard JavaScript object
+    const data = Object.fromEntries(formData.entries());
 
     try {
-      // Live AJAX submission to the exact email requested
+      // Live AJAX submission using application/json
       const response = await fetch("https://formsubmit.co/ajax/doorlogics@telkomsa.net", {
         method: "POST",
         headers: { 
+          'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-        body: formData
+        body: JSON.stringify(data)
       });
 
       if (response.ok) {
@@ -181,7 +185,7 @@ export default function Contact() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       <div className="space-y-4">
                         <label className="text-xs md:text-sm font-black uppercase text-brand-dark tracking-widest block pl-4">Full Name</label>
-                        <input name="Full Name" required type="text" className="w-full bg-white border-2 border-brand-border rounded-full px-8 py-6 text-base md:text-lg font-extrabold focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/10 transition-all outline-none" placeholder="John Doe" />
+                        <input name="name" required type="text" className="w-full bg-white border-2 border-brand-border rounded-full px-8 py-6 text-base md:text-lg font-extrabold focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/10 transition-all outline-none" placeholder="John Doe" />
                       </div>
                       <div className="space-y-4">
                         <label className="text-xs md:text-sm font-black uppercase text-brand-dark tracking-widest block pl-4">Phone Number</label>
@@ -191,7 +195,8 @@ export default function Contact() {
 
                     <div className="space-y-4">
                       <label className="text-xs md:text-sm font-black uppercase text-brand-dark tracking-widest block pl-4">Email Address</label>
-                      <input name="Email Address" required type="email" className="w-full bg-white border-2 border-brand-border rounded-full px-8 py-6 text-base md:text-lg font-extrabold focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/10 transition-all outline-none" placeholder="john@example.com" />
+                      {/* Name attribute changed to "email" to ensure Reply-To works */}
+                      <input name="email" required type="email" className="w-full bg-white border-2 border-brand-border rounded-full px-8 py-6 text-base md:text-lg font-extrabold focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/10 transition-all outline-none" placeholder="john@example.com" />
                     </div>
 
                     <div className="space-y-4">
@@ -201,6 +206,7 @@ export default function Contact() {
 
                     <div className="space-y-4">
                       <label className="text-xs md:text-sm font-black uppercase text-brand-dark tracking-widest block pl-4">Your Message</label>
+                      <input type="hidden" name="_template" value="table" />
                       <textarea name="Message Details" required rows={5} className="w-full bg-white border-2 border-brand-border rounded-[32px] px-8 py-6 text-base md:text-lg font-extrabold focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/10 transition-all outline-none resize-none" placeholder="Please provide details about your requirements..." />
                     </div>
 
