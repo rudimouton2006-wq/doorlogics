@@ -20,8 +20,8 @@ export default function Contact() {
     const data = Object.fromEntries(formData.entries());
     
     // --- WEB3FORMS CONFIGURATION ---
-    // PASTE YOUR KEY INSIDE THE QUOTES BELOW:
-    data.access_key = "YOUR_WEB3FORMS_ACCESS_KEY_HERE"; 
+    // Your official Access Key from the screenshot is active here:
+    data.access_key = "7a1d1acc-c5cf-4f51-95f7-3733222ba091"; 
     data.subject = `New Doorlogics Inquiry: ${inquiryType.toUpperCase()}`;
     data.from_name = "Doorlogics Website";
 
