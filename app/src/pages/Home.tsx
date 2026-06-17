@@ -25,7 +25,8 @@ export default function Home() {
   return (
     <PageTransition>
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center pt-32 pb-20 overflow-hidden bg-white">
+      {/* ADDED PADDING HERE: Changed pt-32 to pt-48 md:pt-56 lg:pt-64 to push content below the larger logo */}
+      <section className="relative min-h-screen flex items-center pt-48 md:pt-56 lg:pt-64 pb-20 overflow-hidden bg-white">
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl">
             <motion.div
