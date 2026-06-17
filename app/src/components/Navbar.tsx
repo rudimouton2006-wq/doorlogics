@@ -34,7 +34,8 @@ export default function Navbar() {
         "flex items-center transition-all duration-[1000ms] ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-auto",
         scrolled 
           ? "max-w-fit mt-6 bg-white/95 backdrop-blur-3xl rounded-full border border-brand-border/50 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.15)] h-24 px-8 md:px-10 gap-0" 
-          : "w-full max-w-7xl mt-4 md:mt-8 px-6 bg-transparent h-28 md:h-32 justify-between gap-8"
+          // INCREASED HEIGHT HERE: h-32 md:h-40 ensures the bigger logo won't overflow
+          : "w-full max-w-7xl mt-4 md:mt-8 px-6 bg-transparent h-32 md:h-40 justify-between gap-8"
       )}>
         
         {/* HEIGHT-CONSTRAINED LOGO: Prevents vertical overflow entirely */}
@@ -44,13 +45,15 @@ export default function Navbar() {
             "flex items-center origin-left transition-all duration-[1000ms] ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden shrink-0",
             scrolled 
               ? "max-w-0 opacity-0 scale-50 pointer-events-none" 
-              : "max-w-[300px] opacity-100 scale-100"
+              // INCREASED MAX WIDTH: Allows the logo to expand horizontally as it gets taller
+              : "max-w-[280px] sm:max-w-[320px] lg:max-w-[400px] opacity-100 scale-100"
           )}
         >
           <img 
             src={logo} 
             alt="Doorlogics Logo" 
-            className="h-16 md:h-20 lg:h-24 w-auto object-contain drop-shadow-xl" 
+            // SMOOTH SCALING: Stepping up the height across device sizes for perfect proportions
+            className="h-20 sm:h-24 md:h-28 lg:h-32 w-auto object-contain drop-shadow-xl py-2" 
           />
         </Link>
 
@@ -127,7 +130,8 @@ export default function Navbar() {
               </button>
 
               <div className="mb-16 shrink-0">
-                <img src={logo} alt="Doorlogics Logo" className="h-20 w-auto object-contain brightness-0 invert opacity-90" />
+                {/* MATCHING MOBILE SCALING: Bumped up the mobile logo size to match the new desktop proportions */}
+                <img src={logo} alt="Doorlogics Logo" className="h-24 sm:h-28 w-auto object-contain brightness-0 invert opacity-90" />
               </div>
 
               <ul className="flex flex-col gap-8 shrink-0">
