@@ -4,7 +4,7 @@ import { ArrowRight, ShieldAlert } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import PageTransition from '../components/PageTransition';
 
-// Primary Service Assets (UPDATED FOR STEP 3)
+// Primary Service Assets
 import homeServiceGate from '../assets/home-service-gate.jpg';
 import splitGarageDoors from '../assets/split-garage-doors.jpg';
 import gateMotorCorrect from '../assets/gate-motor-correct.jpg';
@@ -13,59 +13,69 @@ import homeServiceRepairs from '../assets/home-service-repairs.jpg';
 import homeServiceRemotes from '../assets/home-service-remotes.jpg';
 import homeTrustReliability from '../assets/home-trust-reliability.jpg';
 
-// Mini Gallery Assets (UPDATED FOR STEP 3)
+// Ronni's New Image Additions
+import heroGarageDoor from '../assets/hero-garage-door.jpg'; 
+import steelPalisade from '../assets/steel-palisade.jpg'; 
+
+// Mini Gallery Assets
 import gallery1 from '../assets/gallery-1.jpg';
 import gallery2 from '../assets/gallery-2.jpg';
 import gallery3 from '../assets/gallery-3.jpg';
 import gallery4 from '../assets/gallery-4.jpg';
 import galleryVictorian from '../assets/gallery-victorian.jpg';
-import gallery6 from '../assets/gallery-6.jpg';
 
 export default function Home() {
   return (
     <PageTransition>
-      {/* Hero Section */}
-      {/* ADDED PADDING HERE: Changed pt-32 to pt-48 md:pt-56 lg:pt-64 to push content below the larger logo */}
-      <section className="relative min-h-screen flex items-center pt-48 md:pt-56 lg:pt-64 pb-20 overflow-hidden bg-white">
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-4xl">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <span className="inline-block text-xs md:text-sm font-black uppercase tracking-[0.4em] text-brand-slate mb-8">
-                Established 1991 • Quality Engineering
-              </span>
-              <h1 className="text-7xl md:text-8xl lg:text-[9vw] font-black text-brand-dark leading-[0.85] mb-10 uppercase tracking-tighter">
-                Expert<br />
-                <span className="text-brand-primary">Garage Doors & Gates.</span>
-              </h1>
-              <p className="text-lg md:text-2xl text-brand-slate max-w-2xl mb-14 leading-relaxed font-extrabold">
-                Simple, professional solutions designed for your convenience and safety. Including all types of access control.
-              </p>
-              
-              <div className="flex flex-wrap items-center gap-6">
-                <Link
-                  to="/contact"
-                  className="bg-brand-primary text-white px-10 md:px-14 py-5 md:py-6 rounded-full font-black text-xs md:text-sm uppercase tracking-[0.3em] hover:bg-brand-dark transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 active:scale-95 text-center"
-                >
-                  Request a Quote
-                </Link>
-                <a
-                  href="tel:0834001919"
-                  className="flex items-center justify-center gap-3 px-8 md:px-12 py-5 md:py-6 border-4 border-brand-dark text-brand-dark rounded-full hover:bg-brand-secondary hover:border-brand-secondary hover:text-white transition-all font-black text-xs md:text-sm uppercase tracking-[0.3em] group active:scale-95"
-                >
-                  <ShieldAlert size={20} className="text-brand-secondary group-hover:text-white transition-colors" />
-                  Emergency Help
-                </a>
-              </div>
-            </motion.div>
-          </div>
-        </div>
+      {/* Hero Section - Rebuilt for Central Garage Door */}
+      <section className="relative min-h-screen flex flex-col items-center justify-center pt-40 pb-20 overflow-hidden bg-white text-center">
+        <div className="container mx-auto px-6 relative z-10 flex flex-col items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="max-w-4xl w-full flex flex-col items-center"
+          >
+            <span className="inline-block text-xs md:text-sm font-black uppercase tracking-[0.4em] text-brand-slate mb-8">
+              Established 1991 • Quality Engineering
+            </span>
+            
+            <h1 className="text-6xl md:text-8xl lg:text-[8vw] font-black text-brand-dark leading-[0.85] mb-10 uppercase tracking-tighter">
+              Expert<br />
+              <span className="text-brand-primary">Garage Doors.</span>
+            </h1>
 
-        {/* Subtle Background Element */}
-        <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-brand-surface skew-x-12 translate-x-20 z-0 pointer-events-none hidden lg:block" />
+            {/* Garage Door In Middle (Ronni's Edit) */}
+            <div className="w-full aspect-video md:aspect-[21/9] rounded-[40px] overflow-hidden shadow-2xl border-4 border-white mb-10 relative group">
+              <img 
+                src={heroGarageDoor} 
+                alt="Expert Garage Doors" 
+                className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-1000" 
+              />
+            </div>
+
+            {/* Added Perimeter & Access Control Copy */}
+            <p className="text-lg md:text-2xl text-brand-slate max-w-3xl mb-14 leading-relaxed font-extrabold">
+              Simple, professional solutions designed for your convenience and safety. We specialize in <span className="text-brand-primary">all types of perimeter property access</span> and <span className="text-brand-primary">all types of access control.</span>
+            </p>
+            
+            <div className="flex flex-wrap items-center justify-center gap-6">
+              <Link
+                to="/contact"
+                className="bg-brand-primary text-white px-10 md:px-14 py-5 md:py-6 rounded-full font-black text-xs md:text-sm uppercase tracking-[0.3em] hover:bg-brand-dark transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 active:scale-95 text-center"
+              >
+                Request a Quote
+              </Link>
+              <a
+                href="tel:0834001919"
+                className="flex items-center justify-center gap-3 px-8 md:px-12 py-5 md:py-6 border-4 border-brand-dark text-brand-dark rounded-full hover:bg-brand-secondary hover:border-brand-secondary hover:text-white transition-all font-black text-xs md:text-sm uppercase tracking-[0.3em] group active:scale-95"
+              >
+                <ShieldAlert size={20} className="text-brand-secondary group-hover:text-white transition-colors" />
+                Emergency Help
+              </a>
+            </div>
+          </motion.div>
+        </div>
       </section>
 
       {/* Simplified Category Grid */}
@@ -196,10 +206,10 @@ export default function Home() {
             {[
               { img: gallery1, title: "Horizontal Timber", category: "Garage Doors" },
               { img: gallery2, title: "Aluzinc Charcoal", category: "Garage Doors" },
-              { img: gallery3, title: "Steel & Timber Insert", category: "Sliding Gates" },
+              { img: steelPalisade, title: "Steel Palisade", category: "Perimeter Security" }, // Steel Palisade swapped in here
               { img: gallery4, title: "Vertical Slatted Timber", category: "Sliding Gates" },
               { img: galleryVictorian, title: "Victorian Security", category: "Pedestrian Gates" },
-              { img: gallery6, title: "Timber Victorian", category: "Swing Gates" }
+              { img: gallery3, title: "Steel & Timber Insert", category: "Sliding Gates" }
             ].map((item, i) => (
               <motion.div
                 key={i}

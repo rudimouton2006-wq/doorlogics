@@ -48,7 +48,7 @@ export default function Garages() {
           {/* Upgraded Tactile Feature Cards */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-10 mb-40 md:mb-48">
             {[
-              { icon: <Warehouse size={32} />, title: "Any Door Type", desc: "Decades of experience installing and repairing sectional, roll-up, and Tip-up doors." },
+              { icon: <Warehouse size={32} />, title: "ANY DOOR TYPE", desc: "Decades of experience installing and repairing sectional, roll-up, and Tip-up doors." },
               { icon: <Settings size={32} />, title: "Smooth Tech", desc: "We utilize high-cycle torsion springs and precision nylon rollers for virtually silent, friction-free movement." },
               { icon: <Shield size={32} />, title: "Specialized Builds", desc: "Bespoke engineering for unique garage entrance requirements, ensuring perfect structural alignment." }
             ].map((feature, i) => (

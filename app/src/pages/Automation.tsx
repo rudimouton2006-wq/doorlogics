@@ -6,7 +6,7 @@ import PageTransition from '../components/PageTransition';
 import { cn } from '@/src/lib/utils';
 
 // Local Asset Imports
-import auto1 from '../assets/auto-1.jpg';
+import newMotor from '../assets/new-motor.jpg'; // Ronni's new photo
 import auto2 from '../assets/auto-2.jpg';
 import auto3 from '../assets/auto-3.jpg';
 import auto4 from '../assets/auto-4.jpg';
@@ -48,7 +48,7 @@ export default function Automation() {
           {/* Upgraded Dynamic 4-Grid Image Matrix */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 mb-40 md:mb-48">
             {[
-              { title: "Motor Types", desc: "Quiet belt driven or powerful chain driven motors available.", img: auto1 },
+              { title: "High speed motors", desc: "ET NICE motors delivering lightning-fast, reliable execution for any gate weight.", img: newMotor },
               { title: "Heavy Sliding Gates", desc: "High-torque industrial motors designed to swiftly move extra-wide and heavy driveway gates.", img: auto2 },
               { title: "Security Integration", desc: "Motors and accessories available for your specific safety and security requirements.", img: auto3 },
               { title: "Swing Gate Motors", desc: "Synchronized dual-arm rams built for perfectly opening heavy swing gates.", img: auto4 }
@@ -81,7 +81,7 @@ export default function Automation() {
               <h2 className="text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter mb-20 text-white">Reliable Features.</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
                 {[
-                  { icon: <Smartphone size={32} />, title: "Mobile Control", desc: "Open, close, or securely lock your systems using a simple smartphone app from anywhere in the world." },
+                  { icon: <Smartphone size={32} />, title: "Mobile + ET Remote", desc: "Open, close, or securely lock your systems using a smartphone app or ET Remotes from anywhere." },
                   { icon: <BatteryFull size={32} />, title: "Backup Battery", desc: "High-capacity deep-cycle batteries ensure our systems keep working flawlessly even during grid power outages." },
                   { icon: <Radio size={32} />, title: "Safety Beams", desc: "Active infrared sensors that instantly reverse the motor to prevent the door from closing on vehicles or pedestrians." }
                 ].map((feature, i) => (
