@@ -10,12 +10,12 @@ export default function Guides() {
       <div className="pt-40 pb-20 bg-white min-h-screen">
         <div className="container mx-auto px-6">
           
-          {/* Hero Section */}
-          <div className="max-w-5xl mb-32 md:mb-40">
+          {/* HERO SECTION - STARK & MINIMALIST */}
+          <div className="max-w-4xl mb-32 md:mb-48">
             <motion.span 
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
-              className="text-brand-primary font-display font-black text-xs md:text-sm uppercase tracking-[0.4em] block mb-8"
+              className="inline-block text-[11px] font-black uppercase tracking-[0.4em] text-brand-slate mb-8"
             >
               Resources
             </motion.span>
@@ -23,7 +23,7 @@ export default function Guides() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-7xl md:text-8xl lg:text-[9vw] font-black text-brand-dark mb-12 leading-[0.85] tracking-tighter uppercase"
+              className="text-6xl md:text-8xl lg:text-[9vw] font-black text-brand-dark mb-12 leading-[0.9] tracking-tighter uppercase"
             >
               How-To<br />
               <span className="text-brand-primary">Guides.</span>
@@ -32,25 +32,25 @@ export default function Guides() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-lg md:text-2xl text-brand-slate max-w-3xl leading-relaxed font-extrabold"
+              className="text-lg md:text-xl text-brand-slate max-w-2xl leading-relaxed font-medium"
             >
               Simple, actionable advice on maintaining your gate and garage systems to ensure maximum operational life and absolute reliability.
             </motion.p>
           </div>
 
-          {/* Upgraded Tactile Guide Cards */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-12 mb-40 md:mb-48">
+          {/* GUIDE CARDS - EDITORIAL LAYOUT */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-40 md:mb-56">
             {[
               { 
                 category: "Maintenance",
-                icon: <BookOpen size={28} />,
+                icon: <BookOpen size={20} />,
                 title: "Gate Care 101", 
                 desc: "Learn the essential protocols to keep your sliding gate track clear of debris and your motor running smoothly year-round.",
                 img: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format"
               },
               { 
                 category: "Security",
-                icon: <ShieldCheck size={28} />,
+                icon: <ShieldCheck size={20} />,
                 title: "Remote Training", 
                 desc: "A step-by-step technical guide on how to securely program new remotes and delete compromised ones from your entire system.",
                 img: "https://images.unsplash.com/photo-1558002038-1055907df827?auto=format"
@@ -62,57 +62,54 @@ export default function Guides() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="group rounded-[60px] overflow-hidden border-4 border-white bg-brand-surface hover:border-brand-primary/40 shadow-xl hover:shadow-2xl transition-all duration-500 flex flex-col"
+                className="group border border-brand-border/50 bg-white hover:border-brand-primary transition-colors duration-500 flex flex-col"
               >
-                <div className="aspect-[4/3] w-full overflow-hidden relative border-b-4 border-white">
-                  <img src={guide.img} alt={guide.title} className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-105" />
-                  <div className="absolute inset-0 bg-brand-dark/10 group-hover:bg-transparent transition-colors duration-500" />
+                <div className="aspect-[4/3] w-full overflow-hidden bg-brand-dark">
+                  <img 
+                    src={guide.img} 
+                    alt={guide.title} 
+                    className="w-full h-full object-cover object-center grayscale-[20%] transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0" 
+                  />
                 </div>
                 
-                <div className="p-12 md:p-14 flex flex-col flex-grow bg-brand-surface">
+                <div className="p-10 md:p-12 flex flex-col flex-grow">
                   <div className="flex items-center gap-4 mb-8">
-                    <div className="text-brand-primary p-3 bg-brand-primary/10 rounded-2xl">
+                    <div className="w-12 h-12 border border-brand-border flex items-center justify-center text-brand-primary group-hover:border-brand-primary group-hover:bg-brand-primary group-hover:text-white transition-colors duration-500">
                       {guide.icon}
                     </div>
-                    <span className="text-xs md:text-sm font-black uppercase text-brand-primary tracking-widest">{guide.category}</span>
+                    <span className="text-[10px] font-black uppercase text-brand-slate tracking-[0.3em]">{guide.category}</span>
                   </div>
                   
-                  <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-6 text-brand-dark leading-tight">{guide.title}</h3>
-                  <p className="text-brand-slate font-extrabold text-base md:text-lg leading-relaxed mb-12 flex-grow">{guide.desc}</p>
+                  <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tighter mb-4 text-brand-dark">{guide.title}</h3>
+                  <p className="text-brand-slate text-sm md:text-base font-medium leading-relaxed mb-12 flex-grow">{guide.desc}</p>
                   
-                  <button className="flex items-center justify-between w-full pt-8 border-t-2 border-brand-border text-xs md:text-sm font-black uppercase tracking-[0.3em] text-brand-dark group-hover:text-brand-primary transition-colors mt-auto">
+                  <button className="flex items-center justify-between w-full pt-8 border-t border-brand-border/50 text-[10px] font-black uppercase tracking-[0.3em] text-brand-dark group-hover:text-brand-primary transition-colors mt-auto">
                     <span>Read Protocol</span>
-                    <div className="w-14 h-14 rounded-full bg-brand-primary/10 flex items-center justify-center group-hover:bg-brand-primary group-hover:text-white transition-colors">
-                      <ArrowRight size={24} />
-                    </div>
+                    <ArrowRight size={16} />
                   </button>
                 </div>
               </motion.div>
             ))}
           </div>
 
-          {/* Upgraded Dark Mode Authority Block */}
+          {/* AUTHORITY BLOCK - HIGH CONTRAST MINIMALISM */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-brand-dark rounded-[64px] p-14 md:p-24 text-white text-center shadow-2xl relative overflow-hidden"
+            className="bg-brand-dark p-14 md:p-24 text-white text-center relative overflow-hidden"
           >
-            {/* Glowing background blurs for depth */}
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-primary/10 blur-[120px] rounded-full pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-brand-secondary/10 blur-[120px] rounded-full pointer-events-none" />
-            
             <div className="relative z-10">
-              <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-10">Need Expert Help?</h2>
-              <p className="text-white/80 max-w-2xl mx-auto mb-14 font-extrabold leading-relaxed text-lg md:text-xl">
+              <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-8">Need Expert Help?</h2>
+              <p className="text-white/60 max-w-2xl mx-auto mb-14 font-medium leading-relaxed text-base md:text-lg">
                 If your system is acting up and a manual guide isn't enough, our technicians are ready to assist. Secure your perimeter today.
               </p>
               <Link 
                 to="/contact" 
-                className="inline-flex items-center gap-4 bg-brand-primary text-white px-14 py-7 rounded-full font-black text-xs md:text-sm uppercase tracking-[0.3em] hover:bg-white hover:text-brand-dark transition-all hover:shadow-2xl hover:-translate-y-1 active:scale-95"
+                className="inline-flex items-center gap-4 bg-white text-brand-dark px-12 py-6 font-black text-[11px] uppercase tracking-[0.4em] hover:bg-brand-primary hover:text-white transition-colors duration-300"
               >
                 Book a Service
-                <ArrowRight size={20} />
+                <ArrowRight size={16} />
               </Link>
             </div>
           </motion.div>
