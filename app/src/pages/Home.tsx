@@ -27,48 +27,54 @@ import galleryVictorian from '../assets/gallery-victorian.jpg';
 export default function Home() {
   return (
     <PageTransition>
-      {/* Hero Section - Rebuilt for Central Garage Door */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center pt-40 pb-20 overflow-hidden bg-white text-center">
+      {/* 
+        HERO SECTION - REDESIGNED FOR MASSIVE IMPACT
+        The image now acts as a full-screen background with the text floating beautifully inside it.
+      */}
+      <section className="relative min-h-screen flex flex-col items-center justify-center pt-32 pb-20 overflow-hidden text-center">
+        
+        {/* Full Screen Background Image Layer */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src={heroGarageDoor} 
+            alt="Expert Garage Doors" 
+            className="w-full h-full object-cover object-center" 
+          />
+          {/* Dark Gradient Overlay so the white text is flawlessly readable */}
+          <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/80 via-brand-dark/50 to-brand-dark/90" />
+        </div>
+
+        {/* Foreground Content Layer */}
         <div className="container mx-auto px-6 relative z-10 flex flex-col items-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-4xl w-full flex flex-col items-center"
+            className="max-w-5xl w-full flex flex-col items-center"
           >
-            <span className="inline-block text-xs md:text-sm font-black uppercase tracking-[0.4em] text-brand-slate mb-8">
+            <span className="inline-block text-xs md:text-sm font-black uppercase tracking-[0.4em] text-white/80 mb-8 drop-shadow-md">
               Established 1991 • Quality Engineering
             </span>
             
-            <h1 className="text-6xl md:text-8xl lg:text-[8vw] font-black text-brand-dark leading-[0.85] mb-10 uppercase tracking-tighter">
+            <h1 className="text-6xl md:text-8xl lg:text-[10vw] font-black text-white leading-[0.85] mb-12 uppercase tracking-tighter drop-shadow-xl">
               Expert<br />
               <span className="text-brand-primary">Garage Doors.</span>
             </h1>
 
-            {/* Garage Door In Middle (Ronni's Edit) */}
-            <div className="w-full aspect-video md:aspect-[21/9] rounded-[40px] overflow-hidden shadow-2xl border-4 border-white mb-10 relative group">
-              <img 
-                src={heroGarageDoor} 
-                alt="Expert Garage Doors" 
-                className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-1000" 
-              />
-            </div>
-
-            {/* Added Perimeter & Access Control Copy */}
-            <p className="text-lg md:text-2xl text-brand-slate max-w-3xl mb-14 leading-relaxed font-extrabold">
+            <p className="text-lg md:text-2xl text-white/90 max-w-3xl mb-14 leading-relaxed font-extrabold drop-shadow-md">
               Simple, professional solutions designed for your convenience and safety. We specialize in <span className="text-brand-primary">all types of perimeter property access</span> and <span className="text-brand-primary">all types of access control.</span>
             </p>
             
             <div className="flex flex-wrap items-center justify-center gap-6">
               <Link
                 to="/contact"
-                className="bg-brand-primary text-white px-10 md:px-14 py-5 md:py-6 rounded-full font-black text-xs md:text-sm uppercase tracking-[0.3em] hover:bg-brand-dark transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 active:scale-95 text-center"
+                className="bg-brand-primary text-white px-10 md:px-14 py-5 md:py-6 rounded-full font-black text-xs md:text-sm uppercase tracking-[0.3em] hover:bg-white hover:text-brand-dark transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 active:scale-95 text-center"
               >
                 Request a Quote
               </Link>
               <a
                 href="tel:0834001919"
-                className="flex items-center justify-center gap-3 px-8 md:px-12 py-5 md:py-6 border-4 border-brand-dark text-brand-dark rounded-full hover:bg-brand-secondary hover:border-brand-secondary hover:text-white transition-all font-black text-xs md:text-sm uppercase tracking-[0.3em] group active:scale-95"
+                className="flex items-center justify-center gap-3 px-8 md:px-12 py-5 md:py-6 border-4 border-white text-white rounded-full hover:bg-brand-secondary hover:border-brand-secondary hover:text-white transition-all font-black text-xs md:text-sm uppercase tracking-[0.3em] group active:scale-95 backdrop-blur-sm bg-black/20"
               >
                 <ShieldAlert size={20} className="text-brand-secondary group-hover:text-white transition-colors" />
                 Emergency Help
@@ -79,7 +85,7 @@ export default function Home() {
       </section>
 
       {/* Simplified Category Grid */}
-      <section className="py-32 md:py-40 bg-white border-t border-brand-surface">
+      <section className="py-32 md:py-40 bg-white">
         <div className="container mx-auto px-6">
           <div className="max-w-2xl mb-20 md:mb-24">
             <h2 className="text-5xl md:text-7xl font-black text-brand-dark uppercase tracking-tighter mb-8">
@@ -206,7 +212,7 @@ export default function Home() {
             {[
               { img: gallery1, title: "Horizontal Timber", category: "Garage Doors" },
               { img: gallery2, title: "Aluzinc Charcoal", category: "Garage Doors" },
-              { img: steelPalisade, title: "Steel Palisade", category: "Perimeter Security" }, // Steel Palisade swapped in here
+              { img: steelPalisade, title: "Steel Palisade", category: "Perimeter Security" },
               { img: gallery4, title: "Vertical Slatted Timber", category: "Sliding Gates" },
               { img: galleryVictorian, title: "Victorian Security", category: "Pedestrian Gates" },
               { img: gallery3, title: "Steel & Timber Insert", category: "Sliding Gates" }
