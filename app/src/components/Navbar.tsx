@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X, ShieldAlert } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
 import logo from '../assets/logo.png';
 
@@ -10,10 +10,10 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
 
-  // Flawless scroll detection for the glass effect
+  // Flawless scroll detection for the dynamic shrinking effect
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 50);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -37,30 +37,38 @@ export default function Navbar() {
     <>
       <header
         className={cn(
-          'fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out',
+          'fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]',
           isScrolled
-            ? 'bg-white/80 backdrop-blur-lg border-b border-brand-border/50 shadow-sm py-4'
-            : 'bg-transparent py-6 md:py-8'
+            ? 'bg-white/90 backdrop-blur-xl border-b border-brand-border/50 shadow-sm py-4'
+            : 'bg-transparent py-8 md:py-12'
         )}
       >
+        {/* Subtle dark gradient behind the nav when at the top to guarantee text readability against any image */}
+        <div 
+          className={cn(
+            "absolute inset-0 bg-gradient-to-b from-black/60 to-transparent transition-opacity duration-500 pointer-events-none -z-10",
+            isScrolled ? "opacity-0" : "opacity-100"
+          )} 
+        />
+
         <div className="container mx-auto px-6">
           <div className="flex items-center justify-between">
             
-            {/* Logo Container */}
-            <Link to="/" className="relative z-50 group flex-shrink-0">
-              <motion.img 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+            {/* Logo Container - Massive at top, shrinks neatly on scroll */}
+            <Link to="/" className="relative z-50 group flex-shrink-0 origin-left">
+              <img 
                 src={logo} 
                 alt="Doorlogics Logo" 
                 className={cn(
-                  "w-auto transition-all duration-500",
-                  isScrolled ? "h-12 md:h-14" : "h-14 md:h-16"
+                  "w-auto transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]",
+                  isScrolled 
+                    ? "h-10 md:h-12" // Sleek and compact when scrolled
+                    : "h-20 md:h-32 drop-shadow-2xl" // Massive and proud at the top
                 )}
               />
             </Link>
 
-            {/* Desktop Navigation - Perfectly Centered */}
+            {/* Desktop Navigation - Ultra Readable */}
             <nav className="hidden lg:flex items-center justify-center gap-10 absolute left-1/2 -translate-x-1/2">
               {navLinks.map((link) => {
                 const isActive = location.pathname === link.path;
@@ -69,13 +77,15 @@ export default function Navbar() {
                     key={link.name}
                     to={link.path}
                     className={cn(
-                      "text-xs font-black uppercase tracking-[0.2em] relative group transition-colors duration-300",
-                      isScrolled ? "text-brand-dark" : "text-white drop-shadow-md",
+                      "text-[13px] font-black uppercase tracking-[0.25em] relative group transition-colors duration-300",
+                      isScrolled 
+                        ? "text-brand-dark" 
+                        : "text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]", // Heavy drop shadow for perfect contrast
                       isActive ? "text-brand-primary" : "hover:text-brand-primary"
                     )}
                   >
                     {link.name}
-                    {/* Masterpiece Hover Underline Animation */}
+                    {/* Hover Underline Animation */}
                     <span 
                       className={cn(
                         "absolute -bottom-2 left-0 w-full h-[2px] rounded-full transition-all duration-300 origin-left",
@@ -87,28 +97,18 @@ export default function Navbar() {
               })}
             </nav>
 
-            {/* Desktop CTA / Contact Right Side */}
-            <div className="hidden lg:flex items-center gap-6">
-              <a 
-                href="tel:0834001919"
-                className={cn(
-                  "flex items-center gap-2 text-xs font-black uppercase tracking-[0.2em] transition-colors duration-300 hover:text-brand-primary",
-                  isScrolled ? "text-brand-dark" : "text-white drop-shadow-md"
-                )}
-              >
-                <ShieldAlert size={16} />
-                <span>Emergency</span>
-              </a>
+            {/* Clean, Single CTA Button */}
+            <div className="hidden lg:flex items-center">
               <Link
                 to="/contact"
                 className={cn(
-                  "px-8 py-4 rounded-full text-xs font-black uppercase tracking-[0.2em] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg active:scale-95",
+                  "px-10 py-4 rounded-full text-[13px] font-black uppercase tracking-[0.25em] transition-all duration-300 hover:-translate-y-1 active:scale-95",
                   isScrolled 
-                    ? "bg-brand-dark text-white hover:bg-brand-primary" 
-                    : "bg-white text-brand-dark hover:bg-brand-primary hover:text-white shadow-xl"
+                    ? "bg-brand-primary text-white hover:bg-brand-dark shadow-lg hover:shadow-xl" 
+                    : "bg-white text-brand-dark hover:bg-brand-primary hover:text-white shadow-2xl"
                 )}
               >
-                Get Quote
+                Contact Us
               </Link>
             </div>
 
@@ -117,10 +117,10 @@ export default function Navbar() {
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className={cn(
                 "lg:hidden relative z-50 p-2 rounded-full transition-colors",
-                isScrolled ? "text-brand-dark" : "text-white"
+                isScrolled ? "text-brand-dark" : "text-white drop-shadow-md"
               )}
             >
-              {mobileMenuOpen ? <X size={28} className="text-brand-dark" /> : <Menu size={28} />}
+              {mobileMenuOpen ? <X size={32} className="text-brand-dark" /> : <Menu size={32} />}
             </button>
           </div>
         </div>
@@ -146,19 +146,13 @@ export default function Navbar() {
                   {link.name}
                 </Link>
               ))}
-              <div className="w-full h-[1px] bg-brand-border my-4" />
+              <div className="w-full h-[1px] bg-brand-border my-6" />
               <Link
                 to="/contact"
-                className="w-full text-center bg-brand-primary text-white py-5 rounded-full text-sm font-black uppercase tracking-[0.3em] shadow-xl active:scale-95 transition-transform"
+                className="w-full text-center bg-brand-primary text-white py-6 rounded-full text-sm font-black uppercase tracking-[0.3em] shadow-xl active:scale-95 transition-transform"
               >
-                Get a Quote
+                Contact Us
               </Link>
-              <a 
-                href="tel:0834001919"
-                className="flex items-center justify-center gap-3 w-full border-2 border-brand-dark text-brand-dark py-5 rounded-full text-sm font-black uppercase tracking-[0.3em]"
-              >
-                <ShieldAlert size={18} /> Emergency Contact
-              </a>
             </nav>
           </motion.div>
         )}
