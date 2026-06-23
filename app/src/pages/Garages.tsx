@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Warehouse, Shield, Settings, X, ChevronRight, ChevronLeft } from 'lucide-react';
+import { Warehouse, Shield, Settings, X, ChevronRight, ChevronLeft, ArrowRight, Grid } from 'lucide-react';
 import PageTransition from '../components/PageTransition';
 import { Link } from 'react-router-dom';
 import { cn } from '@/src/lib/utils';
 
 // Primary Assets
 import splitGarageDoors from '../assets/split-garage-doors.jpg';
+import garage2 from '../assets/garage-2.jpg';
+import garage3 from '../assets/garage-3.jpg';
+import garage4 from '../assets/garage-4.jpg';
 
 // Technical Catalogue Assets
 import gAluzincWhite from '../assets/g-aluzinc-white.jpg';
@@ -25,7 +28,13 @@ import gAluzincBrownStrip from '../assets/g-aluzinc-brown-strip.jpg';
 import gAluzincCharcoal from '../assets/g-aluzinc-charcoal.jpg';
 import gRusticMeranti from '../assets/g-rustic-meranti.jpg';
 
+// The Ultimate Consolidated Gallery
 const catalogueItems = [
+  { img: gModernTimber, title: "Modern Horizontal Timber" },
+  { img: splitGarageDoors, title: "Premium Split Timber" },
+  { img: garage2, title: "Aluzinc Charcoal Sectional" },
+  { img: garage3, title: "Horizontal Slatted Timber" },
+  { img: garage4, title: "Modern Flush Panel" },
   { img: gAluzincWhite, title: "Aluzinc White" },
   { img: gAluzincBrown, title: "Aluzinc Brown Horizontal" },
   { img: gDiagonalMeranti, title: "Diagonal Meranti" },
@@ -35,7 +44,6 @@ const catalogueItems = [
   { img: gFibreRegency, title: "Fibre Glass Regency" },
   { img: gMerantiRaised, title: "Meranti Raised 20 Block" },
   { img: gTimberSlatted2, title: "Timber Slatted 16x132mm" },
-  { img: gModernTimber, title: "Modern Horizontal Timber" },
   { img: gAlphenTipup, title: "Alphen Tip-up" },
   { img: gAluminiumWhite, title: "Aluminium White Strip" },
   { img: gAluzincBrownStrip, title: "Aluzinc Brown Strip" },
@@ -86,37 +94,56 @@ export default function Garages() {
 
   return (
     <PageTransition>
-      <div className="pt-32 md:pt-40 pb-0 bg-white min-h-screen">
-        <div className="container mx-auto px-6">
-          
-          {/* HERO SECTION - STARK & MINIMALIST */}
-          <div className="max-w-4xl mb-32 md:mb-48">
-            <motion.span 
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="inline-block text-[10px] md:text-[11px] font-black uppercase tracking-[0.4em] text-brand-slate mb-8"
-            >
-              Premium Doors
-            </motion.span>
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-6xl md:text-8xl lg:text-[9vw] font-black text-brand-dark mb-10 md:mb-12 leading-[0.9] tracking-tighter uppercase"
-            >
-              Expert<br />
-              <span className="text-brand-primary">Garage Doors.</span>
-            </motion.h1>
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-base md:text-xl text-brand-slate max-w-2xl leading-relaxed font-medium"
-            >
-              We specialize in the installation and maintenance of all types of garage doors. We aim to supply low maintenance, high quality quiet and efficient garage doors at fair prices to withstand Cape Town's weather conditions and your design preferences.
-            </motion.p>
+      <div className="bg-white min-h-screen">
+        
+        {/* HERO SECTION - MASSIVE BACKGROUND INTEGRATION */}
+        <section className="relative min-h-[90vh] flex flex-col items-center justify-center pt-32 pb-20 overflow-hidden text-center">
+          {/* Full Screen Premium Background */}
+          <div className="absolute inset-0 z-0">
+            <img 
+              src={gModernTimber} 
+              alt="Premium Modern Timber Garage Door" 
+              className="w-full h-full object-cover object-center" 
+            />
+            {/* Dark Gradient Overlay for perfect text legibility */}
+            <div className="absolute inset-0 bg-black/70 backdrop-blur-[2px]" />
           </div>
 
+          {/* Foreground Content */}
+          <div className="container mx-auto px-6 relative z-10 flex flex-col items-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              className="max-w-4xl w-full flex flex-col items-center"
+            >
+              <span className="inline-block text-[10px] md:text-[11px] font-black uppercase tracking-[0.4em] text-white/70 mb-8">
+                Premium Grade Doors
+              </span>
+              
+              <h1 className="text-6xl md:text-8xl lg:text-[9vw] font-black text-white leading-[0.9] mb-10 uppercase tracking-tighter">
+                Expert<br />
+                <span className="text-brand-primary">Garage Doors.</span>
+              </h1>
+
+              <p className="text-lg md:text-xl text-white/90 max-w-2xl mb-14 leading-relaxed font-medium">
+                We specialize in the installation and maintenance of all types of garage doors. Engineered to withstand Cape Town's exact weather conditions while matching your architectural design preferences.
+              </p>
+              
+              <div className="flex flex-wrap items-center justify-center gap-4">
+                <button
+                  onClick={() => setSelectedIndex(0)}
+                  className="bg-brand-primary text-white px-10 py-5 font-black text-[11px] uppercase tracking-[0.3em] hover:bg-white hover:text-brand-dark transition-colors duration-300 flex items-center gap-3"
+                >
+                  <Grid size={16} />
+                  View Portfolio
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        <div className="container mx-auto px-6 pt-32 md:pt-48">
           {/* FEATURE CARDS - GEOMETRIC & FLAT */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-32 md:mb-56">
             {[
@@ -147,7 +174,7 @@ export default function Garages() {
               initial={{ opacity: 0, scale: 0.98 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="overflow-hidden aspect-square md:aspect-[4/3] relative group bg-brand-dark"
+              className="overflow-hidden aspect-square md:aspect-[4/3] relative group bg-brand-dark border border-brand-border/50"
             >
               <img 
                 src={splitGarageDoors} 
@@ -185,39 +212,26 @@ export default function Garages() {
           </div>
         </div>
 
-        {/* COMPREHENSIVE TECHNICAL CATALOGUE - BRUTALIST GRID */}
-        <div className="w-full border-t border-brand-border/50 bg-brand-surface pt-24 md:pt-32 pb-24 md:pb-32">
-          <div className="container mx-auto px-6 mb-12 md:mb-16">
-            <div className="max-w-2xl">
-              <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-brand-dark mb-4 md:mb-6">Style Index.</h2>
-              <p className="text-brand-slate text-base md:text-lg font-medium">A comprehensive overview of our material and design capabilities. Click to enlarge.</p>
-            </div>
-          </div>
-          
-          {/* Flush Grid with 1px borders */}
-          <div className="container mx-auto px-6">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 border-t border-l border-brand-border/50">
-              {catalogueItems.map((item, i) => (
-                <div 
-                  key={i}
-                  onClick={() => setSelectedIndex(i)}
-                  className="aspect-square relative group overflow-hidden border-r border-b border-brand-border/50 bg-white cursor-pointer"
-                >
-                  <img 
-                    src={item.img} 
-                    alt={item.title} 
-                    className="w-full h-full object-cover object-center grayscale-[30%] transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0" 
-                  />
-                  {/* Hover Label Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                    <span className="text-white font-black text-[10px] uppercase tracking-[0.2em] leading-tight">
-                      {item.title}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+        {/* SLEEK GALLERY TRIGGER SECTION */}
+        <div className="w-full border-t border-brand-border/50 bg-brand-surface py-32 md:py-48 text-center px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-2xl mx-auto"
+          >
+            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-brand-dark mb-6">Style Index.</h2>
+            <p className="text-brand-slate text-base md:text-lg font-medium mb-12">
+              A comprehensive visual overview of our material and design capabilities. Browse our complete collection of bespoke garage doors.
+            </p>
+            <button 
+              onClick={() => setSelectedIndex(0)}
+              className="inline-flex items-center gap-4 bg-brand-dark text-white px-10 md:px-12 py-5 md:py-6 font-black text-[10px] md:text-[11px] uppercase tracking-[0.4em] hover:bg-brand-primary transition-colors duration-300"
+            >
+              <Grid size={16} />
+              Open Full Portfolio
+            </button>
+          </motion.div>
         </div>
         
         {/* CTA SECTION - RAW MINIMALISM */}
@@ -233,7 +247,7 @@ export default function Garages() {
             </h2>
             <Link 
               to="/contact"
-              className="inline-block bg-brand-dark text-white px-10 md:px-12 py-5 md:py-6 font-black text-[10px] md:text-[11px] uppercase tracking-[0.4em] hover:bg-brand-primary transition-colors duration-300"
+              className="inline-block bg-white border border-brand-border text-brand-dark px-10 md:px-12 py-5 md:py-6 font-black text-[10px] md:text-[11px] uppercase tracking-[0.4em] hover:border-brand-primary hover:bg-brand-primary hover:text-white transition-colors duration-300"
             >
               Book an Installation
             </Link>
@@ -268,14 +282,14 @@ export default function Garages() {
               {/* Navigation Left */}
               <button 
                 onClick={handlePrev}
-                className="absolute left-0 md:left-8 z-50 p-4 bg-white/10 hover:bg-brand-primary text-white transition-colors duration-300 border border-white/20"
+                className="absolute left-0 md:left-8 z-50 p-4 bg-white/10 hover:bg-brand-primary text-white transition-colors duration-300 border border-white/20 hidden md:block"
                 aria-label="Previous Image"
               >
                 <ChevronLeft size={24} />
               </button>
 
               {/* Image Container */}
-              <div className="w-full h-full max-w-6xl max-h-[80vh] flex flex-col items-center justify-center px-16 md:px-24">
+              <div className="w-full h-full max-w-6xl max-h-[85vh] flex flex-col items-center justify-center md:px-24">
                 <AnimatePresence mode="wait">
                   <motion.img
                     key={selectedIndex}
@@ -285,7 +299,7 @@ export default function Garages() {
                     transition={{ duration: 0.3 }}
                     src={catalogueItems[selectedIndex].img}
                     alt={catalogueItems[selectedIndex].title}
-                    className="w-full h-full object-contain shadow-2xl border border-white/10"
+                    className="w-full h-full object-contain drop-shadow-2xl"
                   />
                 </AnimatePresence>
               </div>
@@ -293,19 +307,29 @@ export default function Garages() {
               {/* Navigation Right */}
               <button 
                 onClick={handleNext}
-                className="absolute right-0 md:right-8 z-50 p-4 bg-white/10 hover:bg-brand-primary text-white transition-colors duration-300 border border-white/20"
+                className="absolute right-0 md:right-8 z-50 p-4 bg-white/10 hover:bg-brand-primary text-white transition-colors duration-300 border border-white/20 hidden md:block"
                 aria-label="Next Image"
               >
                 <ChevronRight size={24} />
               </button>
 
-              {/* Title & Index Counter */}
-              <div className="absolute bottom-4 left-4 md:bottom-8 md:left-8 z-50 flex flex-col md:flex-row md:items-center gap-4">
-                <div className="px-6 py-4 bg-black border border-white/20 text-white font-black text-[10px] md:text-[11px] uppercase tracking-[0.3em]">
+              {/* Title & Index Counter / Mobile Nav */}
+              <div className="absolute bottom-4 left-0 w-full md:w-auto md:left-8 z-50 flex flex-col md:flex-row items-center justify-center md:justify-start gap-4 px-4">
+                <div className="px-6 py-4 bg-black border border-white/20 text-white font-black text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-center max-w-[90vw] truncate">
                   {catalogueItems[selectedIndex].title}
                 </div>
-                <div className="px-6 py-4 bg-white/10 border border-white/20 text-white font-black text-[10px] md:text-[11px] uppercase tracking-[0.3em] backdrop-blur-sm w-fit">
-                  {selectedIndex + 1} / {catalogueItems.length}
+                
+                {/* Mobile controls integrated into bottom bar */}
+                <div className="flex items-center gap-2">
+                  <button onClick={handlePrev} className="md:hidden p-3 bg-white/10 border border-white/20 text-white active:bg-brand-primary">
+                    <ChevronLeft size={20} />
+                  </button>
+                  <div className="px-6 py-4 bg-white/10 border border-white/20 text-white font-black text-[10px] md:text-[11px] uppercase tracking-[0.3em] backdrop-blur-sm">
+                    {selectedIndex + 1} / {catalogueItems.length}
+                  </div>
+                  <button onClick={handleNext} className="md:hidden p-3 bg-white/10 border border-white/20 text-white active:bg-brand-primary">
+                    <ChevronRight size={20} />
+                  </button>
                 </div>
               </div>
 
