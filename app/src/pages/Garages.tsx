@@ -11,8 +11,6 @@ import installationGarage from '../assets/garage-charcoal-double.jpg';
 
 // Complete Asset Arsenal
 import gPureWhite from '../assets/garage-pure-white.jpg';
-import gModernGlass from '../assets/garage-modern-glass.jpg';
-import gPremiumBalcony from '../assets/garage-premium-balcony.jpg';
 import gTimberEstate from '../assets/garage-timber-estate.jpg';
 import gCharcoalSleek from '../assets/garage-charcoal-sleek.jpg';
 import gCharcoalSingle from '../assets/garage-charcoal-single.jpg';
@@ -32,11 +30,9 @@ import gFibreClassic from '../assets/garage-fibre-classic.jpg';
 import gFibreArched from '../assets/garage-fibre-arched.jpg';
 import gAlphenTipup from '../assets/garage-alphen-tipup.jpg';
 
-// The Ultimate Consolidated Gallery for Lightbox
+// The Ultimate Consolidated Gallery for Lightbox (Cleaned of duplicates)
 const catalogueItems = [
   { img: heroGarage, title: "Premium Modern Timber" },
-  { img: gModernGlass, title: "Modern Matte with Glass Panels" },
-  { img: gPremiumBalcony, title: "Wide Timber under Glass Balcony" },
   { img: gTimberEstate, title: "Wide Timber Estate Door" },
   { img: installationGarage, title: "Double Charcoal Split" },
   { img: gCharcoalSleek, title: "Charcoal Sleek Horizontal" },
@@ -61,7 +57,7 @@ const catalogueItems = [
 
 // Curated Showcase for the main page layout
 const showcaseItems = [
-  { img: gModernGlass, title: "Modern Glass Panel", span: "md:col-span-2 md:row-span-2" },
+  { img: heroGarage, title: "Premium Modern Timber", span: "md:col-span-2 md:row-span-2" },
   { img: gMidcenturyTimber, title: "Mid-Century Slatted", span: "md:col-span-1 md:row-span-1" },
   { img: gTimberEstate, title: "Timber Estate", span: "md:col-span-1 md:row-span-1" },
   { img: gCharcoalSleek, title: "Charcoal Sleek", span: "md:col-span-2 md:row-span-1" },
