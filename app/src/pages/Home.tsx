@@ -4,34 +4,43 @@ import { ArrowRight, ShieldAlert, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import PageTransition from '../components/PageTransition';
 
-// Primary Assets (Cinematic Imagery)
-import heroGarageDoor from '../assets/garage-premium-timber.jpg'; 
+// Cinematic Collage Assets
+import workInstallation from '../assets/work-installation.jpg';
+import garagePremiumTimber from '../assets/garage-premium-timber.jpg';
+import gateWroughtIronEstate from '../assets/gate-wrought-iron-estate.jpg';
+import workFabrication from '../assets/work-fabrication.jpg';
+import precisionMaintenance from '../assets/precision-maintenance.jpg';
+import workWelding from '../assets/work-welding.jpg';
+import workGroundwork from '../assets/work-groundwork.jpg';
+
+// Services & Section Assets
 import homeServiceGate from '../assets/gate-estate-timber-wide.jpg';
 import splitGarageDoors from '../assets/garage-charcoal-double.jpg';
 import clearvuFence from '../assets/fence-estate-curved-timber.jpg';
 import gateMotorCorrect from '../assets/auto-et-drive-motor.jpg';
-import homeServiceRepairs from '../assets/work-welding.jpg';
 import homeServiceRemotes from '../assets/auto-centurion-access.jpg';
-import homeTrustReliability from '../assets/precision-maintenance.jpg';
 
 export default function Home() {
   return (
     <PageTransition>
-      {/* HERO SECTION - CINEMATIC & MINIMALIST
-        Massive background image, perfectly rounded bottom corners to create a distinct section.
+      {/* HERO SECTION - CINEMATIC MASONRY GRID
+        Massive background collage, perfectly rounded bottom corners to create a distinct section.
       */}
-      <section className="relative min-h-[95vh] md:min-h-screen flex flex-col items-center justify-center pt-32 pb-20 overflow-hidden text-center rounded-b-[40px] md:rounded-b-[80px] shadow-2xl">
+      <section className="relative min-h-[95vh] md:min-h-screen flex flex-col items-center justify-center pt-32 pb-20 overflow-hidden text-center rounded-b-[40px] md:rounded-b-[80px] shadow-2xl bg-brand-dark">
         
-        {/* Full Screen Background Image Layer */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src={heroGarageDoor} 
-            alt="Expert Garage Doors" 
-            className="w-full h-full object-cover object-center" 
-          />
-          {/* Smooth, elegant gradient overlay for perfect text contrast without harshness */}
-          <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/80 via-brand-dark/50 to-brand-dark/90" />
+        {/* Full Screen Cinematic Collage Layer */}
+        <div className="absolute inset-0 z-0 grid grid-cols-2 md:grid-cols-12 grid-rows-5 md:grid-rows-6 gap-2 md:gap-4 p-2 md:p-4 opacity-50">
+          <img src={workInstallation} alt="Installation" className="col-span-2 row-span-2 md:col-span-4 md:row-span-6 w-full h-full object-cover rounded-[30px] md:rounded-[40px] shadow-lg" />
+          <img src={garagePremiumTimber} alt="Premium Timber Garage" className="col-span-1 row-span-1 md:col-span-4 md:row-span-3 w-full h-full object-cover rounded-[30px] md:rounded-[40px] shadow-lg" />
+          <img src={gateWroughtIronEstate} alt="Wrought Iron Gate" className="col-span-1 row-span-1 md:col-span-2 md:row-span-3 w-full h-full object-cover rounded-[30px] md:rounded-[40px] shadow-lg" />
+          <img src={workFabrication} alt="Fabrication" className="col-span-1 row-span-1 md:col-span-2 md:row-span-3 w-full h-full object-cover rounded-[30px] md:rounded-[40px] shadow-lg" />
+          <img src={precisionMaintenance} alt="Precision Maintenance" className="col-span-1 row-span-1 md:col-span-3 md:row-span-3 w-full h-full object-cover rounded-[30px] md:rounded-[40px] shadow-lg" />
+          <img src={workWelding} alt="Welding" className="col-span-1 row-span-1 md:col-span-3 md:row-span-3 w-full h-full object-cover rounded-[30px] md:rounded-[40px] shadow-lg" />
+          <img src={workGroundwork} alt="Groundwork" className="col-span-1 row-span-1 md:col-span-2 md:row-span-3 w-full h-full object-cover rounded-[30px] md:rounded-[40px] shadow-lg" />
         </div>
+        
+        {/* Smooth, elegant gradient overlay for perfect text contrast without harshness */}
+        <div className="absolute inset-0 z-0 bg-gradient-to-b from-brand-dark/80 via-brand-dark/40 to-brand-dark/95 backdrop-blur-[2px]" />
 
         {/* Foreground Content Layer */}
         <div className="container mx-auto px-6 relative z-10 flex flex-col items-center">
@@ -51,26 +60,26 @@ export default function Home() {
               Established 1991
             </motion.span>
             
-            <h1 className="text-5xl md:text-7xl lg:text-[8vw] font-black text-white leading-[1.1] mb-8 tracking-tight">
+            <h1 className="text-5xl md:text-7xl lg:text-[8vw] font-black text-white leading-[1.1] mb-8 tracking-tight drop-shadow-2xl">
               Engineering<br />
-              <span className="text-brand-primary drop-shadow-[0_0_15px_rgba(61,107,44,0.3)]">Excellence.</span>
+              <span className="text-brand-primary drop-shadow-[0_0_20px_rgba(61,107,44,0.4)]">Excellence.</span>
             </h1>
 
-            <p className="text-base md:text-xl text-white/80 max-w-2xl mb-12 md:mb-16 leading-relaxed font-medium">
+            <p className="text-base md:text-xl text-white/90 max-w-2xl mb-12 md:mb-16 leading-relaxed font-medium drop-shadow-md">
               Professional solutions designed for absolute convenience and safety. Specializing in bespoke perimeter property access across the Western Cape.
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 w-full sm:w-auto">
               <Link
                 to="/contact"
-                className="w-full sm:w-auto bg-brand-primary text-white px-10 py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-brand-primary-hover hover:scale-105 transition-all duration-300 shadow-xl flex items-center justify-center gap-3"
+                className="w-full sm:w-auto bg-brand-primary text-white px-10 py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-brand-primary-hover hover:scale-105 transition-all duration-300 shadow-[0_8px_30px_rgba(61,107,44,0.4)] flex items-center justify-center gap-3"
               >
                 Request a Quote
                 <ArrowRight size={18} />
               </Link>
               <a
                 href="tel:0834001919"
-                className="w-full sm:w-auto flex items-center justify-center gap-3 px-10 py-5 rounded-full border border-white/30 text-white hover:bg-white hover:text-brand-dark transition-all duration-300 font-bold text-sm uppercase tracking-widest group backdrop-blur-sm"
+                className="w-full sm:w-auto flex items-center justify-center gap-3 px-10 py-5 rounded-full border border-white/30 text-white hover:bg-white hover:text-brand-dark transition-all duration-300 font-bold text-sm uppercase tracking-widest group backdrop-blur-md shadow-lg"
               >
                 <ShieldAlert size={18} className="text-brand-primary group-hover:text-brand-dark transition-colors" />
                 Emergency Help
@@ -99,7 +108,7 @@ export default function Home() {
               { title: "Garage Doors", href: "/garages", img: splitGarageDoors, desc: "Premium timber, aluminium, and aluzinc doors." },
               { title: "Secure Fencing", href: "/fencing", img: clearvuFence, desc: "High-security perimeter fencing solutions." },
               { title: "Automation", href: "/automation", img: gateMotorCorrect, desc: "High-speed, reliable motor installations." },
-              { title: "Repairs", href: "/support", img: homeServiceRepairs, desc: "Expert technical repairs and maintenance." },
+              { title: "Repairs", href: "/support", img: workWelding, desc: "Expert technical repairs and maintenance." },
               { title: "Remotes", href: "/support", img: homeServiceRemotes, desc: "Secure access control and programming." }
             ].map((service, i) => (
               <motion.div
@@ -151,7 +160,7 @@ export default function Home() {
               className="order-2 lg:order-1 aspect-square md:aspect-[4/3] w-full rounded-[40px] md:rounded-[60px] overflow-hidden shadow-2xl"
             >
               <img 
-                src={homeTrustReliability} 
+                src={precisionMaintenance} 
                 alt="Expertise and Reliability" 
                 className="w-full h-full object-cover object-center transition-transform duration-1000 hover:scale-105"
               />

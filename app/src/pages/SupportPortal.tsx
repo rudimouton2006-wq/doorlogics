@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Wrench, CalendarClock, MessageCircle, AlertTriangle, FileText, ArrowRight, Loader2, CheckCircle2, ShieldAlert } from 'lucide-react';
 import PageTransition from '../components/PageTransition';
 import { cn } from '@/src/lib/utils';
+import { Link } from 'react-router-dom';
 
 // Cinematic Asset Import
 import supportHero from '../assets/precision-maintenance.jpg';
