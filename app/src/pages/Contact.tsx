@@ -16,6 +16,11 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
+    // 1. CAPTURE THE FORM SYNCHRONOUSLY
+    // We must grab this before the 'await' pause so React doesn't lose track of it!
+    const formElement = e.currentTarget;
+    
     setIsSubmitting(true);
 
     try {
@@ -24,22 +29,23 @@ export default function Contact() {
       const TEMPLATE_ID = "template_8xdnqr6";
       const PUBLIC_KEY = "UUHN2DTEyKz6l_mXW";
 
+      // 2. USE THE CAPTURED FORM
       const response = await emailjs.sendForm(
         SERVICE_ID,
         TEMPLATE_ID,
-        e.currentTarget,
+        formElement, 
         PUBLIC_KEY
       );
 
       if (response.text === 'OK') {
         setIsSubmitted(true);
-        e.currentTarget.reset();
+        formElement.reset(); // 3. SAFELY RESET THE FORM
       } else {
-        throw new Error("Form submission failed");
+        throw new Error("Form submission returned a non-OK response");
       }
     } catch (error) {
-      console.error(error);
-      alert("Network error. Please check your internet connection and try again, or contact us directly via phone.");
+      console.error("EmailJS Error Details:", error);
+      alert("Transmission error. Please check your internet connection, ensure ad-blockers aren't blocking the form, and try again (or contact us directly).");
     } finally {
       setIsSubmitting(false);
     }
