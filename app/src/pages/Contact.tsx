@@ -20,11 +20,11 @@ export default function Contact() {
 
     try {
       // --- EMAILJS CONFIGURATION ---
-      const SERVICE_ID = "service_2wk1ocs"; 
+      const SERVICE_ID = "service_zi05y4u"; 
       const TEMPLATE_ID = "template_8xdnqr6";
       const PUBLIC_KEY = "UUHN2DTEyKz6l_mXW";
 
-      // 1. Manually package the data (Much more reliable in React!)
+      // Manually package the data for maximum reliability in React
       const formData = new FormData(e.currentTarget);
       const templateParams = {
         "Inquiry Type": inquiryType,
@@ -34,7 +34,6 @@ export default function Contact() {
         "Message Details": formData.get("Message Details"),
       };
 
-      // 2. Use emailjs.send (Data) instead of emailjs.sendForm (HTML)
       const response = await emailjs.send(
         SERVICE_ID,
         TEMPLATE_ID,
@@ -42,7 +41,6 @@ export default function Contact() {
         PUBLIC_KEY
       );
 
-      // 3. Look for standard success code (200)
       if (response.status === 200) {
         setIsSubmitted(true);
         e.currentTarget.reset();
@@ -50,7 +48,6 @@ export default function Contact() {
         throw new Error("Transmission failed.");
       }
     } catch (error) {
-      // We log the EXACT error to the developer console so we can read it!
       console.error("🚨 EMAILJS ERROR LOG:", error);
       alert("Transmission error. Please check your internet connection, ensure ad-blockers aren't blocking the form, and try again (or contact us directly).");
     } finally {
