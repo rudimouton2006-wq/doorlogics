@@ -16,11 +16,6 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
-    // 1. CAPTURE THE FORM SYNCHRONOUSLY
-    // We must grab this before the 'await' pause so React doesn't lose track of it!
-    const formElement = e.currentTarget;
-    
     setIsSubmitting(true);
 
     try {
@@ -29,22 +24,34 @@ export default function Contact() {
       const TEMPLATE_ID = "template_8xdnqr6";
       const PUBLIC_KEY = "UUHN2DTEyKz6l_mXW";
 
-      // 2. USE THE CAPTURED FORM
-      const response = await emailjs.sendForm(
+      // 1. Manually package the data (Much more reliable in React!)
+      const formData = new FormData(e.currentTarget);
+      const templateParams = {
+        "Inquiry Type": inquiryType,
+        "name": formData.get("name"),
+        "Phone Number": formData.get("Phone Number"),
+        "Address": formData.get("Address"),
+        "Message Details": formData.get("Message Details"),
+      };
+
+      // 2. Use emailjs.send (Data) instead of emailjs.sendForm (HTML)
+      const response = await emailjs.send(
         SERVICE_ID,
         TEMPLATE_ID,
-        formElement, 
+        templateParams,
         PUBLIC_KEY
       );
 
-      if (response.text === 'OK') {
+      // 3. Look for standard success code (200)
+      if (response.status === 200) {
         setIsSubmitted(true);
-        formElement.reset(); // 3. SAFELY RESET THE FORM
+        e.currentTarget.reset();
       } else {
-        throw new Error("Form submission returned a non-OK response");
+        throw new Error("Transmission failed.");
       }
     } catch (error) {
-      console.error("EmailJS Error Details:", error);
+      // We log the EXACT error to the developer console so we can read it!
+      console.error("🚨 EMAILJS ERROR LOG:", error);
       alert("Transmission error. Please check your internet connection, ensure ad-blockers aren't blocking the form, and try again (or contact us directly).");
     } finally {
       setIsSubmitting(false);
