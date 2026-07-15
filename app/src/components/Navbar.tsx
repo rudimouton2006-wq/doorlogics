@@ -10,11 +10,25 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
 
-  // Precision scroll detection for layout shift
+  // 🚀 PERFORMANCE UPGRADE: Throttled Scroll Detection
   useEffect(() => {
+    let ticking = false;
+    
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 60);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrolled = window.scrollY > 60;
+          // Only trigger a re-render if the state actually needs to change
+          setIsScrolled((prev) => {
+            if (prev !== scrolled) return scrolled;
+            return prev;
+          });
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -50,7 +64,7 @@ export default function Navbar() {
       <header
         className="fixed top-0 left-0 right-0 z-50 flex justify-center pointer-events-none"
       >
-        {/* Cinematic Top Gradient: Darker and taller to ensure absolute legibility over bright hero images */}
+        {/* Cinematic Top Gradient */}
         <div 
           className={cn(
             "absolute top-0 left-0 w-full h-48 bg-gradient-to-b from-brand-dark/80 via-brand-dark/30 to-transparent transition-opacity duration-700 pointer-events-none -z-10",
@@ -58,9 +72,6 @@ export default function Navbar() {
           )} 
         />
 
-        {/* Masterpiece Layout Animation Wrapper 
-          Transitions smoothly from a wide, transparent container to a centralized, floating pill.
-        */}
         <motion.nav
           layout
           className={cn(
@@ -70,7 +81,7 @@ export default function Navbar() {
               : "mt-0 max-w-7xl mx-auto bg-transparent rounded-none px-6 md:px-12 py-8 md:py-10"
           )}
         >
-          {/* LOGO - Noticeably Larger Baseline */}
+          {/* LOGO */}
           <Link to="/" className="flex-shrink-0 relative z-50">
             <motion.img 
               layout
@@ -79,13 +90,13 @@ export default function Navbar() {
               className={cn(
                 "w-auto transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
                 isScrolled 
-                  ? "h-10 md:h-12 brightness-0 drop-shadow-none" // Shrinks but stays prominent
-                  : "h-16 md:h-24 brightness-0 invert drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]" // Larger baseline with shadow for readability
+                  ? "h-10 md:h-12 brightness-0 drop-shadow-none"
+                  : "h-16 md:h-24 brightness-0 invert drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
               )} 
             />
           </Link>
 
-          {/* DESKTOP LINKS - Ultra-smooth, highly readable */}
+          {/* DESKTOP LINKS */}
           <motion.div layout className="hidden lg:flex items-center gap-2">
             {navLinks.map((link) => {
               const isActive = location.pathname === link.path;
@@ -104,7 +115,6 @@ export default function Navbar() {
                     {link.name}
                   </span>
                   
-                  {/* Active Indicator - Premium layout shift */}
                   {isActive && (
                     <motion.div
                       layoutId="nav-active-indicator"
@@ -116,7 +126,6 @@ export default function Navbar() {
                     />
                   )}
                   
-                  {/* Subtle Hover Background */}
                   {!isActive && (
                     <div className={cn(
                       "absolute inset-0 rounded-full z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300",
@@ -141,7 +150,7 @@ export default function Navbar() {
             </Link>
           </motion.div>
 
-          {/* MOBILE MENU TOGGLE - Round and smooth */}
+          {/* MOBILE MENU TOGGLE */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className={cn(
@@ -169,11 +178,10 @@ export default function Navbar() {
         </motion.nav>
       </header>
 
-      {/* MOBILE MENU OVERLAY - Floating app-like modal, 100% round edges */}
+      {/* MOBILE MENU OVERLAY */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <>
-            {/* Background Blur Overlay */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -183,7 +191,6 @@ export default function Navbar() {
               className="fixed inset-0 z-40 bg-brand-dark/60 backdrop-blur-md lg:hidden pointer-events-auto"
             />
             
-            {/* Floating Pill Menu */}
             <motion.div
               initial={{ opacity: 0, y: -20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}

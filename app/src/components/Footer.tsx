@@ -17,9 +17,12 @@ export default function Footer() {
           {/* Brand Section */}
           <div className="lg:col-span-4 flex flex-col gap-8 pr-0 lg:pr-12">
             <Link to="/" className="inline-block w-fit group">
+              {/* 🚀 PERFORMANCE UPGRADE: Lazy loading global footer logo */}
               <img 
                 src={logo} 
                 alt="Doorlogics" 
+                loading="lazy"
+                decoding="async"
                 className="h-16 md:h-20 w-auto brightness-0 invert opacity-90 transition-all duration-500 group-hover:opacity-100 group-hover:scale-105" 
               />
             </Link>

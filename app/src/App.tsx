@@ -1,22 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'motion/react';
+import { Loader2 } from 'lucide-react';
 
-// Global Layout Components
+// Global Layout Components (Loaded instantly)
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
-// Engineered Pages
-import Home from './pages/Home';
-import Garages from './pages/Garages';
-import Gates from './pages/Gates';
-import Fencing from './pages/Fencing';
-import Automation from './pages/Automation';
-import SupportPortal from './pages/SupportPortal';
-import Guides from './pages/Guides';
-import About from './pages/About';
-import Contact from './pages/Contact';
-import NotFound from './pages/NotFound';
+// 🚀 PERFORMANCE UPGRADE: Route-Based Code Splitting
+// These pages will now only be downloaded when the user actually navigates to them.
+const Home = lazy(() => import('./pages/Home'));
+const Garages = lazy(() => import('./pages/Garages'));
+const Gates = lazy(() => import('./pages/Gates'));
+const Fencing = lazy(() => import('./pages/Fencing'));
+const Automation = lazy(() => import('./pages/Automation'));
+const SupportPortal = lazy(() => import('./pages/SupportPortal'));
+const Guides = lazy(() => import('./pages/Guides'));
+const About = lazy(() => import('./pages/About'));
+const Contact = lazy(() => import('./pages/Contact'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 // Masterclass UX: Force window to top on route change
 function ScrollToTop() {
@@ -33,25 +35,32 @@ function ScrollToTop() {
   return null;
 }
 
-// Router configuration with Animation Presence
+// Elegant fallback UI while the requested page chunk downloads
+const PageLoader = () => (
+  <div className="min-h-[80vh] flex items-center justify-center bg-brand-bg">
+    <Loader2 className="w-8 h-8 text-brand-primary animate-spin" />
+  </div>
+);
+
+// Router configuration with Animation Presence and Suspense
 function AnimatedRoutes() {
   const location = useLocation();
 
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<Home />} />
-        <Route path="/garages" element={<Garages />} />
-        <Route path="/gates" element={<Gates />} />
-        <Route path="/fencing" element={<Fencing />} />
-        <Route path="/automation" element={<Automation />} />
-        <Route path="/support" element={<SupportPortal />} />
-        <Route path="/guides" element={<Guides />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/" element={<Suspense fallback={<PageLoader />}><Home /></Suspense>} />
+        <Route path="/garages" element={<Suspense fallback={<PageLoader />}><Garages /></Suspense>} />
+        <Route path="/gates" element={<Suspense fallback={<PageLoader />}><Gates /></Suspense>} />
+        <Route path="/fencing" element={<Suspense fallback={<PageLoader />}><Fencing /></Suspense>} />
+        <Route path="/automation" element={<Suspense fallback={<PageLoader />}><Automation /></Suspense>} />
+        <Route path="/support" element={<Suspense fallback={<PageLoader />}><SupportPortal /></Suspense>} />
+        <Route path="/guides" element={<Suspense fallback={<PageLoader />}><Guides /></Suspense>} />
+        <Route path="/about" element={<Suspense fallback={<PageLoader />}><About /></Suspense>} />
+        <Route path="/contact" element={<Suspense fallback={<PageLoader />}><Contact /></Suspense>} />
         
-        {/* Fallback route to catch 404s and redirect home */}
-        <Route path="*" element={<NotFound />} />
+        {/* Fallback route to catch 404s */}
+        <Route path="*" element={<Suspense fallback={<PageLoader />}><NotFound /></Suspense>} />
       </Routes>
     </AnimatePresence>
   );

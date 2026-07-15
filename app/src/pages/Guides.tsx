@@ -17,9 +17,12 @@ export default function Guides() {
         {/* HERO SECTION - CINEMATIC & SOFT */}
         <section className="relative min-h-[60vh] flex flex-col items-center justify-center pt-32 pb-20 overflow-hidden text-center rounded-b-[40px] md:rounded-b-[80px] shadow-sm mb-16 md:mb-24">
           <div className="absolute inset-0 z-0">
+            {/* 🚀 PERFORMANCE UPGRADE: High priority fetch & async decode */}
             <img 
               src={heroGuides} 
               alt="Hardware and Maintenance Tracking" 
+              fetchPriority="high"
+              decoding="async"
               className="w-full h-full object-cover object-center" 
             />
             {/* Smooth cinematic dark overlay */}
@@ -84,9 +87,12 @@ export default function Guides() {
                   className="group flex flex-col bg-white rounded-[40px] md:rounded-[60px] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_50px_rgb(0,0,0,0.1)] transition-all duration-500"
                 >
                   <div className="relative h-[300px] md:h-[400px] w-full overflow-hidden bg-brand-surface">
+                    {/* 🚀 PERFORMANCE UPGRADE: Lazy loading below fold */}
                     <img 
                       src={guide.img} 
                       alt={guide.title} 
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-105" 
                     />
                     {/* Soft gradient for visual depth */}

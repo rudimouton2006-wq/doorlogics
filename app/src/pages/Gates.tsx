@@ -34,9 +34,12 @@ export default function Gates() {
       {/* HERO SECTION - CINEMATIC & SOFT */}
       <section className="relative min-h-[95vh] md:min-h-screen flex flex-col items-center justify-center pt-32 pb-20 overflow-hidden text-center rounded-b-[40px] md:rounded-b-[80px] shadow-2xl">
         <div className="absolute inset-0 z-0">
+          {/* 🚀 PERFORMANCE UPGRADE: High priority fetch & async decode */}
           <img 
             src={heroGate} 
             alt="Premium Estate Driveway Gates" 
+            fetchPriority="high"
+            decoding="async"
             className="w-full h-full object-cover object-center" 
           />
           <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/80 via-brand-dark/50 to-brand-dark/90" />
@@ -121,9 +124,12 @@ export default function Gates() {
                 transition={{ duration: 0.6, delay: i * 0.1 }}
                 className="group relative h-[400px] w-full rounded-[40px] overflow-hidden bg-brand-surface shadow-lg hover:shadow-2xl transition-all duration-500"
               >
+                {/* 🚀 PERFORMANCE UPGRADE: Lazy loading below fold */}
                 <img 
                   src={gate.img} 
                   alt={gate.title} 
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-110" 
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/95 via-brand-dark/30 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-500" />

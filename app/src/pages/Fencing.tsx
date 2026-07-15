@@ -16,9 +16,12 @@ export default function Fencing() {
       {/* HERO SECTION - CINEMATIC & SOFT */}
       <section className="relative min-h-[95vh] md:min-h-screen flex flex-col items-center justify-center pt-32 pb-20 overflow-hidden text-center rounded-b-[40px] md:rounded-b-[80px] shadow-2xl">
         <div className="absolute inset-0 z-0">
+          {/* 🚀 PERFORMANCE UPGRADE: High priority fetch & async decode */}
           <img 
             src={fenceHero} 
             alt="Secure Estate Fencing" 
+            fetchPriority="high"
+            decoding="async"
             className="w-full h-full object-cover object-center" 
           />
           <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/80 via-brand-dark/50 to-brand-dark/90" />
@@ -79,9 +82,12 @@ export default function Fencing() {
                 transition={{ duration: 0.6, delay: i * 0.1 }}
                 className="group relative h-[450px] w-full rounded-[40px] overflow-hidden bg-brand-surface shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.12)] transition-all duration-500"
               >
+                {/* 🚀 PERFORMANCE UPGRADE: Lazy loading below fold */}
                 <img 
                   src={fence.img} 
                   alt={fence.title} 
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-110" 
                 />
                 {/* Soft gradient overlay */}

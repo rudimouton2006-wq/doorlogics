@@ -54,9 +54,12 @@ export default function About() {
               transition={{ duration: 0.8 }}
               className="order-2 lg:order-1 relative aspect-[4/5] md:aspect-square w-full rounded-[40px] md:rounded-[60px] overflow-hidden shadow-2xl group"
             >
+              {/* 🚀 PERFORMANCE UPGRADE: Lazy loading below fold */}
               <img 
                 src={ronnieFounder} 
                 alt="Ronnie Mouton - Founder of Doorlogics" 
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-105"
               />
               {/* Soft cinematic gradient */}

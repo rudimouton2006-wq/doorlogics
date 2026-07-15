@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Phone, Mail, MapPin, CheckCircle2, Loader2, ArrowRight, ShieldAlert, MessageCircle } from 'lucide-react';
+import { Phone, Mail, ShieldAlert, MessageCircle, ArrowRight, Loader2, CheckCircle2 } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import PageTransition from '../components/PageTransition';
 import { cn } from '@/src/lib/utils';
@@ -43,7 +43,6 @@ export default function Contact() {
 
       if (response.status === 200) {
         setIsSubmitted(true);
-        // THE FIX: Use the React formRef to safely clear the form instead of the event target
         formRef.current?.reset(); 
       } else {
         throw new Error("Transmission failed.");
@@ -63,9 +62,12 @@ export default function Contact() {
         {/* HERO SECTION - CINEMATIC & SOFT */}
         <section className="relative min-h-[60vh] flex flex-col items-center justify-center pt-32 pb-20 overflow-hidden text-center rounded-b-[40px] md:rounded-b-[80px] shadow-sm mb-16 md:mb-24">
           <div className="absolute inset-0 z-0">
+            {/* 🚀 PERFORMANCE UPGRADE: High priority fetch & async decode */}
             <img
               src={heroContact}
               alt="Doorlogics Team on Site"
+              fetchPriority="high"
+              decoding="async"
               className="w-full h-full object-cover object-center"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/90 via-brand-dark/70 to-brand-dark/95" />

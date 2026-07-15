@@ -57,9 +57,12 @@ export default function SupportPortal() {
         {/* HERO SECTION - CINEMATIC & SOFT */}
         <section className="relative min-h-[50vh] flex flex-col items-center justify-center pt-32 pb-20 overflow-hidden text-center rounded-b-[40px] md:rounded-b-[80px] shadow-sm mb-16 md:mb-24">
           <div className="absolute inset-0 z-0">
+            {/* 🚀 PERFORMANCE UPGRADE: High priority fetch & async decode */}
             <img 
               src={supportHero} 
               alt="Precision Maintenance" 
+              fetchPriority="high"
+              decoding="async"
               className="w-full h-full object-cover object-center" 
             />
             <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/90 via-brand-dark/70 to-brand-dark/95" />
