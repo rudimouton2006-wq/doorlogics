@@ -21,7 +21,7 @@ export default function Contact() {
     try {
       // --- EMAILJS CONFIGURATION ---
       const SERVICE_ID = "service_zi05y4u"; 
-      const TEMPLATE_ID = "template_qatbxwb"; // <-- The correct ID from your screenshot!
+      const TEMPLATE_ID = "template_qatbxwb"; 
       const PUBLIC_KEY = "UUHN2DTEyKz6l_mXW";
 
       // Manually package the data for maximum reliability in React
@@ -43,7 +43,8 @@ export default function Contact() {
 
       if (response.status === 200) {
         setIsSubmitted(true);
-        e.currentTarget.reset();
+        // THE FIX: Use the React formRef to safely clear the form instead of the event target
+        formRef.current?.reset(); 
       } else {
         throw new Error("Transmission failed.");
       }
