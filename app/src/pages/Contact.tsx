@@ -21,7 +21,7 @@ export default function Contact() {
     try {
       // --- EMAILJS CONFIGURATION ---
       const SERVICE_ID = "service_zi05y4u"; 
-      const TEMPLATE_ID = "template_yli5k16";
+      const TEMPLATE_ID = "template_qatbxwb"; // <-- The correct ID from your screenshot!
       const PUBLIC_KEY = "UUHN2DTEyKz6l_mXW";
 
       // Manually package the data for maximum reliability in React
