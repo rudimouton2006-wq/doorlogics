@@ -4,8 +4,8 @@ import { ArrowRight, ShieldAlert, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import PageTransition from '../components/PageTransition';
 
-// Cinematic Hero Asset
-import garagePremiumTimber from '../assets/garage-premium-timber.jpg';
+// 🚀 DESIGN EDIT: Dedicated Homepage Hero Asset (No longer duplicating Garages.tsx)
+import homeHeroPremium from '../assets/home-hero-premium.jpg';
 
 // Services & Section Assets
 import homeServiceGate from '../assets/gate-pedestrian-new.jpg'; 
@@ -24,15 +24,16 @@ export default function Home() {
         
         {/* Full Screen Cinematic Image Layer */}
         <div className="absolute inset-0 z-0 bg-brand-dark">
+          {/* ⚡️ PERFORMANCE: High priority fetch, async decode, GPU accelerated */}
           <img 
-            src={garagePremiumTimber} 
+            src={homeHeroPremium} 
             alt="Premium Garage Doors and Gates" 
             fetchPriority="high" 
             decoding="async"
             draggable="false"
-            className="w-full h-full object-cover object-center will-change-transform" 
+            className="w-full h-full object-cover object-center opacity-90 will-change-transform" 
           />
-          {/* Smooth, elegant gradient overlay for perfect text contrast */}
+          {/* Smooth, elegant gradient overlay for perfect text contrast without harshness */}
           <div className="absolute inset-0 z-0 bg-gradient-to-b from-brand-dark/80 via-brand-dark/40 to-brand-dark/95" />
         </div>
 
@@ -113,6 +114,7 @@ export default function Home() {
                 className="group relative h-[400px] md:h-[450px] w-full rounded-[40px] overflow-hidden bg-brand-surface shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.12)] transition-shadow duration-500 will-change-transform will-change-opacity"
               >
                 <Link to={service.href} className="block w-full h-full">
+                  {/* ⚡️ PERFORMANCE: Lazy loading offscreen images */}
                   <img 
                     src={service.img} 
                     alt={service.title} 
@@ -151,7 +153,7 @@ export default function Home() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="order-2 lg:order-1 aspect-square md:aspect-[4/3] w-full rounded-[40px] md:rounded-[60px] overflow-hidden shadow-2xl will-change-transform will-change-opacity bg-brand-dark"
+              className="order-2 lg:order-1 aspect-square md:aspect-[4/3] w-full rounded-[40px] md:rounded-[60px] overflow-hidden shadow-2xl bg-brand-dark will-change-transform will-change-opacity"
             >
               <img 
                 src={precisionMaintenance} 
