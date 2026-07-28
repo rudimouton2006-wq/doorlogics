@@ -4,43 +4,36 @@ import { ArrowRight, ShieldAlert, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import PageTransition from '../components/PageTransition';
 
-// Cinematic Collage Assets
-import workInstallation from '../assets/work-installation.jpg';
+// Cinematic Hero Asset
 import garagePremiumTimber from '../assets/garage-premium-timber.jpg';
-import gateWroughtIronEstate from '../assets/gate-wrought-iron-estate.jpg';
-import workFabrication from '../assets/work-fabrication.jpg';
-import precisionMaintenance from '../assets/precision-maintenance.jpg';
-import workWelding from '../assets/work-welding.jpg';
-import workGroundwork from '../assets/work-groundwork.jpg';
 
 // Services & Section Assets
-import homeServiceGate from '../assets/gate-estate-timber-wide.jpg';
-import splitGarageDoors from '../assets/garage-charcoal-double.jpg';
-import clearvuFence from '../assets/fence-estate-curved-timber.jpg';
-import gateMotorCorrect from '../assets/auto-et-drive-motor.jpg';
-import homeServiceRemotes from '../assets/auto-centurion-access.jpg';
+import homeServiceGate from '../assets/gate-pedestrian-new.jpg'; 
+import splitGarageDoors from '../assets/garage-identical-doors.jpg'; 
+import clearvuFence from '../assets/fence-clearvu-actual.jpg'; 
+import gateMotorCorrect from '../assets/motor-correct-angle.jpg'; 
+import workWelding from '../assets/work-welding.jpg';
+import homeServiceRemotes from '../assets/access-mixed-remotes.jpg'; // 🚀 DESIGN EDIT: New mixed remotes image
+import precisionMaintenance from '../assets/precision-maintenance.jpg';
 
 export default function Home() {
   return (
     <PageTransition>
-      {/* HERO SECTION - CINEMATIC MASONRY GRID
-        Massive background collage, perfectly rounded bottom corners to create a distinct section.
-      */}
+      {/* HERO SECTION - SINGLE CRISP IMAGE */}
       <section className="relative min-h-[95vh] md:min-h-screen flex flex-col items-center justify-center pt-32 pb-20 overflow-hidden text-center rounded-b-[40px] md:rounded-b-[80px] shadow-2xl bg-brand-dark">
         
-        {/* Full Screen Cinematic Collage Layer */}
-        <div className="absolute inset-0 z-0 grid grid-cols-2 md:grid-cols-12 grid-rows-5 md:grid-rows-6 gap-2 md:gap-4 p-2 md:p-4 opacity-50">
-          <img src={workInstallation} alt="Installation" className="col-span-2 row-span-2 md:col-span-4 md:row-span-6 w-full h-full object-cover rounded-[30px] md:rounded-[40px] shadow-lg" />
-          <img src={garagePremiumTimber} alt="Premium Timber Garage" className="col-span-1 row-span-1 md:col-span-4 md:row-span-3 w-full h-full object-cover rounded-[30px] md:rounded-[40px] shadow-lg" />
-          <img src={gateWroughtIronEstate} alt="Wrought Iron Gate" className="col-span-1 row-span-1 md:col-span-2 md:row-span-3 w-full h-full object-cover rounded-[30px] md:rounded-[40px] shadow-lg" />
-          <img src={workFabrication} alt="Fabrication" className="col-span-1 row-span-1 md:col-span-2 md:row-span-3 w-full h-full object-cover rounded-[30px] md:rounded-[40px] shadow-lg" />
-          <img src={precisionMaintenance} alt="Precision Maintenance" className="col-span-1 row-span-1 md:col-span-3 md:row-span-3 w-full h-full object-cover rounded-[30px] md:rounded-[40px] shadow-lg" />
-          <img src={workWelding} alt="Welding" className="col-span-1 row-span-1 md:col-span-3 md:row-span-3 w-full h-full object-cover rounded-[30px] md:rounded-[40px] shadow-lg" />
-          <img src={workGroundwork} alt="Groundwork" className="col-span-1 row-span-1 md:col-span-2 md:row-span-3 w-full h-full object-cover rounded-[30px] md:rounded-[40px] shadow-lg" />
+        {/* Full Screen Cinematic Image Layer */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src={garagePremiumTimber} 
+            alt="Premium Garage Doors and Gates" 
+            fetchPriority="high" 
+            decoding="async" 
+            className="w-full h-full object-cover object-center" 
+          />
+          {/* Smooth, elegant gradient overlay for perfect text contrast without harshness */}
+          <div className="absolute inset-0 z-0 bg-gradient-to-b from-brand-dark/80 via-brand-dark/40 to-brand-dark/95" />
         </div>
-        
-        {/* Smooth, elegant gradient overlay for perfect text contrast without harshness */}
-        <div className="absolute inset-0 z-0 bg-gradient-to-b from-brand-dark/80 via-brand-dark/40 to-brand-dark/95 backdrop-blur-[2px]" />
 
         {/* Foreground Content Layer */}
         <div className="container mx-auto px-6 relative z-10 flex flex-col items-center">
@@ -61,12 +54,12 @@ export default function Home() {
             </motion.span>
             
             <h1 className="text-5xl md:text-7xl lg:text-[8vw] font-black text-white leading-[1.1] mb-8 tracking-tight drop-shadow-2xl">
-              Engineering<br />
-              <span className="text-brand-primary drop-shadow-[0_0_20px_rgba(61,107,44,0.4)]">Excellence.</span>
+              Garage Doors<br />
+              <span className="text-brand-primary drop-shadow-[0_0_20px_rgba(61,107,44,0.4)]">& Gates.</span>
             </h1>
 
             <p className="text-base md:text-xl text-white/90 max-w-2xl mb-12 md:mb-16 leading-relaxed font-medium drop-shadow-md">
-              Professional solutions designed for absolute convenience and safety. Specializing in bespoke perimeter property access across the Western Cape.
+              Garage doors and gates designed for your convenience and safety.
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 w-full sm:w-auto">
@@ -89,7 +82,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SERVICES GRID - EXTREME ROUNDED GEOMETRY */}
+      {/* SERVICES GRID */}
       <section className="py-24 md:py-40 bg-white">
         <div className="container mx-auto px-6">
           <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-20 md:mb-28">
@@ -97,19 +90,18 @@ export default function Home() {
               Our Services
             </h2>
             <p className="text-brand-slate text-base md:text-lg font-medium leading-relaxed">
-              Professional installation and repairs for all types of perimeter property access. Engineered and built to last without compromise.
+              All types of access control. Engineered and built to last without compromise.
             </p>
           </div>
 
-          {/* Fully breathable, heavily rounded grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
             {[
               { title: "Driveway Gates", href: "/gates", img: homeServiceGate, desc: "Bespoke sliding and swing gate manufacturing." },
               { title: "Garage Doors", href: "/garages", img: splitGarageDoors, desc: "Premium timber, aluminium, and aluzinc doors." },
               { title: "Secure Fencing", href: "/fencing", img: clearvuFence, desc: "High-security perimeter fencing solutions." },
               { title: "Automation", href: "/automation", img: gateMotorCorrect, desc: "High-speed, reliable motor installations." },
-              { title: "Repairs", href: "/support", img: workWelding, desc: "Expert technical repairs and maintenance." },
-              { title: "Remotes", href: "/support", img: homeServiceRemotes, desc: "Secure access control and programming." }
+              { title: "Services and Repairs", href: "/support", img: workWelding, desc: "Expert technical repairs and maintenance." }, // 🚀 TEXT EDIT 1
+              { title: "Remotes and access control", href: "/support", img: homeServiceRemotes, desc: "Supply and programming." } // 🚀 TEXT EDIT 2 & 3
             ].map((service, i) => (
               <motion.div
                 key={i}
@@ -123,9 +115,10 @@ export default function Home() {
                   <img 
                     src={service.img} 
                     alt={service.title} 
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-110" 
                   />
-                  {/* Smooth, soft gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/95 via-brand-dark/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
                   
                   <div className="absolute bottom-0 left-0 right-0 p-8 md:p-10 transform transition-transform duration-500">
@@ -146,12 +139,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* RELIABILITY SECTION - CINEMATIC & SOFT */}
+      {/* RELIABILITY SECTION */}
       <section className="py-24 md:py-40 bg-brand-bg rounded-t-[40px] md:rounded-t-[80px]">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
             
-            {/* Soft, fully rounded image container */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -162,6 +154,8 @@ export default function Home() {
               <img 
                 src={precisionMaintenance} 
                 alt="Expertise and Reliability" 
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover object-center transition-transform duration-1000 hover:scale-105"
               />
             </motion.div>
@@ -179,7 +173,7 @@ export default function Home() {
               
               <div className="space-y-8 md:space-y-10">
                 {[
-                  { label: "Expert Repairs", text: "We repair all garage door and gate operator brands efficiently to minimize downtime and expense." },
+                  { label: "Expert Repairs", text: "We repair all brands of garage doors and gate operators (old or new) efficiently to minimize your downtime and expense." },
                   { label: "Custom Builds", text: "Bespoke gate and fencing manufacturing tailored strictly to your property's dimensions and aesthetics." },
                   { label: "Direct Support", text: "Speak directly to an expert for immediate technical guidance. No call centers, just real help." }
                 ].map((item, i) => (
@@ -204,7 +198,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA SECTION - SOFT MINIMALISM */}
+      {/* CTA SECTION */}
       <section className="py-32 md:py-48 bg-white text-center rounded-b-[40px] md:rounded-b-[80px]">
         <div className="container mx-auto px-6">
           <motion.div
@@ -213,7 +207,6 @@ export default function Home() {
             viewport={{ once: true }}
             className="max-w-3xl mx-auto bg-brand-dark rounded-[40px] md:rounded-[60px] p-12 md:p-24 shadow-2xl relative overflow-hidden"
           >
-            {/* Subtle background glow effect within the rounded card */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-brand-primary/20 blur-[100px] rounded-full pointer-events-none" />
             
             <div className="relative z-10">

@@ -30,37 +30,37 @@ import gFibreClassic from '../assets/garage-fibre-classic.jpg';
 import gFibreArched from '../assets/garage-fibre-arched.jpg';
 import gAlphenTipup from '../assets/garage-alphen-tipup.jpg';
 
-// The Ultimate Consolidated Gallery for Lightbox (Cleaned of duplicates)
+// 🚀 TEXT EDITS: Updated captions for the Lightbox Gallery
 const catalogueItems = [
   { img: heroGarage, title: "Premium Modern Timber" },
   { img: gTimberEstate, title: "Wide Timber Estate Door" },
-  { img: installationGarage, title: "Double Charcoal Split" },
-  { img: gCharcoalSleek, title: "Charcoal Sleek Horizontal" },
-  { img: gCharcoalSingle, title: "Single Charcoal Horizontal" },
-  { img: gCharcoalMatte, title: "Wide Matte Charcoal" },
-  { img: gPureWhite, title: "Crisp White Horizontal" },
-  { img: gWhiteHorizontal, title: "Single White Horizontal" },
-  { img: gAluminiumPremium, title: "Aluminium Premium Multi-Car" },
+  { img: installationGarage, title: "Single charcoal allozinc horizontal" },
+  { img: gCharcoalSleek, title: "Double brown horizontal aluminum" },
+  { img: gCharcoalSingle, title: "Double charcoal horizontal aluminum" },
+  { img: gCharcoalMatte, title: "Double charcoal horizontal aluzinc" },
+  { img: gPureWhite, title: "plain flat special design" },
+  { img: gWhiteHorizontal, title: "double white horizontal aluzinc" },
+  { img: gAluminiumPremium, title: "single white raised and fielded aluzinc" },
   { img: gMidcenturyTimber, title: "Mid-Century Split Roof Timber" },
   { img: gTimberTransom, title: "Timber with Glass Transom" },
-  { img: gSlattedTimber, title: "Modern Slatted Timber" },
-  { img: gTimberDiagonal, title: "Single Diagonal Timber" },
+  { img: gSlattedTimber, title: "single horizontal slatted timber" },
+  { img: gTimberDiagonal, title: "double Diagonal Timber" },
   { img: gRusticStudded, title: "Rustic Meranti with Metal Studs" },
-  { img: gBrownDouble, title: "Double Brown Flat-Top" },
-  { img: gAluzincBrown, title: "Aluzinc Brown Strip" },
-  { img: gArchedBrown, title: "Double Arched Brown" },
-  { img: gMerantiArched, title: "Double Arched Meranti" },
-  { img: gFibreArched, title: "Double Arched Fibre" },
+  { img: gBrownDouble, title: "single horizontal slatted timber" },
+  { img: gAluzincBrown, title: "double brown horizontal aluzinc" },
+  { img: gArchedBrown, title: "single bronze aluzinc" },
+  { img: gMerantiArched, title: "single raised and fielded meranti" },
+  { img: gFibreArched, title: "single raised and fielded fiberglass" },
   { img: gFibreClassic, title: "Single Fibre Classic" },
-  { img: gAlphenTipup, title: "Alphen Tip-up Brick Enclosure" }
+  { img: gAlphenTipup, title: "single Alphen tip-up" }
 ];
 
-// Curated Showcase for the main page layout
+// 🚀 TEXT EDIT: Updated bottom-left showcase caption
 const showcaseItems = [
   { img: heroGarage, title: "Premium Modern Timber", span: "md:col-span-2 md:row-span-2" },
   { img: gMidcenturyTimber, title: "Mid-Century Slatted", span: "md:col-span-1 md:row-span-1" },
   { img: gTimberEstate, title: "Timber Estate", span: "md:col-span-1 md:row-span-1" },
-  { img: gCharcoalSleek, title: "Charcoal Sleek", span: "md:col-span-2 md:row-span-1" },
+  { img: gCharcoalSleek, title: "Double brown horizontal aluminum", span: "md:col-span-2 md:row-span-1" },
 ];
 
 export default function Garages() {
@@ -106,6 +106,8 @@ export default function Garages() {
             <img 
               src={heroGarage} 
               alt="Premium Modern Timber Garage Door" 
+              fetchPriority="high"
+              decoding="async"
               className="w-full h-full object-cover object-center opacity-80" 
             />
             <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/80 via-brand-dark/40 to-brand-dark/95" />
@@ -134,7 +136,7 @@ export default function Garages() {
               </h1>
 
               <p className="text-base md:text-xl text-white/80 max-w-2xl mb-12 md:mb-16 leading-relaxed font-medium">
-                Engineered to withstand Cape Town's exact weather conditions while matching your architectural design preferences perfectly.
+                We specialize in the installation and maintenance of all types of garage doors. We aim to supply low-maintenance, high-quality, quiet, and efficient garage doors at fair prices to withstand Cape Town's weather conditions and your design preferences.
               </p>
               
               <button
@@ -148,12 +150,12 @@ export default function Garages() {
           </div>
         </section>
 
-        {/* FEATURE CARDS - BREATHABLE & ROUNDED */}
+        {/* FEATURE CARDS */}
         <section className="py-24 md:py-40 bg-brand-bg rounded-b-[40px] md:rounded-b-[80px] -mt-10 pt-32">
           <div className="container mx-auto px-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
               {[
-                { icon: <Warehouse size={24} />, title: "Any Style", desc: "Decades of experience installing bespoke sectional, roll-up, and tip-up architectural doors." },
+                { icon: <Warehouse size={24} />, title: "Any Style", desc: "Decades of experience installing bespoke sectional, roll-up, and Tip-up doors." },
                 { icon: <Settings size={24} />, title: "Smooth Tech", desc: "High-cycle torsion springs and precision nylon rollers for virtually silent, friction-free movement." },
                 { icon: <Shield size={24} />, title: "Secure Build", desc: "Bespoke engineering for unique entrance requirements, ensuring perfect structural alignment and security." }
               ].map((feature, i) => (
@@ -194,6 +196,8 @@ export default function Garages() {
                 <img 
                   src={installationGarage} 
                   alt="Quality Split Garage Door Installation" 
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-105" 
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/60 to-transparent opacity-80" />
@@ -247,7 +251,7 @@ export default function Garages() {
                 Featured Styles
               </h2>
               <p className="text-brand-slate text-base md:text-lg font-medium leading-relaxed">
-                A curated look at our bespoke material and design capabilities.
+                A curated look at our bespoke material and design capabilities, including premium sectional, roll-up, and Tip-up doors.
               </p>
             </div>
 
@@ -263,11 +267,13 @@ export default function Garages() {
                     "group relative w-full rounded-[40px] overflow-hidden bg-brand-surface shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer min-h-[300px]",
                     item.span
                   )}
-                  onClick={() => setSelectedIndex(0)} // Open modal on any click
+                  onClick={() => setSelectedIndex(0)}
                 >
                   <img 
                     src={item.img} 
                     alt={item.title} 
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-110" 
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/95 via-brand-dark/20 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-500" />
@@ -293,7 +299,7 @@ export default function Garages() {
           </div>
         </section>
         
-        {/* CTA SECTION - GLOWING & ROUNDED */}
+        {/* CTA SECTION */}
         <section className="py-24 md:py-40 bg-white text-center rounded-b-[40px] md:rounded-b-[80px]">
           <div className="container mx-auto px-6">
             <motion.div
@@ -313,7 +319,7 @@ export default function Garages() {
                 </p>
                 <Link 
                   to="/contact"
-                  className="inline-flex items-center gap-3 bg-brand-primary text-white px-10 md:px-14 py-5 md:py-6 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-brand-primary-hover hover:scale-105 transition-all duration-300 shadow-xl"
+                  className="inline-flex items-center gap-3 bg-brand-primary text-white px-10 md:px-14 py-5 md:py-6 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-white hover:text-brand-dark hover:scale-105 transition-all duration-300 shadow-xl"
                 >
                   Book an Installation
                   <ArrowRight size={18} />
@@ -325,7 +331,7 @@ export default function Garages() {
 
       </div>
 
-      {/* FULLSCREEN LIGHTBOX MODAL - IMMERSIVE APP-LIKE UI */}
+      {/* FULLSCREEN LIGHTBOX MODAL */}
       <AnimatePresence>
         {selectedIndex !== null && (
           <motion.div
@@ -338,7 +344,6 @@ export default function Garages() {
           >
             <div className="relative w-full h-full flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
               
-              {/* Close Button */}
               <button 
                 onClick={() => setSelectedIndex(null)}
                 className="absolute top-4 right-4 md:top-8 md:right-8 z-50 p-4 rounded-full bg-white/10 hover:bg-brand-primary text-white transition-all duration-300 border border-white/20 shadow-lg hover:scale-110"
@@ -347,7 +352,6 @@ export default function Garages() {
                 <X size={24} />
               </button>
 
-              {/* Navigation Left */}
               <button 
                 onClick={handlePrev}
                 className="absolute left-4 md:left-8 z-50 p-4 rounded-full bg-white/10 hover:bg-brand-primary text-white transition-all duration-300 border border-white/20 shadow-lg hover:scale-110 hidden md:block"
@@ -356,7 +360,6 @@ export default function Garages() {
                 <ChevronLeft size={24} />
               </button>
 
-              {/* Image Container */}
               <div className="w-full h-full max-w-7xl max-h-[85vh] flex flex-col items-center justify-center md:px-24">
                 <AnimatePresence mode="wait">
                   <motion.img
@@ -367,12 +370,12 @@ export default function Garages() {
                     transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                     src={catalogueItems[selectedIndex].img}
                     alt={catalogueItems[selectedIndex].title}
+                    decoding="async"
                     className="w-full h-full object-contain drop-shadow-2xl rounded-[20px]"
                   />
                 </AnimatePresence>
               </div>
 
-              {/* Navigation Right */}
               <button 
                 onClick={handleNext}
                 className="absolute right-4 md:right-8 z-50 p-4 rounded-full bg-white/10 hover:bg-brand-primary text-white transition-all duration-300 border border-white/20 shadow-lg hover:scale-110 hidden md:block"
@@ -381,7 +384,6 @@ export default function Garages() {
                 <ChevronRight size={24} />
               </button>
 
-              {/* Title & Index / Mobile Nav */}
               <div className="absolute bottom-6 md:bottom-10 w-full z-50 flex flex-col md:flex-row items-center justify-center gap-4 px-4">
                 <div className="flex items-center gap-4">
                   <button onClick={handlePrev} className="md:hidden p-3 rounded-full bg-white/10 border border-white/20 text-white active:bg-brand-primary transition-colors">

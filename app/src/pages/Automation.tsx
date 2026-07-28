@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
-import { BatteryFull, Smartphone, Radio, ArrowRight, CheckCircle2, ShieldCheck, Cpu, KeyRound } from 'lucide-react';
+import { BatteryFull, Smartphone, Radio, ArrowRight, CheckCircle2, ShieldCheck, Cpu, KeyRound, Settings2 } from 'lucide-react';
 import PageTransition from '../components/PageTransition';
 
 // Cinematic Asset Imports
@@ -15,7 +15,6 @@ export default function Automation() {
       {/* HERO SECTION - CINEMATIC & SOFT */}
       <section className="relative min-h-[95vh] md:min-h-screen flex flex-col items-center justify-center pt-32 pb-20 overflow-hidden text-center rounded-b-[40px] md:rounded-b-[80px] shadow-2xl">
         <div className="absolute inset-0 z-0">
-          {/* 🚀 PERFORMANCE UPGRADE: High priority fetch & async decode */}
           <img 
             src={heroHardware} 
             alt="Precision Tracking Hardware" 
@@ -67,17 +66,26 @@ export default function Automation() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 max-w-6xl mx-auto">
+          {/* 🚀 TEXT EDITS 1 & 2: Added Track Systems and Swing Gates with your exact required text */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-8 max-w-7xl mx-auto">
             {[
               { 
-                title: "High-Speed Drives", 
-                desc: "ET NICE & Centurion motors delivering lightning-fast, reliable execution for heavy residential and industrial gates.", 
-                img: motorEt 
+                title: "Track Systems", 
+                desc: "Quiet belt-driven or powerful chain-driven motors available. Security integration: Motors and accessories available for your specific safety and security requirements.", 
+                img: heroHardware,
+                icon: <Settings2 size={24} />
+              },
+              { 
+                title: "Swing Gates", 
+                desc: "Reliable, high-torque automation designed for double and single swing gate configurations. Engineered for smooth and secure perimeter access.", 
+                img: motorEt,
+                icon: <Cpu size={24} />
               },
               { 
                 title: "Access Control", 
                 desc: "Secure keypads, anti-clone remotes, and smart entry systems to manage your perimeter with absolute precision.", 
-                img: accessCenturion 
+                img: accessCenturion,
+                icon: <KeyRound size={24} />
               }
             ].map((system, i) => (
               <motion.div
@@ -86,9 +94,8 @@ export default function Automation() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="group relative h-[450px] md:h-[550px] w-full rounded-[40px] md:rounded-[60px] overflow-hidden bg-brand-surface shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.12)] transition-all duration-500"
+                className="group relative h-[450px] md:h-[500px] w-full rounded-[40px] md:rounded-[50px] overflow-hidden bg-brand-surface shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.12)] transition-all duration-500"
               >
-                {/* 🚀 PERFORMANCE UPGRADE: Lazy loading below fold */}
                 <img 
                   src={system.img} 
                   alt={system.title} 
@@ -96,17 +103,16 @@ export default function Automation() {
                   decoding="async"
                   className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-110" 
                 />
-                {/* Soft cinematic gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/95 via-brand-dark/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/95 via-brand-dark/60 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-500" />
                 
-                <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12 transform transition-transform duration-500">
+                <div className="absolute bottom-0 left-0 right-0 p-8 transform transition-transform duration-500">
                   <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-brand-primary/20 backdrop-blur-md text-brand-primary mb-6">
-                    {i === 0 ? <Cpu size={24} /> : <KeyRound size={24} />}
+                    {system.icon}
                   </div>
-                  <h3 className="text-white text-3xl font-black tracking-tight mb-4">
+                  <h3 className="text-white text-2xl font-black tracking-tight mb-4">
                     {system.title}
                   </h3>
-                  <p className="text-white/70 text-base font-medium leading-relaxed mb-0 max-w-sm">
+                  <p className="text-white/70 text-sm font-medium leading-relaxed mb-0">
                     {system.desc}
                   </p>
                 </div>
@@ -126,7 +132,6 @@ export default function Automation() {
             transition={{ duration: 0.8 }}
             className="bg-brand-dark rounded-[40px] md:rounded-[80px] p-12 md:p-24 text-white relative overflow-hidden shadow-2xl"
           >
-            {/* Soft background glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-primary/10 blur-[120px] rounded-full pointer-events-none" />
 
             <div className="max-w-5xl mx-auto relative z-10">
