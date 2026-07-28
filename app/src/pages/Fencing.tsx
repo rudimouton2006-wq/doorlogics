@@ -9,20 +9,23 @@ import fenceHero from '../assets/fence-estate-curved-timber.jpg';
 import fenceTimber from '../assets/fence-brown-steel-brick.jpg';
 import fenceClearvu from '../assets/fence-galvanized-palisade.jpg';
 import fenceSpear from '../assets/fence-steel-spear-detail.jpg';
+import fenceNutec from '../assets/fence-nutec.jpg';
+import fenceCurvedTimber from '../assets/fence-curved-timber.jpg';
+import fenceWroughtIron from '../assets/fence-wrought-iron.jpg';
 
 export default function Fencing() {
   return (
     <PageTransition>
       {/* HERO SECTION - CINEMATIC & SOFT */}
       <section className="relative min-h-[95vh] md:min-h-screen flex flex-col items-center justify-center pt-32 pb-20 overflow-hidden text-center rounded-b-[40px] md:rounded-b-[80px] shadow-2xl">
-        <div className="absolute inset-0 z-0">
-          {/* 🚀 PERFORMANCE UPGRADE: High priority fetch & async decode */}
+        <div className="absolute inset-0 z-0 bg-brand-dark">
           <img 
             src={fenceHero} 
             alt="Secure Estate Fencing" 
             fetchPriority="high"
             decoding="async"
-            className="w-full h-full object-cover object-center" 
+            draggable="false"
+            className="w-full h-full object-cover object-center opacity-80 will-change-transform" 
           />
           <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/80 via-brand-dark/50 to-brand-dark/90" />
         </div>
@@ -32,13 +35,13 @@ export default function Fencing() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-4xl w-full flex flex-col items-center"
+            className="max-w-4xl w-full flex flex-col items-center will-change-transform will-change-opacity"
           >
             <motion.span 
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2, duration: 0.8 }}
-              className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white mb-8 md:mb-12 shadow-lg"
+              className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white mb-8 md:mb-12 shadow-lg will-change-transform"
             >
               <CheckCircle2 size={14} className="text-brand-primary" />
               Boundary Security
@@ -70,9 +73,12 @@ export default function Fencing() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
             {[
-              { title: "Architectural Steel", desc: "Custom steel profiles with premium timber or composite inserts.", img: fenceTimber },
+              { title: "Curved Steel Fencing", desc: "The sky is the limit.", img: fenceTimber },
               { title: "High-Visibility Security", desc: "Clear-view galvanized panels preventing any unauthorized access.", img: fenceClearvu },
-              { title: "Steel Palisade", desc: "Heavy-duty spear-top fencing designed for ultimate perimeter defense.", img: fenceSpear }
+              { title: "Steel Palisade", desc: "Heavy-duty spear-top fencing designed for ultimate perimeter defense.", img: fenceSpear },
+              { title: "Fibre Cement Nutec", desc: "Durable fibre cement Nutec boards to suit your aesthetic.", img: fenceNutec },
+              { title: "Custom Curved Timber", desc: "Custom curved timber fitted panels to match your property style.", img: fenceCurvedTimber },
+              { title: "Wrought Iron Fencing", desc: "Classic, durable, and elegant wrought iron boundary solutions.", img: fenceWroughtIron }
             ].map((fence, i) => (
               <motion.div
                 key={i}
@@ -80,17 +86,16 @@ export default function Fencing() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="group relative h-[450px] w-full rounded-[40px] overflow-hidden bg-brand-surface shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.12)] transition-all duration-500"
+                className="group relative h-[450px] w-full rounded-[40px] overflow-hidden bg-brand-surface shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.12)] transition-all duration-500 will-change-transform will-change-opacity"
               >
-                {/* 🚀 PERFORMANCE UPGRADE: Lazy loading below fold */}
                 <img 
                   src={fence.img} 
                   alt={fence.title} 
                   loading="lazy"
                   decoding="async"
-                  className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-110" 
+                  draggable="false"
+                  className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-110 will-change-transform" 
                 />
-                {/* Soft gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/95 via-brand-dark/30 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-500" />
                 
                 <div className="absolute bottom-0 left-0 right-0 p-8 transform transition-transform duration-500">
@@ -115,9 +120,8 @@ export default function Fencing() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="bg-brand-dark rounded-[40px] md:rounded-[80px] p-12 md:p-24 text-white relative overflow-hidden shadow-2xl"
+            className="bg-brand-dark rounded-[40px] md:rounded-[80px] p-12 md:p-24 text-white relative overflow-hidden shadow-2xl will-change-transform will-change-opacity"
           >
-            {/* Soft background glow */}
             <div className="absolute -top-32 -right-32 w-[500px] h-[500px] bg-brand-primary/20 blur-[120px] rounded-full pointer-events-none" />
 
             <div className="max-w-5xl mx-auto relative z-10">
@@ -152,7 +156,7 @@ export default function Fencing() {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="max-w-3xl mx-auto bg-brand-bg rounded-[40px] md:rounded-[60px] p-12 md:p-24 shadow-[0_8px_30px_rgb(0,0,0,0.06)] relative overflow-hidden"
+            className="max-w-3xl mx-auto bg-brand-bg rounded-[40px] md:rounded-[60px] p-12 md:p-24 shadow-[0_8px_30px_rgb(0,0,0,0.06)] relative overflow-hidden will-change-transform will-change-opacity"
           >
             <div className="relative z-10">
               <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tight text-brand-dark">
@@ -163,7 +167,7 @@ export default function Fencing() {
               </p>
               <Link 
                 to="/contact"
-                className="inline-flex items-center gap-3 bg-brand-dark text-white px-10 md:px-14 py-5 md:py-6 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-brand-primary hover:scale-105 transition-all duration-300 shadow-xl"
+                className="inline-flex items-center gap-3 bg-brand-dark text-white px-10 md:px-14 py-5 md:py-6 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-brand-primary hover:scale-105 transition-all duration-300 shadow-xl will-change-transform"
               >
                 Get a Quote
                 <ArrowRight size={18} />

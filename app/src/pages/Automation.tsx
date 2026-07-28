@@ -14,13 +14,14 @@ export default function Automation() {
     <PageTransition>
       {/* HERO SECTION - CINEMATIC & SOFT */}
       <section className="relative min-h-[95vh] md:min-h-screen flex flex-col items-center justify-center pt-32 pb-20 overflow-hidden text-center rounded-b-[40px] md:rounded-b-[80px] shadow-2xl">
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0 bg-brand-dark">
           <img 
             src={heroHardware} 
             alt="Precision Tracking Hardware" 
             fetchPriority="high"
             decoding="async"
-            className="w-full h-full object-cover object-center" 
+            draggable="false"
+            className="w-full h-full object-cover object-center will-change-transform" 
           />
           <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/85 via-brand-dark/60 to-brand-dark/95" />
         </div>
@@ -30,13 +31,13 @@ export default function Automation() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-4xl w-full flex flex-col items-center"
+            className="max-w-4xl w-full flex flex-col items-center will-change-transform will-change-opacity"
           >
             <motion.span 
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2, duration: 0.8 }}
-              className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white mb-8 md:mb-12 shadow-lg"
+              className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white mb-8 md:mb-12 shadow-lg will-change-transform"
             >
               <CheckCircle2 size={14} className="text-brand-primary" />
               Smart Motor Systems
@@ -66,7 +67,6 @@ export default function Automation() {
             </p>
           </div>
 
-          {/* 🚀 TEXT EDITS 1 & 2: Added Track Systems and Swing Gates with your exact required text */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-8 max-w-7xl mx-auto">
             {[
               { 
@@ -94,19 +94,20 @@ export default function Automation() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="group relative h-[450px] md:h-[500px] w-full rounded-[40px] md:rounded-[50px] overflow-hidden bg-brand-surface shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.12)] transition-all duration-500"
+                className="group relative h-[450px] md:h-[500px] w-full rounded-[40px] md:rounded-[50px] overflow-hidden bg-brand-surface shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.12)] transition-all duration-500 will-change-transform will-change-opacity"
               >
                 <img 
                   src={system.img} 
                   alt={system.title} 
                   loading="lazy"
                   decoding="async"
-                  className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-110" 
+                  draggable="false"
+                  className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-110 will-change-transform" 
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/95 via-brand-dark/60 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/95 via-brand-dark/60 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-500 will-change-opacity" />
                 
                 <div className="absolute bottom-0 left-0 right-0 p-8 transform transition-transform duration-500">
-                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-brand-primary/20 backdrop-blur-md text-brand-primary mb-6">
+                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-brand-primary/20 backdrop-blur-md text-brand-primary mb-6 will-change-transform">
                     {system.icon}
                   </div>
                   <h3 className="text-white text-2xl font-black tracking-tight mb-4">
@@ -130,7 +131,7 @@ export default function Automation() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="bg-brand-dark rounded-[40px] md:rounded-[80px] p-12 md:p-24 text-white relative overflow-hidden shadow-2xl"
+            className="bg-brand-dark rounded-[40px] md:rounded-[80px] p-12 md:p-24 text-white relative overflow-hidden shadow-2xl will-change-transform will-change-opacity"
           >
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-primary/10 blur-[120px] rounded-full pointer-events-none" />
 
@@ -166,7 +167,7 @@ export default function Automation() {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="max-w-3xl mx-auto bg-brand-bg rounded-[40px] md:rounded-[60px] p-12 md:p-24 shadow-[0_8px_30px_rgb(0,0,0,0.06)] relative overflow-hidden"
+            className="max-w-3xl mx-auto bg-brand-bg rounded-[40px] md:rounded-[60px] p-12 md:p-24 shadow-[0_8px_30px_rgb(0,0,0,0.06)] relative overflow-hidden will-change-transform will-change-opacity"
           >
             <div className="relative z-10">
               <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tight text-brand-dark">
@@ -177,7 +178,7 @@ export default function Automation() {
               </p>
               <Link 
                 to="/contact"
-                className="inline-flex items-center gap-3 bg-brand-dark text-white px-10 md:px-14 py-5 md:py-6 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-brand-primary hover:scale-105 transition-all duration-300 shadow-xl"
+                className="inline-flex items-center gap-3 bg-brand-dark text-white px-10 md:px-14 py-5 md:py-6 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-brand-primary hover:scale-105 transition-all duration-300 shadow-xl will-change-transform"
               >
                 Upgrade System
                 <ArrowRight size={18} />

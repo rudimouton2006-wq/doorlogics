@@ -30,7 +30,6 @@ import gFibreClassic from '../assets/garage-fibre-classic.jpg';
 import gFibreArched from '../assets/garage-fibre-arched.jpg';
 import gAlphenTipup from '../assets/garage-alphen-tipup.jpg';
 
-// 🚀 TEXT EDITS: Updated captions for the Lightbox Gallery
 const catalogueItems = [
   { img: heroGarage, title: "Premium Modern Timber" },
   { img: gTimberEstate, title: "Wide Timber Estate Door" },
@@ -55,7 +54,6 @@ const catalogueItems = [
   { img: gAlphenTipup, title: "single Alphen tip-up" }
 ];
 
-// 🚀 TEXT EDIT: Updated bottom-left showcase caption
 const showcaseItems = [
   { img: heroGarage, title: "Premium Modern Timber", span: "md:col-span-2 md:row-span-2" },
   { img: gMidcenturyTimber, title: "Mid-Century Slatted", span: "md:col-span-1 md:row-span-1" },
@@ -100,7 +98,7 @@ export default function Garages() {
     <PageTransition>
       <div className="bg-white min-h-screen">
         
-        {/* HERO SECTION - CINEMATIC & SOFT */}
+        {/* HERO SECTION */}
         <section className="relative min-h-[95vh] md:min-h-screen flex flex-col items-center justify-center pt-32 pb-20 overflow-hidden text-center rounded-b-[40px] md:rounded-b-[80px] shadow-2xl z-10">
           <div className="absolute inset-0 z-0 bg-brand-dark">
             <img 
@@ -108,7 +106,8 @@ export default function Garages() {
               alt="Premium Modern Timber Garage Door" 
               fetchPriority="high"
               decoding="async"
-              className="w-full h-full object-cover object-center opacity-80" 
+              draggable="false"
+              className="w-full h-full object-cover object-center opacity-80 will-change-transform" 
             />
             <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/80 via-brand-dark/40 to-brand-dark/95" />
           </div>
@@ -118,13 +117,13 @@ export default function Garages() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="max-w-4xl w-full flex flex-col items-center"
+              className="max-w-4xl w-full flex flex-col items-center will-change-transform will-change-opacity"
             >
               <motion.span 
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.2, duration: 0.8 }}
-                className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white mb-8 md:mb-12 shadow-lg"
+                className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white mb-8 md:mb-12 shadow-lg will-change-transform"
               >
                 <CheckCircle2 size={14} className="text-brand-primary" />
                 Premium Grade Doors
@@ -141,7 +140,7 @@ export default function Garages() {
               
               <button
                 onClick={() => setSelectedIndex(0)}
-                className="bg-brand-primary text-white px-10 md:px-12 py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-white hover:text-brand-dark transition-all duration-300 shadow-xl hover:scale-105 flex items-center justify-center gap-3 w-full sm:w-auto"
+                className="bg-brand-primary text-white px-10 md:px-12 py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-white hover:text-brand-dark transition-all duration-300 shadow-xl hover:scale-105 flex items-center justify-center gap-3 w-full sm:w-auto will-change-transform"
               >
                 <Grid size={18} />
                 Explore Portfolio
@@ -165,7 +164,7 @@ export default function Garages() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ delay: i * 0.1, duration: 0.6 }}
-                  className="p-10 md:p-14 bg-white rounded-[40px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.1)] hover:-translate-y-2 transition-all duration-500 group flex flex-col items-center text-center md:items-start md:text-left"
+                  className="p-10 md:p-14 bg-white rounded-[40px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.1)] hover:-translate-y-2 transition-all duration-500 group flex flex-col items-center text-center md:items-start md:text-left will-change-transform will-change-opacity"
                 >
                   <div className="w-16 h-16 rounded-full bg-brand-primary/10 flex items-center justify-center text-brand-primary mb-8 group-hover:bg-brand-primary group-hover:text-white transition-colors duration-500 shadow-inner">
                     {feature.icon}
@@ -182,7 +181,7 @@ export default function Garages() {
           </div>
         </section>
 
-        {/* EXPERT INSTALLATION - CINEMATIC SPLIT */}
+        {/* EXPERT INSTALLATION */}
         <section className="py-24 md:py-40 bg-white">
           <div className="container mx-auto px-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center max-w-7xl mx-auto">
@@ -191,14 +190,15 @@ export default function Garages() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="order-2 lg:order-1 relative aspect-[4/5] md:aspect-[4/3] w-full rounded-[40px] md:rounded-[60px] overflow-hidden shadow-2xl group"
+                className="order-2 lg:order-1 relative aspect-[4/5] md:aspect-[4/3] w-full rounded-[40px] md:rounded-[60px] overflow-hidden shadow-2xl group will-change-transform will-change-opacity bg-brand-dark"
               >
                 <img 
                   src={installationGarage} 
                   alt="Quality Split Garage Door Installation" 
                   loading="lazy"
                   decoding="async"
-                  className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-105" 
+                  draggable="false"
+                  className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-105 will-change-transform" 
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/60 to-transparent opacity-80" />
               </motion.div>
@@ -208,7 +208,7 @@ export default function Garages() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="order-1 lg:order-2 lg:pl-8"
+                className="order-1 lg:order-2 lg:pl-8 will-change-transform will-change-opacity"
               >
                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-brand-dark leading-[1.1] mb-8">
                   Expert<br />Installation.
@@ -243,7 +243,7 @@ export default function Garages() {
           </div>
         </section>
 
-        {/* CINEMATIC MASONRY SHOWCASE */}
+        {/* MASONRY SHOWCASE */}
         <section className="py-24 md:py-32 bg-brand-bg rounded-[40px] md:rounded-[80px] mx-4 md:mx-8 mb-24 md:mb-32 shadow-xl">
           <div className="container mx-auto px-6">
             <div className="max-w-3xl mx-auto text-center mb-16 md:mb-24">
@@ -264,7 +264,7 @@ export default function Garages() {
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 0.6, delay: i * 0.1 }}
                   className={cn(
-                    "group relative w-full rounded-[40px] overflow-hidden bg-brand-surface shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer min-h-[300px]",
+                    "group relative w-full rounded-[40px] overflow-hidden bg-brand-surface shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer min-h-[300px] will-change-transform will-change-opacity",
                     item.span
                   )}
                   onClick={() => setSelectedIndex(0)}
@@ -274,7 +274,8 @@ export default function Garages() {
                     alt={item.title} 
                     loading="lazy"
                     decoding="async"
-                    className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-110" 
+                    draggable="false"
+                    className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-110 will-change-transform" 
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/95 via-brand-dark/20 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-500" />
                   
@@ -290,7 +291,7 @@ export default function Garages() {
             <div className="mt-16 flex justify-center">
               <button 
                 onClick={() => setSelectedIndex(0)}
-                className="bg-brand-dark text-white px-10 py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-brand-primary transition-all duration-300 shadow-xl hover:scale-105 flex items-center gap-3"
+                className="bg-brand-dark text-white px-10 py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-brand-primary transition-all duration-300 shadow-xl hover:scale-105 flex items-center gap-3 will-change-transform"
               >
                 <Grid size={18} />
                 View Complete Archive ({catalogueItems.length})
@@ -306,7 +307,7 @@ export default function Garages() {
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="max-w-3xl mx-auto bg-brand-dark rounded-[40px] md:rounded-[60px] p-12 md:p-24 shadow-2xl relative overflow-hidden"
+              className="max-w-3xl mx-auto bg-brand-dark rounded-[40px] md:rounded-[60px] p-12 md:p-24 shadow-2xl relative overflow-hidden will-change-transform will-change-opacity"
             >
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-brand-primary/20 blur-[100px] rounded-full pointer-events-none" />
               
@@ -319,7 +320,7 @@ export default function Garages() {
                 </p>
                 <Link 
                   to="/contact"
-                  className="inline-flex items-center gap-3 bg-brand-primary text-white px-10 md:px-14 py-5 md:py-6 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-white hover:text-brand-dark hover:scale-105 transition-all duration-300 shadow-xl"
+                  className="inline-flex items-center gap-3 bg-brand-primary text-white px-10 md:px-14 py-5 md:py-6 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-white hover:text-brand-dark hover:scale-105 transition-all duration-300 shadow-xl will-change-transform"
                 >
                   Book an Installation
                   <ArrowRight size={18} />
@@ -339,14 +340,14 @@ export default function Garages() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-brand-dark/95 backdrop-blur-2xl p-4 md:p-10"
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-brand-dark/95 backdrop-blur-2xl p-4 md:p-10 will-change-opacity"
             onClick={() => setSelectedIndex(null)}
           >
             <div className="relative w-full h-full flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
               
               <button 
                 onClick={() => setSelectedIndex(null)}
-                className="absolute top-4 right-4 md:top-8 md:right-8 z-50 p-4 rounded-full bg-white/10 hover:bg-brand-primary text-white transition-all duration-300 border border-white/20 shadow-lg hover:scale-110"
+                className="absolute top-4 right-4 md:top-8 md:right-8 z-50 p-4 rounded-full bg-white/10 hover:bg-brand-primary text-white transition-all duration-300 border border-white/20 shadow-lg hover:scale-110 will-change-transform"
                 aria-label="Close Gallery"
               >
                 <X size={24} />
@@ -354,7 +355,7 @@ export default function Garages() {
 
               <button 
                 onClick={handlePrev}
-                className="absolute left-4 md:left-8 z-50 p-4 rounded-full bg-white/10 hover:bg-brand-primary text-white transition-all duration-300 border border-white/20 shadow-lg hover:scale-110 hidden md:block"
+                className="absolute left-4 md:left-8 z-50 p-4 rounded-full bg-white/10 hover:bg-brand-primary text-white transition-all duration-300 border border-white/20 shadow-lg hover:scale-110 hidden md:block will-change-transform"
                 aria-label="Previous Image"
               >
                 <ChevronLeft size={24} />
@@ -371,14 +372,15 @@ export default function Garages() {
                     src={catalogueItems[selectedIndex].img}
                     alt={catalogueItems[selectedIndex].title}
                     decoding="async"
-                    className="w-full h-full object-contain drop-shadow-2xl rounded-[20px]"
+                    draggable="false"
+                    className="w-full h-full object-contain drop-shadow-2xl rounded-[20px] will-change-transform will-change-opacity"
                   />
                 </AnimatePresence>
               </div>
 
               <button 
                 onClick={handleNext}
-                className="absolute right-4 md:right-8 z-50 p-4 rounded-full bg-white/10 hover:bg-brand-primary text-white transition-all duration-300 border border-white/20 shadow-lg hover:scale-110 hidden md:block"
+                className="absolute right-4 md:right-8 z-50 p-4 rounded-full bg-white/10 hover:bg-brand-primary text-white transition-all duration-300 border border-white/20 shadow-lg hover:scale-110 hidden md:block will-change-transform"
                 aria-label="Next Image"
               >
                 <ChevronRight size={24} />
