@@ -84,6 +84,21 @@ export default function Garages() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [selectedIndex]);
 
+  // 🚀 PERFORMANCE UPGRADE: Zero-Latency Image Preloading
+  // Silently downloads the next/prev images into the browser cache while the user looks at the current one.
+  useEffect(() => {
+    if (selectedIndex !== null) {
+      const nextIdx = (selectedIndex + 1) % catalogueItems.length;
+      const prevIdx = (selectedIndex - 1 + catalogueItems.length) % catalogueItems.length;
+      
+      const preloadNext = new Image();
+      preloadNext.src = catalogueItems[nextIdx].img;
+      
+      const preloadPrev = new Image();
+      preloadPrev.src = catalogueItems[prevIdx].img;
+    }
+  }, [selectedIndex]);
+
   const handleNext = (e: React.MouseEvent) => {
     e.stopPropagation();
     setSelectedIndex((prev) => (prev !== null ? (prev + 1) % catalogueItems.length : null));

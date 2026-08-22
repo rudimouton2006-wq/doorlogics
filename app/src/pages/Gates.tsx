@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Zap, Lock, Grid, ArrowRight, ShieldCheck, Cpu, Smartphone, CheckCircle2, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import PageTransition from '../components/PageTransition';
 import { Link } from 'react-router-dom';
+import { cn } from '@/src/lib/utils';
 
 // Cinematic Asset Imports (For Layout)
 import heroGate from '../assets/gate-estate-timber-wide.jpg';
@@ -116,6 +117,21 @@ export default function Gates() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [selectedIndex]);
 
+  // 🚀 PERFORMANCE UPGRADE: Zero-Latency Image Preloading
+  // Silently downloads the next/prev images into the browser cache while the user looks at the current one.
+  useEffect(() => {
+    if (selectedIndex !== null) {
+      const nextIdx = (selectedIndex + 1) % catalogueItems.length;
+      const prevIdx = (selectedIndex - 1 + catalogueItems.length) % catalogueItems.length;
+      
+      const preloadNext = new Image();
+      preloadNext.src = catalogueItems[nextIdx].img;
+      
+      const preloadPrev = new Image();
+      preloadPrev.src = catalogueItems[prevIdx].img;
+    }
+  }, [selectedIndex]);
+
   const handleNext = (e: React.MouseEvent) => {
     e.stopPropagation();
     setSelectedIndex((prev) => (prev !== null ? (prev + 1) % catalogueItems.length : null));
@@ -131,7 +147,6 @@ export default function Gates() {
       {/* HERO SECTION - CINEMATIC & SOFT */}
       <section className="relative min-h-[95vh] md:min-h-screen flex flex-col items-center justify-center pt-32 pb-20 overflow-hidden text-center rounded-b-[40px] md:rounded-b-[80px] shadow-2xl">
         <div className="absolute inset-0 z-0 bg-brand-dark">
-          {/* 🚀 PERFORMANCE UPGRADE: High priority fetch, async decode, GPU transform */}
           <img 
             src={heroGate} 
             alt="Premium Estate Driveway Gates" 
@@ -169,7 +184,6 @@ export default function Gates() {
               We design and build bespoke sliding and swing gates that seamlessly combine absolute security with stunning architectural elegance. Every gate is made to order.
             </p>
 
-            {/* 🚀 ADDED EXPLORE PORTFOLIO BUTTON */}
             <button
               onClick={() => setSelectedIndex(0)}
               className="bg-brand-primary text-white px-10 md:px-12 py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-white hover:text-brand-dark transition-all duration-300 shadow-xl hover:scale-105 flex items-center justify-center gap-3 w-full sm:w-auto will-change-transform"
@@ -232,7 +246,6 @@ export default function Gates() {
                 onClick={() => setSelectedIndex(0)}
                 className="group relative h-[400px] w-full rounded-[40px] overflow-hidden bg-brand-surface shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer will-change-transform will-change-opacity"
               >
-                {/* 🚀 PERFORMANCE UPGRADE: Lazy loading below fold & blocked ghost drag */}
                 <img 
                   src={gate.img} 
                   alt={gate.title} 
