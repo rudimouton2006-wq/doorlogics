@@ -3,21 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     
-    <!-- Standard Favicon (You can drop a favicon.ico in your public folder later) -->
+    <!-- ⚡️ PERFORMANCE: DNS Preconnects to speed up external asset resolution -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Standard Favicon -->
     <link rel="icon" type="image/png" href="/favicon.png">
     
     <!-- Mobile Optimization -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     
     <!-- SEO Meta Tags -->
     <meta name="description" content="Expert garage door and gate automation. Reliable service since 1991 across the Western Cape." />
     <meta name="keywords" content="Doorlogics, Garage Doors, Gate Automation, Fencing, Bellville, Cape Town" />
     <meta name="author" content="Takumi Tech" />
+    
+    <!-- Brand Colors -->
     <meta name="theme-color" content="#1A1A1A" />
     
-    <!-- THE FIX: This is what loads instantly before React boots up -->
     <title>Doorlogics | Expert Gate & Garage Automation</title>
-    
+
+    <!-- ⚡️ PERFORMANCE: Instant First Contentful Paint (FCP) -->
+    <!-- This completely eliminates the "White Flash" before React boots up -->
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: #FAFAFA; /* Matches brand-surface light mode */
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>

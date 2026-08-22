@@ -1,4 +1,4 @@
-import React, { useEffect, Suspense, lazy } from 'react';
+import React, { useEffect, Suspense, lazy, memo } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'motion/react';
 import { Loader2 } from 'lucide-react';
@@ -20,27 +20,34 @@ const About = lazy(() => import('./pages/About'));
 const Contact = lazy(() => import('./pages/Contact'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
-// Masterclass UX: Force window to top on route change
-function ScrollToTop() {
+// ⚡️ PERFORMANCE UPGRADE: Jank-Free Scroll Reset
+const ScrollToTop = memo(() => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'instant' 
+    // Offloads the scroll calculation to the next animation frame.
+    // This prevents layout thrashing and stuttering while Framer Motion animates.
+    requestAnimationFrame(() => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'instant' 
+      });
     });
   }, [pathname]);
 
   return null;
-}
+});
+ScrollToTop.displayName = 'ScrollToTop';
 
-// Elegant fallback UI while the requested page chunk downloads
-const PageLoader = () => (
+// ⚡️ PERFORMANCE UPGRADE: Memoized Fallback UI
+// Prevents the browser from wasting CPU cycles re-rendering the loader
+const PageLoader = memo(() => (
   <div className="min-h-[80vh] flex items-center justify-center bg-brand-bg">
-    <Loader2 className="w-8 h-8 text-brand-primary animate-spin" />
+    <Loader2 className="w-8 h-8 text-brand-primary animate-spin will-change-transform" />
   </div>
-);
+));
+PageLoader.displayName = 'PageLoader';
 
 // Router configuration with Animation Presence and Suspense
 function AnimatedRoutes() {

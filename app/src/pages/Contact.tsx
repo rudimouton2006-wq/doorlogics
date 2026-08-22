@@ -61,14 +61,15 @@ export default function Contact() {
         
         {/* HERO SECTION - CINEMATIC & SOFT */}
         <section className="relative min-h-[60vh] flex flex-col items-center justify-center pt-32 pb-20 overflow-hidden text-center rounded-b-[40px] md:rounded-b-[80px] shadow-sm mb-16 md:mb-24">
-          <div className="absolute inset-0 z-0">
-            {/* 🚀 PERFORMANCE UPGRADE: High priority fetch & async decode */}
+          <div className="absolute inset-0 z-0 bg-brand-dark">
+            {/* 🚀 PERFORMANCE UPGRADE: High priority fetch, async decode, GPU transform & drag-lock */}
             <img
               src={heroContact}
               alt="Doorlogics Team on Site"
               fetchPriority="high"
               decoding="async"
-              className="w-full h-full object-cover object-center"
+              draggable="false"
+              className="w-full h-full object-cover object-center will-change-transform"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/90 via-brand-dark/70 to-brand-dark/95" />
           </div>
@@ -78,13 +79,13 @@ export default function Contact() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="max-w-4xl w-full flex flex-col items-center"
+              className="max-w-4xl w-full flex flex-col items-center will-change-transform will-change-opacity"
             >
               <motion.span
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.2, duration: 0.8 }}
-                className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white mb-8 shadow-lg"
+                className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white mb-8 shadow-lg will-change-transform"
               >
                 <CheckCircle2 size={14} className="text-brand-primary" />
                 Direct Communication
@@ -113,7 +114,7 @@ export default function Contact() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className="bg-[#25D366]/10 border border-[#25D366]/30 p-8 md:p-12 rounded-[40px] shadow-sm relative overflow-hidden"
+                className="bg-[#25D366]/10 border border-[#25D366]/30 p-8 md:p-12 rounded-[40px] shadow-sm relative overflow-hidden will-change-transform will-change-opacity"
               >
                 <div className="relative z-10 flex flex-col items-center text-center">
                   <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center text-[#25D366] mb-6 shadow-md">
@@ -127,7 +128,7 @@ export default function Contact() {
                     href="https://wa.me/27834001919"
                     target="_blank"
                     rel="noreferrer"
-                    className="w-full bg-[#25D366] text-white py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-[#20bd5a] hover:scale-105 transition-all duration-300 shadow-[0_8px_20px_rgba(37,211,102,0.3)] flex items-center justify-center gap-3"
+                    className="w-full bg-[#25D366] text-white py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-[#20bd5a] hover:scale-105 transition-all duration-300 shadow-[0_8px_20px_rgba(37,211,102,0.3)] flex items-center justify-center gap-3 will-change-transform"
                   >
                     WhatsApp Pipeline
                     <ArrowRight size={18} />
@@ -140,7 +141,7 @@ export default function Contact() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="bg-brand-dark p-10 md:p-12 rounded-[40px] shadow-2xl relative overflow-hidden flex-grow"
+                className="bg-brand-dark p-10 md:p-12 rounded-[40px] shadow-2xl relative overflow-hidden flex-grow will-change-transform will-change-opacity"
               >
                 {/* Subtle glow */}
                 <div className="absolute -bottom-20 -right-20 w-[300px] h-[300px] bg-brand-primary/20 blur-[80px] rounded-full pointer-events-none" />
@@ -187,7 +188,7 @@ export default function Contact() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              className="lg:col-span-7 bg-white p-8 md:p-14 rounded-[40px] md:rounded-[60px] shadow-[0_20px_60px_rgb(0,0,0,0.08)] relative overflow-hidden"
+              className="lg:col-span-7 bg-white p-8 md:p-14 rounded-[40px] md:rounded-[60px] shadow-[0_20px_60px_rgb(0,0,0,0.08)] relative overflow-hidden will-change-transform will-change-opacity"
             >
               <AnimatePresence mode="wait">
                 {!isSubmitted ? (
@@ -198,7 +199,7 @@ export default function Contact() {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0, scale: 0.98 }}
                     onSubmit={handleSubmit}
-                    className="flex flex-col h-full"
+                    className="flex flex-col h-full will-change-transform will-change-opacity"
                   >
                     <input type="hidden" name="Inquiry Type" value={inquiryType} />
 
@@ -211,7 +212,7 @@ export default function Contact() {
                             type="button"
                             onClick={() => setInquiryType(type)}
                             className={cn(
-                              "px-6 py-3 rounded-full text-[11px] font-bold uppercase tracking-[0.2em] transition-all duration-300 border shadow-sm",
+                              "px-6 py-3 rounded-full text-[11px] font-bold uppercase tracking-[0.2em] transition-all duration-300 border shadow-sm will-change-transform",
                               inquiryType === type
                                 ? "bg-brand-dark text-white border-brand-dark scale-105"
                                 : "bg-brand-surface border-brand-border text-brand-slate hover:border-brand-primary hover:text-brand-dark"
@@ -272,12 +273,12 @@ export default function Contact() {
 
                     <button
                       disabled={isSubmitting}
-                      className="mt-10 w-full bg-brand-primary text-white py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-brand-primary-hover hover:scale-[1.02] hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-70 disabled:scale-100 disabled:hover:shadow-none"
+                      className="mt-10 w-full bg-brand-primary text-white py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-brand-primary-hover hover:scale-[1.02] hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-70 disabled:scale-100 disabled:hover:shadow-none will-change-transform"
                     >
                       {isSubmitting ? (
                         <>
                           Transmitting
-                          <Loader2 size={18} className="animate-spin" />
+                          <Loader2 size={18} className="animate-spin will-change-transform" />
                         </>
                       ) : (
                         <>
@@ -292,13 +293,13 @@ export default function Contact() {
                     key="success"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="absolute inset-0 flex flex-col items-center justify-center text-center p-12 bg-white z-10 rounded-[40px]"
+                    className="absolute inset-0 flex flex-col items-center justify-center text-center p-12 bg-white z-10 rounded-[40px] will-change-opacity"
                   >
                     <motion.div
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ type: "spring", stiffness: 200, delay: 0.1 }}
-                      className="w-24 h-24 rounded-full bg-brand-primary/10 flex items-center justify-center text-brand-primary mb-8"
+                      className="w-24 h-24 rounded-full bg-brand-primary/10 flex items-center justify-center text-brand-primary mb-8 will-change-transform"
                     >
                       <CheckCircle2 size={48} />
                     </motion.div>
@@ -308,7 +309,7 @@ export default function Contact() {
                     </p>
                     <button
                       onClick={() => setIsSubmitted(false)}
-                      className="px-8 py-4 rounded-full border border-brand-border text-[11px] font-bold uppercase tracking-widest text-brand-dark hover:bg-brand-surface hover:border-brand-primary transition-all duration-300"
+                      className="px-8 py-4 rounded-full border border-brand-border text-[11px] font-bold uppercase tracking-widest text-brand-dark hover:bg-brand-surface hover:border-brand-primary transition-all duration-300 will-change-transform"
                     >
                       Submit Another Request
                     </button>

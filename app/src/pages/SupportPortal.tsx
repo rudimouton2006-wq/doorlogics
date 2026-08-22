@@ -56,14 +56,15 @@ export default function SupportPortal() {
         
         {/* HERO SECTION - CINEMATIC & SOFT */}
         <section className="relative min-h-[50vh] flex flex-col items-center justify-center pt-32 pb-20 overflow-hidden text-center rounded-b-[40px] md:rounded-b-[80px] shadow-sm mb-16 md:mb-24">
-          <div className="absolute inset-0 z-0">
-            {/* 🚀 PERFORMANCE UPGRADE: High priority fetch & async decode */}
+          <div className="absolute inset-0 z-0 bg-brand-dark">
+            {/* 🚀 PERFORMANCE UPGRADE: High priority fetch, async decode, GPU transform & drag-lock */}
             <img 
               src={supportHero} 
               alt="Precision Maintenance" 
               fetchPriority="high"
               decoding="async"
-              className="w-full h-full object-cover object-center" 
+              draggable="false"
+              className="w-full h-full object-cover object-center will-change-transform" 
             />
             <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/90 via-brand-dark/70 to-brand-dark/95" />
           </div>
@@ -73,13 +74,13 @@ export default function SupportPortal() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="max-w-4xl w-full flex flex-col items-center"
+              className="max-w-4xl w-full flex flex-col items-center will-change-transform will-change-opacity"
             >
               <motion.span 
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.2, duration: 0.8 }}
-                className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white mb-8 shadow-lg"
+                className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white mb-8 shadow-lg will-change-transform"
               >
                 <CheckCircle2 size={14} className="text-brand-primary" />
                 Knowledge Base
@@ -106,7 +107,7 @@ export default function SupportPortal() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="mb-16 bg-white border border-brand-border/50 rounded-[30px] p-6 md:p-8 flex items-start md:items-center gap-6 shadow-sm max-w-4xl mx-auto"
+              className="mb-16 bg-white border border-brand-border/50 rounded-[30px] p-6 md:p-8 flex items-start md:items-center gap-6 shadow-sm max-w-4xl mx-auto will-change-transform will-change-opacity"
             >
               <div className="w-12 h-12 rounded-full bg-brand-secondary/10 text-brand-secondary flex items-center justify-center flex-shrink-0">
                 <AlertCircle size={24} />
@@ -128,7 +129,7 @@ export default function SupportPortal() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ delay: i * 0.1, duration: 0.6 }}
-                  className="bg-white rounded-[40px] p-8 md:p-14 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_50px_rgb(0,0,0,0.08)] transition-shadow duration-500 flex flex-col h-full"
+                  className="bg-white rounded-[40px] p-8 md:p-14 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_50px_rgb(0,0,0,0.08)] transition-shadow duration-500 flex flex-col h-full will-change-transform will-change-opacity"
                 >
                   {/* Card Header */}
                   <div className="flex items-center gap-6 mb-10 border-b border-brand-border/50 pb-8">

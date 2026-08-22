@@ -16,14 +16,15 @@ export default function Guides() {
         
         {/* HERO SECTION - CINEMATIC & SOFT */}
         <section className="relative min-h-[60vh] flex flex-col items-center justify-center pt-32 pb-20 overflow-hidden text-center rounded-b-[40px] md:rounded-b-[80px] shadow-sm mb-16 md:mb-24">
-          <div className="absolute inset-0 z-0">
-            {/* 🚀 PERFORMANCE UPGRADE: High priority fetch & async decode */}
+          <div className="absolute inset-0 z-0 bg-brand-dark">
+            {/* 🚀 PERFORMANCE UPGRADE: High priority fetch, async decode, GPU transform & drag-lock */}
             <img 
               src={heroGuides} 
               alt="Hardware and Maintenance Tracking" 
               fetchPriority="high"
               decoding="async"
-              className="w-full h-full object-cover object-center" 
+              draggable="false"
+              className="w-full h-full object-cover object-center will-change-transform" 
             />
             {/* Smooth cinematic dark overlay */}
             <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/90 via-brand-dark/70 to-brand-dark/95" />
@@ -34,13 +35,13 @@ export default function Guides() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="max-w-4xl w-full flex flex-col items-center"
+              className="max-w-4xl w-full flex flex-col items-center will-change-transform will-change-opacity"
             >
               <motion.span 
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.2, duration: 0.8 }}
-                className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white mb-8 shadow-lg"
+                className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white mb-8 shadow-lg will-change-transform"
               >
                 <CheckCircle2 size={14} className="text-brand-primary" />
                 Technical Resources
@@ -84,16 +85,17 @@ export default function Guides() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ delay: i * 0.1, duration: 0.6 }}
-                  className="group flex flex-col bg-white rounded-[40px] md:rounded-[60px] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_50px_rgb(0,0,0,0.1)] transition-all duration-500"
+                  className="group flex flex-col bg-white rounded-[40px] md:rounded-[60px] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_50px_rgb(0,0,0,0.1)] transition-all duration-500 will-change-transform will-change-opacity"
                 >
                   <div className="relative h-[300px] md:h-[400px] w-full overflow-hidden bg-brand-surface">
-                    {/* 🚀 PERFORMANCE UPGRADE: Lazy loading below fold */}
+                    {/* 🚀 PERFORMANCE UPGRADE: Lazy loading below fold & drag lock */}
                     <img 
                       src={guide.img} 
                       alt={guide.title} 
                       loading="lazy"
                       decoding="async"
-                      className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-105" 
+                      draggable="false"
+                      className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-105 will-change-transform" 
                     />
                     {/* Soft gradient for visual depth */}
                     <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/60 via-transparent to-transparent opacity-80" />
@@ -138,7 +140,7 @@ export default function Guides() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="bg-brand-dark rounded-[40px] md:rounded-[60px] p-12 md:p-24 text-white text-center relative overflow-hidden shadow-2xl max-w-5xl mx-auto"
+              className="bg-brand-dark rounded-[40px] md:rounded-[60px] p-12 md:p-24 text-white text-center relative overflow-hidden shadow-2xl max-w-5xl mx-auto will-change-transform will-change-opacity"
             >
               {/* Soft background glow */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-brand-primary/20 blur-[100px] rounded-full pointer-events-none" />
@@ -150,7 +152,7 @@ export default function Guides() {
                 </p>
                 <Link 
                   to="/support" 
-                  className="inline-flex items-center gap-3 bg-white text-brand-dark px-10 md:px-14 py-5 md:py-6 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-brand-primary hover:text-white hover:scale-105 transition-all duration-300 shadow-xl"
+                  className="inline-flex items-center gap-3 bg-white text-brand-dark px-10 md:px-14 py-5 md:py-6 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-brand-primary hover:text-white hover:scale-105 transition-all duration-300 shadow-xl will-change-transform"
                 >
                   Book a Service
                   <ArrowRight size={18} />

@@ -17,13 +17,13 @@ export default function About() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-4xl w-full flex flex-col items-center"
+            className="max-w-4xl w-full flex flex-col items-center will-change-transform will-change-opacity"
           >
             <motion.span 
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2, duration: 0.8 }}
-              className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-white border border-brand-border text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-brand-dark mb-8 md:mb-12 shadow-sm"
+              className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-white border border-brand-border text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-brand-dark mb-8 md:mb-12 shadow-sm will-change-transform"
             >
               <CheckCircle2 size={14} className="text-brand-primary" />
               Our History
@@ -52,15 +52,16 @@ export default function About() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="order-2 lg:order-1 relative aspect-[4/5] md:aspect-square w-full rounded-[40px] md:rounded-[60px] overflow-hidden shadow-2xl group"
+              className="order-2 lg:order-1 relative aspect-[4/5] md:aspect-square w-full rounded-[40px] md:rounded-[60px] overflow-hidden shadow-2xl group will-change-transform will-change-opacity"
             >
-              {/* 🚀 PERFORMANCE UPGRADE: Lazy loading below fold */}
+              {/* 🚀 PERFORMANCE UPGRADE: Lazy loading, drag-lock, and GPU transform */}
               <img 
                 src={ronnieFounder} 
                 alt="Ronnie Mouton - Founder of Doorlogics" 
                 loading="lazy"
                 decoding="async"
-                className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-105"
+                draggable="false"
+                className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-105 will-change-transform"
               />
               {/* Soft cinematic gradient */}
               <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent opacity-60" />
@@ -76,7 +77,7 @@ export default function About() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="order-1 lg:order-2 lg:pl-8"
+              className="order-1 lg:order-2 lg:pl-8 will-change-transform will-change-opacity"
             >
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-brand-dark leading-[1.1] mb-8">
                 Personal<br />Service.
@@ -125,7 +126,7 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: i * 0.1, duration: 0.6 }}
-                className="p-10 md:p-14 bg-white rounded-[40px] shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.12)] hover:-translate-y-2 transition-all duration-500 flex flex-col items-center text-center group"
+                className="p-10 md:p-14 bg-white rounded-[40px] shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.12)] hover:-translate-y-2 transition-all duration-500 flex flex-col items-center text-center group will-change-transform will-change-opacity"
               >
                 <div className="w-16 h-16 rounded-full bg-brand-primary/10 flex items-center justify-center text-brand-primary mb-8 group-hover:bg-brand-primary group-hover:text-white transition-colors duration-500 shadow-inner">
                   {stat.icon}
@@ -149,7 +150,7 @@ export default function About() {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="max-w-3xl mx-auto bg-brand-dark rounded-[40px] md:rounded-[60px] p-12 md:p-24 shadow-2xl relative overflow-hidden"
+            className="max-w-3xl mx-auto bg-brand-dark rounded-[40px] md:rounded-[60px] p-12 md:p-24 shadow-2xl relative overflow-hidden will-change-transform will-change-opacity"
           >
             {/* Subtle background glow */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-brand-primary/20 blur-[100px] rounded-full pointer-events-none" />
@@ -163,7 +164,7 @@ export default function About() {
               </p>
               <Link 
                 to="/contact"
-                className="inline-flex items-center gap-3 bg-brand-primary text-white px-10 md:px-14 py-5 md:py-6 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-brand-primary-hover hover:scale-105 transition-all duration-300 shadow-xl"
+                className="inline-flex items-center gap-3 bg-brand-primary text-white px-10 md:px-14 py-5 md:py-6 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-brand-primary-hover hover:scale-105 transition-all duration-300 shadow-xl will-change-transform"
               >
                 Get in Touch
                 <ArrowRight size={18} />
