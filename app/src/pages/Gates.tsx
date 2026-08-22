@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom'; // 🚀 ADDED PORTAL IMPORT
 import { motion, AnimatePresence } from 'motion/react';
 import { Zap, Lock, Grid, ArrowRight, ShieldCheck, Cpu, Smartphone, CheckCircle2, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import PageTransition from '../components/PageTransition';
@@ -14,7 +15,7 @@ import gateCustom from '../assets/gate-architectural-circle.jpg';
 import gatePedestrian from '../assets/gate-ped-horizontal-slat.jpg';
 import gateTimber from '../assets/gate-timber-arched-swing.jpg';
 
-// 🚀 COMPLETE PORTFOLIO ARCHIVE (30 Images)
+// Complete Portfolio Archive
 import p1 from '../assets/gate-silver-sliding-circle.jpg';
 import p2 from '../assets/gate-black-steel-arched.jpg';
 import p3 from '../assets/gate-timber-sliding-windows.jpg';
@@ -117,8 +118,7 @@ export default function Gates() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [selectedIndex]);
 
-  // 🚀 PERFORMANCE UPGRADE: Zero-Latency Image Preloading
-  // Silently downloads the next/prev images into the browser cache while the user looks at the current one.
+  // Zero-Latency Image Preloading
   useEffect(() => {
     if (selectedIndex !== null) {
       const nextIdx = (selectedIndex + 1) % catalogueItems.length;
@@ -327,8 +327,10 @@ export default function Gates() {
             viewport={{ once: true }}
             className="max-w-3xl mx-auto bg-brand-bg rounded-[40px] md:rounded-[60px] p-12 md:p-24 shadow-[0_8px_30px_rgb(0,0,0,0.06)] relative overflow-hidden will-change-transform will-change-opacity"
           >
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-brand-primary/20 blur-[100px] rounded-full pointer-events-none" />
+            
             <div className="relative z-10">
-              <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tight text-brand-dark">
+              <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tight text-white">
                 Secure Your Perimeter.
               </h2>
               <p className="text-brand-slate text-base md:text-lg mb-10 max-w-lg mx-auto font-medium">
@@ -346,81 +348,85 @@ export default function Gates() {
         </div>
       </section>
 
-      {/* FULLSCREEN LIGHTBOX MODAL */}
-      <AnimatePresence>
-        {selectedIndex !== null && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-brand-dark/95 backdrop-blur-2xl p-4 md:p-10 will-change-opacity"
-            onClick={() => setSelectedIndex(null)}
-          >
-            <div className="relative w-full h-full flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
-              
-              <button 
-                onClick={() => setSelectedIndex(null)}
-                className="absolute top-4 right-4 md:top-8 md:right-8 z-50 p-4 rounded-full bg-white/10 hover:bg-brand-primary text-white transition-all duration-300 border border-white/20 shadow-lg hover:scale-110 will-change-transform"
-                aria-label="Close Gallery"
-              >
-                <X size={24} />
-              </button>
+      {/* 🚀 FIXED FULLSCREEN LIGHTBOX MODAL VIA PORTAL */}
+      {createPortal(
+        <AnimatePresence>
+          {selectedIndex !== null && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 z-[100] flex items-center justify-center bg-brand-dark/95 backdrop-blur-2xl p-4 md:p-10 will-change-opacity"
+              onClick={() => setSelectedIndex(null)}
+            >
+              <div className="relative w-full h-full flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
+                
+                <button 
+                  onClick={() => setSelectedIndex(null)}
+                  className="absolute top-4 right-4 md:top-8 md:right-8 z-50 p-4 rounded-full bg-white/10 hover:bg-brand-primary text-white transition-all duration-300 border border-white/20 shadow-lg hover:scale-110 will-change-transform"
+                  aria-label="Close Gallery"
+                >
+                  <X size={24} />
+                </button>
 
-              <button 
-                onClick={handlePrev}
-                className="absolute left-4 md:left-8 z-50 p-4 rounded-full bg-white/10 hover:bg-brand-primary text-white transition-all duration-300 border border-white/20 shadow-lg hover:scale-110 hidden md:block will-change-transform"
-                aria-label="Previous Image"
-              >
-                <ChevronLeft size={24} />
-              </button>
+                <button 
+                  onClick={handlePrev}
+                  className="absolute left-4 md:left-8 z-50 p-4 rounded-full bg-white/10 hover:bg-brand-primary text-white transition-all duration-300 border border-white/20 shadow-lg hover:scale-110 hidden md:block will-change-transform"
+                  aria-label="Previous Image"
+                >
+                  <ChevronLeft size={24} />
+                </button>
 
-              <div className="w-full h-full max-w-7xl max-h-[85vh] flex flex-col items-center justify-center md:px-24">
-                <AnimatePresence mode="wait">
-                  <motion.img
-                    key={selectedIndex}
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 1.05 }}
-                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                    src={catalogueItems[selectedIndex].img}
-                    alt={catalogueItems[selectedIndex].title}
-                    decoding="async"
-                    draggable="false"
-                    className="w-full h-full object-contain drop-shadow-2xl rounded-[20px] will-change-transform will-change-opacity"
-                  />
-                </AnimatePresence>
-              </div>
-
-              <button 
-                onClick={handleNext}
-                className="absolute right-4 md:right-8 z-50 p-4 rounded-full bg-white/10 hover:bg-brand-primary text-white transition-all duration-300 border border-white/20 shadow-lg hover:scale-110 hidden md:block will-change-transform"
-                aria-label="Next Image"
-              >
-                <ChevronRight size={24} />
-              </button>
-
-              <div className="absolute bottom-6 md:bottom-10 w-full z-50 flex flex-col md:flex-row items-center justify-center gap-4 px-4">
-                <div className="flex items-center gap-4">
-                  <button onClick={handlePrev} className="md:hidden p-3 rounded-full bg-white/10 border border-white/20 text-white active:bg-brand-primary transition-colors">
-                    <ChevronLeft size={20} />
-                  </button>
-                  
-                  <div className="px-8 py-3 rounded-full bg-white/10 border border-white/20 text-white font-bold text-xs uppercase tracking-widest text-center backdrop-blur-md shadow-lg max-w-[70vw] truncate">
-                    <span className="text-brand-primary mr-3">{selectedIndex + 1}/{catalogueItems.length}</span>
-                    {catalogueItems[selectedIndex].title}
-                  </div>
-
-                  <button onClick={handleNext} className="md:hidden p-3 rounded-full bg-white/10 border border-white/20 text-white active:bg-brand-primary transition-colors">
-                    <ChevronRight size={20} />
-                  </button>
+                {/* 🚀 PERFECT CENTERING WRAPPER */}
+                <div className="w-full h-full max-w-7xl max-h-[85vh] flex flex-col items-center justify-center md:px-24">
+                  <AnimatePresence mode="wait">
+                    <motion.img
+                      key={selectedIndex}
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 1.05 }}
+                      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                      src={catalogueItems[selectedIndex].img}
+                      alt={catalogueItems[selectedIndex].title}
+                      decoding="async"
+                      draggable="false"
+                      className="w-full h-full object-contain drop-shadow-2xl rounded-[20px] will-change-transform will-change-opacity"
+                    />
+                  </AnimatePresence>
                 </div>
-              </div>
 
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                <button 
+                  onClick={handleNext}
+                  className="absolute right-4 md:right-8 z-50 p-4 rounded-full bg-white/10 hover:bg-brand-primary text-white transition-all duration-300 border border-white/20 shadow-lg hover:scale-110 hidden md:block will-change-transform"
+                  aria-label="Next Image"
+                >
+                  <ChevronRight size={24} />
+                </button>
+
+                <div className="absolute bottom-6 md:bottom-10 w-full z-50 flex flex-col md:flex-row items-center justify-center gap-4 px-4">
+                  <div className="flex items-center gap-4">
+                    <button onClick={handlePrev} className="md:hidden p-3 rounded-full bg-white/10 border border-white/20 text-white active:bg-brand-primary transition-colors">
+                      <ChevronLeft size={20} />
+                    </button>
+                    
+                    <div className="px-8 py-3 rounded-full bg-white/10 border border-white/20 text-white font-bold text-xs uppercase tracking-widest text-center backdrop-blur-md shadow-lg max-w-[70vw] truncate">
+                      <span className="text-brand-primary mr-3">{selectedIndex + 1}/{catalogueItems.length}</span>
+                      {catalogueItems[selectedIndex].title}
+                    </div>
+
+                    <button onClick={handleNext} className="md:hidden p-3 rounded-full bg-white/10 border border-white/20 text-white active:bg-brand-primary transition-colors">
+                      <ChevronRight size={20} />
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </PageTransition>
   );
 }
