@@ -1,10 +1,10 @@
-import React from 'react';
-import { motion } from 'motion/react';
-import { Zap, Lock, Grid, ArrowRight, ShieldCheck, Cpu, Smartphone, CheckCircle2 } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { Zap, Lock, Grid, ArrowRight, ShieldCheck, Cpu, Smartphone, CheckCircle2, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import PageTransition from '../components/PageTransition';
 import { Link } from 'react-router-dom';
 
-// Cinematic Asset Imports
+// Cinematic Asset Imports (For Layout)
 import heroGate from '../assets/gate-estate-timber-wide.jpg';
 import gateSliding from '../assets/gate-vertical-timber.jpg';
 import gateSwing from '../assets/gate-wrought-iron-estate.jpg';
@@ -12,6 +12,71 @@ import gateSecurity from '../assets/gate-silver-palisade.jpg';
 import gateCustom from '../assets/gate-architectural-circle.jpg';
 import gatePedestrian from '../assets/gate-ped-horizontal-slat.jpg';
 import gateTimber from '../assets/gate-timber-arched-swing.jpg';
+
+// 🚀 COMPLETE PORTFOLIO ARCHIVE (30 Images)
+import p1 from '../assets/gate-silver-sliding-circle.jpg';
+import p2 from '../assets/gate-black-steel-arched.jpg';
+import p3 from '../assets/gate-timber-sliding-windows.jpg';
+import p4 from '../assets/gate-steel-timber-horizontal.jpg';
+import p5 from '../assets/gate-timber-vertical-framed.jpg';
+import p6 from '../assets/gate-steel-timber-studded.jpg';
+import p7 from '../assets/gate-steel-timber-studded-angle.jpg';
+import p8 from '../assets/gate-timber-vertical-solid.jpg';
+import p9 from '../assets/gate-timber-diagonal-split.jpg';
+import p10 from '../assets/gate-white-steel-ornate.jpg';
+import p11 from '../assets/gate-white-steel-ornate-close.jpg';
+import p12 from '../assets/gate-steel-timber-wave.jpg';
+import p13 from '../assets/gate-timber-diagonal-sliding.jpg';
+import p14 from '../assets/gate-timber-vertical-wide.jpg';
+import p15 from '../assets/gate-galvanized-timber-sliding.jpg';
+import p16 from '../assets/gate-white-slatted-pedestrian.jpg';
+import p17 from '../assets/gate-galvanized-installation.jpg';
+import p18 from '../assets/gate-timber-horizontal-wide.jpg';
+import p19 from '../assets/gate-pedestrian-timber-horizontal.jpg';
+import p20 from '../assets/gate-pedestrian-timber-rustic.jpg';
+import p21 from '../assets/gate-pedestrian-timber-diagonal-split.jpg';
+import p22 from '../assets/gate-pedestrian-timber-tall.jpg';
+import p23 from '../assets/gate-pedestrian-galvanized-ornate.jpg';
+import p24 from '../assets/gate-pedestrian-timber-wave.jpg';
+import p25 from '../assets/gate-pedestrian-timber-horizontal-slats.jpg';
+import p26 from '../assets/gate-pedestrian-white-vertical.jpg';
+import p27 from '../assets/gate-timber-antique-carved.jpg';
+import p28 from '../assets/gate-pedestrian-timber-horizontal-wall.jpg';
+import p29 from '../assets/gate-timber-swing-split.jpg';
+import p30 from '../assets/gate-timber-swing-ornate-frame.jpg';
+
+const catalogueItems = [
+  { img: p1, title: "Silver Architectural Sliding" },
+  { img: p2, title: "Black Steel Arched" },
+  { img: p3, title: "Solid Timber with Cutouts" },
+  { img: p4, title: "Steel Frame Horizontal Timber" },
+  { img: p5, title: "Vertical Timber Cross-Braced" },
+  { img: p6, title: "Studded Steel & Timber" },
+  { img: p7, title: "Studded Steel Sliding System" },
+  { img: p8, title: "Solid Vertical Timber" },
+  { img: p9, title: "Diagonal Timber & Steel Base" },
+  { img: p10, title: "White Ornate Steel Sliding" },
+  { img: p11, title: "White Ornate Detail" },
+  { img: p12, title: "Curved Wave Timber Design" },
+  { img: p13, title: "Fully Clad Diagonal Timber" },
+  { img: p14, title: "Wide Vertical Timber Base" },
+  { img: p15, title: "Heavy Galvanized Timber" },
+  { img: p16, title: "White Horizontal Pedestrian" },
+  { img: p17, title: "Custom On-Site Welding" },
+  { img: p18, title: "Horizontal Nutec Boundary" },
+  { img: p19, title: "Timber Pedestrian Windows" },
+  { img: p20, title: "Rustic Vertical Timber Swing" },
+  { img: p21, title: "Diagonal Split Pedestrian" },
+  { img: p22, title: "Tall Horizontal Timber" },
+  { img: p23, title: "Galvanized Ornate Pedestrian" },
+  { img: p24, title: "Curved Wave Pedestrian" },
+  { img: p25, title: "Seamless Slatted Pedestrian" },
+  { img: p26, title: "White Vertical Pedestrian" },
+  { img: p27, title: "Antique Carved Timber Doors" },
+  { img: p28, title: "Boundary Wall Pedestrian" },
+  { img: p29, title: "Split Timber & Steel Swing" },
+  { img: p30, title: "Ornate Border Timber Swing" }
+];
 
 const specs = [
   { icon: <Zap size={24} />, title: "High-Speed", desc: "Operating at up to 36m/min to minimize perimeter vulnerability windows during entry and exit." },
@@ -29,6 +94,38 @@ const gateStyles = [
 ];
 
 export default function Gates() {
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (selectedIndex !== null) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => { document.body.style.overflow = 'unset'; };
+  }, [selectedIndex]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (selectedIndex === null) return;
+      if (e.key === 'Escape') setSelectedIndex(null);
+      if (e.key === 'ArrowRight') setSelectedIndex((prev) => (prev !== null ? (prev + 1) % catalogueItems.length : null));
+      if (e.key === 'ArrowLeft') setSelectedIndex((prev) => (prev !== null ? (prev - 1 + catalogueItems.length) % catalogueItems.length : null));
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedIndex]);
+
+  const handleNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setSelectedIndex((prev) => (prev !== null ? (prev + 1) % catalogueItems.length : null));
+  };
+
+  const handlePrev = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setSelectedIndex((prev) => (prev !== null ? (prev - 1 + catalogueItems.length) % catalogueItems.length : null));
+  };
+
   return (
     <PageTransition>
       {/* HERO SECTION - CINEMATIC & SOFT */}
@@ -71,6 +168,15 @@ export default function Gates() {
             <p className="text-base md:text-xl text-white/80 max-w-2xl mb-12 md:mb-16 leading-relaxed font-medium">
               We design and build bespoke sliding and swing gates that seamlessly combine absolute security with stunning architectural elegance. Every gate is made to order.
             </p>
+
+            {/* 🚀 ADDED EXPLORE PORTFOLIO BUTTON */}
+            <button
+              onClick={() => setSelectedIndex(0)}
+              className="bg-brand-primary text-white px-10 md:px-12 py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-white hover:text-brand-dark transition-all duration-300 shadow-xl hover:scale-105 flex items-center justify-center gap-3 w-full sm:w-auto will-change-transform"
+            >
+              <Grid size={18} />
+              Explore Portfolio
+            </button>
           </motion.div>
         </div>
       </section>
@@ -123,7 +229,8 @@ export default function Gates() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="group relative h-[400px] w-full rounded-[40px] overflow-hidden bg-brand-surface shadow-lg hover:shadow-2xl transition-all duration-500 will-change-transform will-change-opacity"
+                onClick={() => setSelectedIndex(0)}
+                className="group relative h-[400px] w-full rounded-[40px] overflow-hidden bg-brand-surface shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer will-change-transform will-change-opacity"
               >
                 {/* 🚀 PERFORMANCE UPGRADE: Lazy loading below fold & blocked ghost drag */}
                 <img 
@@ -146,6 +253,16 @@ export default function Gates() {
                 </div>
               </motion.div>
             ))}
+          </div>
+
+          <div className="mt-16 flex justify-center">
+            <button 
+              onClick={() => setSelectedIndex(0)}
+              className="bg-brand-dark text-white px-10 py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-brand-primary transition-all duration-300 shadow-xl hover:scale-105 flex items-center gap-3 will-change-transform"
+            >
+              <Grid size={18} />
+              View Complete Archive ({catalogueItems.length})
+            </button>
           </div>
         </div>
       </section>
@@ -215,6 +332,82 @@ export default function Gates() {
           </motion.div>
         </div>
       </section>
+
+      {/* FULLSCREEN LIGHTBOX MODAL */}
+      <AnimatePresence>
+        {selectedIndex !== null && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-brand-dark/95 backdrop-blur-2xl p-4 md:p-10 will-change-opacity"
+            onClick={() => setSelectedIndex(null)}
+          >
+            <div className="relative w-full h-full flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
+              
+              <button 
+                onClick={() => setSelectedIndex(null)}
+                className="absolute top-4 right-4 md:top-8 md:right-8 z-50 p-4 rounded-full bg-white/10 hover:bg-brand-primary text-white transition-all duration-300 border border-white/20 shadow-lg hover:scale-110 will-change-transform"
+                aria-label="Close Gallery"
+              >
+                <X size={24} />
+              </button>
+
+              <button 
+                onClick={handlePrev}
+                className="absolute left-4 md:left-8 z-50 p-4 rounded-full bg-white/10 hover:bg-brand-primary text-white transition-all duration-300 border border-white/20 shadow-lg hover:scale-110 hidden md:block will-change-transform"
+                aria-label="Previous Image"
+              >
+                <ChevronLeft size={24} />
+              </button>
+
+              <div className="w-full h-full max-w-7xl max-h-[85vh] flex flex-col items-center justify-center md:px-24">
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={selectedIndex}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 1.05 }}
+                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                    src={catalogueItems[selectedIndex].img}
+                    alt={catalogueItems[selectedIndex].title}
+                    decoding="async"
+                    draggable="false"
+                    className="w-full h-full object-contain drop-shadow-2xl rounded-[20px] will-change-transform will-change-opacity"
+                  />
+                </AnimatePresence>
+              </div>
+
+              <button 
+                onClick={handleNext}
+                className="absolute right-4 md:right-8 z-50 p-4 rounded-full bg-white/10 hover:bg-brand-primary text-white transition-all duration-300 border border-white/20 shadow-lg hover:scale-110 hidden md:block will-change-transform"
+                aria-label="Next Image"
+              >
+                <ChevronRight size={24} />
+              </button>
+
+              <div className="absolute bottom-6 md:bottom-10 w-full z-50 flex flex-col md:flex-row items-center justify-center gap-4 px-4">
+                <div className="flex items-center gap-4">
+                  <button onClick={handlePrev} className="md:hidden p-3 rounded-full bg-white/10 border border-white/20 text-white active:bg-brand-primary transition-colors">
+                    <ChevronLeft size={20} />
+                  </button>
+                  
+                  <div className="px-8 py-3 rounded-full bg-white/10 border border-white/20 text-white font-bold text-xs uppercase tracking-widest text-center backdrop-blur-md shadow-lg max-w-[70vw] truncate">
+                    <span className="text-brand-primary mr-3">{selectedIndex + 1}/{catalogueItems.length}</span>
+                    {catalogueItems[selectedIndex].title}
+                  </div>
+
+                  <button onClick={handleNext} className="md:hidden p-3 rounded-full bg-white/10 border border-white/20 text-white active:bg-brand-primary transition-colors">
+                    <ChevronRight size={20} />
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </PageTransition>
   );
 }
