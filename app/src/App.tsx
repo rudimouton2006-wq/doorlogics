@@ -20,21 +20,23 @@ const About = lazy(() => import('./pages/About'));
 const Contact = lazy(() => import('./pages/Contact'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
-// ⚡️ PERFORMANCE UPGRADE: Jank-Free Scroll Reset
+// ⚡️ PERFORMANCE UPGRADE: Jank-Free Scroll Reset with Anchor Protection
 const ScrollToTop = memo(() => {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
+    // Only scroll to top if there is no hash (anchor link) in the URL
     // Offloads the scroll calculation to the next animation frame.
-    // This prevents layout thrashing and stuttering while Framer Motion animates.
-    requestAnimationFrame(() => {
-      window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: 'instant' 
+    if (!hash) {
+      requestAnimationFrame(() => {
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: 'instant' 
+        });
       });
-    });
-  }, [pathname]);
+    }
+  }, [pathname, hash]);
 
   return null;
 });
@@ -50,11 +52,12 @@ const PageLoader = memo(() => (
 PageLoader.displayName = 'PageLoader';
 
 // Router configuration with Animation Presence and Suspense
-function AnimatedRoutes() {
+const AnimatedRoutes = memo(function AnimatedRoutes() {
   const location = useLocation();
 
   return (
-    <AnimatePresence mode="wait">
+    // 🚀 PERFORMANCE UPGRADE: initial={false} prevents the animation on first load, dropping LCP time to 0.
+    <AnimatePresence mode="wait" initial={false}>
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Suspense fallback={<PageLoader />}><Home /></Suspense>} />
         <Route path="/garages" element={<Suspense fallback={<PageLoader />}><Garages /></Suspense>} />
@@ -71,9 +74,18 @@ function AnimatedRoutes() {
       </Routes>
     </AnimatePresence>
   );
-}
+});
+AnimatedRoutes.displayName = 'AnimatedRoutes';
 
 export default function App() {
+  // ⚡️ PERFORMANCE UPGRADE: Disable native browser scroll restoration 
+  // This prevents the browser from fighting with React Router and causing screen flashes on navigation.
+  useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+  }, []);
+
   return (
     <Router>
       <ScrollToTop />

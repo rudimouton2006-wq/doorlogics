@@ -7,11 +7,21 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
+    <!-- ⚡️ PERFORMANCE: Critical Render Path Override -->
+    <!-- Forces the browser to download the fonts instantly in parallel, bypassing the CSS @import bottleneck -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" media="print" onload="this.media='all'" />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" />
+    </noscript>
+
     <!-- Standard Favicon -->
     <link rel="icon" type="image/png" href="/favicon.png">
     
-    <!-- Mobile Optimization -->
+    <!-- Mobile Optimization & Native App Feel -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     
     <!-- SEO Meta Tags -->
     <meta name="description" content="Expert garage door and gate automation. Reliable service since 1991 across the Western Cape." />
@@ -37,6 +47,12 @@
     </style>
   </head>
   <body>
+    <noscript>
+      <div style="padding: 20px; text-align: center; font-family: sans-serif; color: #1A1A1A;">
+        <strong>JavaScript is required to run Doorlogics.</strong><br />
+        Please enable JavaScript in your browser settings to view our portfolio and book services.
+      </div>
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

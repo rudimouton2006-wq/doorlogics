@@ -5,6 +5,19 @@ import { Menu, X } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
 import logo from '../assets/logo.png';
 
+// ⚡️ PERFORMANCE UPGRADE: Extracted static array outside the component.
+// The Navbar re-renders frequently (every time the user scrolls past the threshold).
+// Keeping this array outside prevents the Javascript engine from destroying and 
+// reallocating this memory on every scroll state change.
+const navLinks = [
+  { name: 'Garages', path: '/garages' },
+  { name: 'Gates', path: '/gates' },
+  { name: 'Fencing', path: '/fencing' },
+  { name: 'Automation', path: '/automation' },
+  { name: 'Support', path: '/support' },
+  { name: 'About', path: '/about' },
+];
+
 const Navbar = memo(() => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -49,15 +62,6 @@ const Navbar = memo(() => {
       document.body.style.overflow = 'unset';
     };
   }, [mobileMenuOpen]);
-
-  const navLinks = [
-    { name: 'Garages', path: '/garages' },
-    { name: 'Gates', path: '/gates' },
-    { name: 'Fencing', path: '/fencing' },
-    { name: 'Automation', path: '/automation' },
-    { name: 'Support', path: '/support' },
-    { name: 'About', path: '/about' },
-  ];
 
   return (
     <>

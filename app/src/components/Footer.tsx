@@ -1,14 +1,27 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUp } from 'lucide-react';
-import { cn } from '@/src/lib/utils';
 import logo from '../assets/logo.png';
 
-export default function Footer() {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+// ⚡️ PERFORMANCE UPGRADE: Extracted static arrays and functions outside the component
+// Prevents React from deleting and rebuilding these lists in memory on every single page render.
+const servicesLinks = [
+  { name: 'Garage Doors', href: '/garages' },
+  { name: 'Driveway Gates', href: '/gates' },
+  { name: 'Security Fencing', href: '/fencing' },
+  { name: 'Automation', href: '/automation' }
+];
 
+const commandLinks = ['Support', 'About', 'Contact'];
+
+const scrollToTop = () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+
+// ⚡️ PERFORMANCE UPGRADE: React.memo()
+// The Footer is identical on every page. Memoizing it prevents the browser from
+// wasting CPU cycles recalculating it when upper page content changes.
+const Footer = memo(function Footer() {
   return (
     <footer className="bg-brand-dark text-white pt-24 md:pt-32 pb-10 rounded-t-[40px] md:rounded-t-[80px] relative z-20 shadow-[0_-20px_60px_rgba(0,0,0,0.1)]">
       <div className="container mx-auto px-6 max-w-7xl">
@@ -17,13 +30,14 @@ export default function Footer() {
           {/* Brand Section */}
           <div className="lg:col-span-4 flex flex-col gap-8 pr-0 lg:pr-12">
             <Link to="/" className="inline-block w-fit group">
-              {/* 🚀 PERFORMANCE UPGRADE: Lazy loading global footer logo */}
+              {/* 🚀 PERFORMANCE UPGRADE: Lazy loading, drag-lock, & GPU offloading */}
               <img 
                 src={logo} 
                 alt="Doorlogics" 
                 loading="lazy"
                 decoding="async"
-                className="h-16 md:h-20 w-auto brightness-0 invert opacity-90 transition-all duration-500 group-hover:opacity-100 group-hover:scale-105" 
+                draggable="false"
+                className="h-16 md:h-20 w-auto brightness-0 invert opacity-90 transition-all duration-500 group-hover:opacity-100 group-hover:scale-105 will-change-transform will-change-opacity" 
               />
             </Link>
             <p className="text-white/60 text-sm md:text-base font-medium leading-relaxed max-w-sm">
@@ -37,12 +51,7 @@ export default function Footer() {
               The Services
             </h4>
             <ul className="flex flex-col gap-2 text-xs md:text-sm font-bold uppercase tracking-widest text-white/80">
-              {[
-                { name: 'Garage Doors', href: '/garages' },
-                { name: 'Driveway Gates', href: '/gates' },
-                { name: 'Security Fencing', href: '/fencing' },
-                { name: 'Automation', href: '/automation' }
-              ].map((item) => (
+              {servicesLinks.map((item) => (
                 <li key={item.name}>
                   <Link 
                     to={item.href} 
@@ -61,7 +70,7 @@ export default function Footer() {
               The Command
             </h4>
             <ul className="flex flex-col gap-2 text-xs md:text-sm font-bold uppercase tracking-widest text-white/80">
-              {['Support', 'About', 'Contact'].map((item) => (
+              {commandLinks.map((item) => (
                 <li key={item}>
                   <Link 
                     to={`/${item.toLowerCase()}`} 
@@ -118,7 +127,7 @@ export default function Footer() {
           
           <button 
             onClick={scrollToTop}
-            className="flex items-center justify-center gap-3 px-6 py-3 rounded-full bg-white/5 border border-white/10 text-white/70 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] hover:bg-brand-primary hover:text-white hover:border-brand-primary transition-all duration-300 shadow-sm"
+            className="flex items-center justify-center gap-3 px-6 py-3 rounded-full bg-white/5 border border-white/10 text-white/70 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] hover:bg-brand-primary hover:text-white hover:border-brand-primary transition-all duration-300 shadow-sm will-change-transform"
           >
             <span>Return to Top</span>
             <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center">
@@ -130,4 +139,8 @@ export default function Footer() {
       </div>
     </footer>
   );
-}
+});
+
+Footer.displayName = 'Footer';
+
+export default Footer;

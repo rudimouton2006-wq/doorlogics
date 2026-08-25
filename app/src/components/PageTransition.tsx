@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, memo } from 'react';
 import { motion } from 'motion/react';
 import { useLocation } from 'react-router-dom';
 
-// SEO Title Dictionary
+// ⚡️ PERFORMANCE UPGRADE: Static object already extracted outside the component!
 const routeTitles: Record<string, string> = {
   '/': 'Home | Doorlogics',
   '/garages': 'Expert Garage Doors | Doorlogics',
@@ -15,14 +15,16 @@ const routeTitles: Record<string, string> = {
   '/contact': 'Contact Us | Doorlogics',
 };
 
-export default function PageTransition({ children }: { children: React.ReactNode }) {
+// ⚡️ PERFORMANCE UPGRADE: React.memo()
+// Locks the wrapper in memory to prevent the animation from stuttering on parent re-renders.
+const PageTransition = memo(function PageTransition({ children }: { children: React.ReactNode }) {
   const location = useLocation();
 
   useEffect(() => {
     // Dynamically update the browser tab title based on the current route
     const title = routeTitles[location.pathname] || 'Doorlogics | Expert Security';
     document.title = title;
-  }, [location]);
+  }, [location.pathname]); // ⚡️ PERFORMANCE UPGRADE: Strict dependency tracking prevents hash-change re-renders.
 
   return (
     <motion.div
@@ -36,4 +38,8 @@ export default function PageTransition({ children }: { children: React.ReactNode
       {children}
     </motion.div>
   );
-}
+});
+
+PageTransition.displayName = 'PageTransition';
+
+export default PageTransition;

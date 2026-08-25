@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { motion } from 'motion/react';
 import { Shield, Lock, Zap, ArrowRight, CheckCircle2 } from 'lucide-react';
 import PageTransition from '../components/PageTransition';
@@ -13,12 +13,32 @@ import fenceNutec from '../assets/fence-nutec.jpg';
 import fenceCurvedTimber from '../assets/fence-curved-timber.jpg';
 import fenceWroughtIron from '../assets/fence-wrought-iron.jpg';
 
-export default function Fencing() {
+// ⚡️ PERFORMANCE UPGRADE: Extracted static arrays outside the component
+// Prevents React from deleting and rebuilding these lists in memory on every render cycle.
+const fencingCatalogue = [
+  { title: "Curved Steel Fencing", desc: "The sky is the limit.", img: fenceTimber },
+  { title: "High-Visibility Security", desc: "Clear-view galvanized panels preventing any unauthorized access.", img: fenceClearvu },
+  { title: "Steel Palisade", desc: "Heavy-duty spear-top fencing designed for ultimate perimeter defense.", img: fenceSpear },
+  { title: "Fibre Cement Nutec", desc: "Durable fibre cement Nutec boards to suit your aesthetic.", img: fenceNutec },
+  { title: "Custom Curved Timber", desc: "Custom curved timber fitted panels to match your property style.", img: fenceCurvedTimber },
+  { title: "Wrought Iron Fencing", desc: "Classic, durable, and elegant wrought iron boundary solutions.", img: fenceWroughtIron }
+];
+
+const strengthFeatures = [
+  { icon: <Shield size={28} />, title: "Coastal Grade", desc: "Galvanized and powder-coated to resist aggressive rust in the Western Cape environment." },
+  { icon: <Lock size={28} />, title: "Anti-Climb", desc: "Designed with specific apertures that prevent intruders from gaining any foothold or grip." },
+  { icon: <Zap size={28} />, title: "Precision Install", desc: "Deep-anchored posts set in high-strength concrete ensure your fence remains standing for decades." }
+];
+
+// ⚡️ PERFORMANCE UPGRADE: React.memo()
+// Locks the static page in memory to prevent wasted CPU re-rendering cycles.
+const Fencing = memo(function Fencing() {
   return (
     <PageTransition>
       {/* HERO SECTION - CINEMATIC & SOFT */}
       <section className="relative min-h-[95vh] md:min-h-screen flex flex-col items-center justify-center pt-32 pb-20 overflow-hidden text-center rounded-b-[40px] md:rounded-b-[80px] shadow-2xl">
         <div className="absolute inset-0 z-0 bg-brand-dark">
+          {/* ⚡️ PERFORMANCE: High priority fetch, async decode, GPU accelerated, drag-lock */}
           <img 
             src={fenceHero} 
             alt="Secure Estate Fencing" 
@@ -72,14 +92,7 @@ export default function Fencing() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
-            {[
-              { title: "Curved Steel Fencing", desc: "The sky is the limit.", img: fenceTimber },
-              { title: "High-Visibility Security", desc: "Clear-view galvanized panels preventing any unauthorized access.", img: fenceClearvu },
-              { title: "Steel Palisade", desc: "Heavy-duty spear-top fencing designed for ultimate perimeter defense.", img: fenceSpear },
-              { title: "Fibre Cement Nutec", desc: "Durable fibre cement Nutec boards to suit your aesthetic.", img: fenceNutec },
-              { title: "Custom Curved Timber", desc: "Custom curved timber fitted panels to match your property style.", img: fenceCurvedTimber },
-              { title: "Wrought Iron Fencing", desc: "Classic, durable, and elegant wrought iron boundary solutions.", img: fenceWroughtIron }
-            ].map((fence, i) => (
+            {fencingCatalogue.map((fence, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 30 }}
@@ -88,6 +101,7 @@ export default function Fencing() {
                 transition={{ duration: 0.6, delay: i * 0.1 }}
                 className="group relative h-[450px] w-full rounded-[40px] overflow-hidden bg-brand-surface shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.12)] transition-all duration-500 will-change-transform will-change-opacity"
               >
+                {/* ⚡️ PERFORMANCE: Lazy loading offscreen images */}
                 <img 
                   src={fence.img} 
                   alt={fence.title} 
@@ -130,11 +144,7 @@ export default function Fencing() {
               </h2>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
-                {[
-                  { icon: <Shield size={28} />, title: "Coastal Grade", desc: "Galvanized and powder-coated to resist aggressive rust in the Western Cape environment." },
-                  { icon: <Lock size={28} />, title: "Anti-Climb", desc: "Designed with specific apertures that prevent intruders from gaining any foothold or grip." },
-                  { icon: <Zap size={28} />, title: "Precision Install", desc: "Deep-anchored posts set in high-strength concrete ensure your fence remains standing for decades." }
-                ].map((item, i) => (
+                {strengthFeatures.map((item, i) => (
                   <div key={i} className="flex flex-col items-start bg-white/5 p-8 rounded-[30px] border border-white/10 hover:bg-white/10 transition-colors duration-300">
                     <div className="w-16 h-16 rounded-full bg-brand-primary/20 flex items-center justify-center text-brand-primary mb-8 shadow-inner">
                       {item.icon}
@@ -178,4 +188,8 @@ export default function Fencing() {
       </section>
     </PageTransition>
   );
-}
+});
+
+Fencing.displayName = 'Fencing';
+
+export default Fencing;

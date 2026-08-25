@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight, ShieldAlert, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -16,7 +16,26 @@ import workWelding from '../assets/work-welding.jpg';
 import homeServiceRemotes from '../assets/access-mixed-remotes.jpg';
 import precisionMaintenance from '../assets/precision-maintenance.jpg';
 
-export default function Home() {
+// ⚡️ PERFORMANCE UPGRADE: Extracted static arrays outside the component
+// Prevents React from deleting and rebuilding these lists in memory on every render cycle.
+const servicesList = [
+  { title: "Driveway Gates", href: "/gates", img: homeServiceGate, desc: "Bespoke sliding and swing gate manufacturing." },
+  { title: "Garage Doors", href: "/garages", img: splitGarageDoors, desc: "Premium timber, aluminium, and aluzinc doors." },
+  { title: "Secure Fencing", href: "/fencing", img: clearvuFence, desc: "High-security perimeter fencing solutions." },
+  { title: "Automation", href: "/automation", img: gateMotorCorrect, desc: "High-speed, reliable motor installations." },
+  { title: "Services and Repairs", href: "/support", img: workWelding, desc: "Expert technical repairs and maintenance." },
+  { title: "Remotes and access control", href: "/support", img: homeServiceRemotes, desc: "Supply and programming." }
+];
+
+const reliabilityList = [
+  { label: "Expert Repairs", text: "We repair all brands of garage doors and gate operators (old or new) efficiently to minimize your downtime and expense." },
+  { label: "Custom Builds", text: "Bespoke gate and fencing manufacturing tailored strictly to your property's dimensions and aesthetics." },
+  { label: "Direct Support", text: "Speak directly to an expert for immediate technical guidance. No call centers, just real help." }
+];
+
+// ⚡️ PERFORMANCE UPGRADE: React.memo()
+// Locks the static page in memory to prevent wasted CPU re-rendering cycles.
+const Home = memo(function Home() {
   return (
     <PageTransition>
       {/* HERO SECTION - SINGLE CRISP IMAGE */}
@@ -24,7 +43,7 @@ export default function Home() {
         
         {/* Full Screen Cinematic Image Layer */}
         <div className="absolute inset-0 z-0 bg-brand-dark">
-          {/* ⚡️ PERFORMANCE: High priority fetch, async decode, GPU accelerated */}
+          {/* ⚡️ PERFORMANCE: High priority fetch, async decode, GPU accelerated, drag-lock */}
           <img 
             src={homeHeroPremium} 
             alt="Premium Garage Doors and Gates" 
@@ -97,14 +116,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
-            {[
-              { title: "Driveway Gates", href: "/gates", img: homeServiceGate, desc: "Bespoke sliding and swing gate manufacturing." },
-              { title: "Garage Doors", href: "/garages", img: splitGarageDoors, desc: "Premium timber, aluminium, and aluzinc doors." },
-              { title: "Secure Fencing", href: "/fencing", img: clearvuFence, desc: "High-security perimeter fencing solutions." },
-              { title: "Automation", href: "/automation", img: gateMotorCorrect, desc: "High-speed, reliable motor installations." },
-              { title: "Services and Repairs", href: "/support", img: workWelding, desc: "Expert technical repairs and maintenance." },
-              { title: "Remotes and access control", href: "/support", img: homeServiceRemotes, desc: "Supply and programming." }
-            ].map((service, i) => (
+            {servicesList.map((service, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 30 }}
@@ -177,11 +189,7 @@ export default function Home() {
               </h2>
               
               <div className="space-y-8 md:space-y-10">
-                {[
-                  { label: "Expert Repairs", text: "We repair all brands of garage doors and gate operators (old or new) efficiently to minimize your downtime and expense." },
-                  { label: "Custom Builds", text: "Bespoke gate and fencing manufacturing tailored strictly to your property's dimensions and aesthetics." },
-                  { label: "Direct Support", text: "Speak directly to an expert for immediate technical guidance. No call centers, just real help." }
-                ].map((item, i) => (
+                {reliabilityList.map((item, i) => (
                   <div key={i} className="flex gap-6 items-start p-6 md:p-8 rounded-[30px] bg-white shadow-sm hover:shadow-md transition-shadow duration-300">
                     <div className="flex-shrink-0 w-12 h-12 rounded-full bg-brand-primary/10 flex items-center justify-center text-brand-primary font-black text-sm">
                       0{i+1}
@@ -234,4 +242,8 @@ export default function Home() {
       </section>
     </PageTransition>
   );
-}
+});
+
+Home.displayName = 'Home';
+
+export default Home;

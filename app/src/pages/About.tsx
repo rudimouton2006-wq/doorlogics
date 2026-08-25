@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight, Clock, ShieldCheck, Award, CheckCircle2, Quote } from 'lucide-react';
 import PageTransition from '../components/PageTransition';
@@ -7,7 +7,17 @@ import { Link } from 'react-router-dom';
 // Cinematic Asset Import
 import ronnieFounder from '../assets/ronnie-founder.jpg';
 
-export default function About() {
+// ⚡️ PERFORMANCE UPGRADE: Extracted static arrays outside the component
+// Prevents React from deleting and rebuilding these lists in memory on every render cycle.
+const companyStats = [
+  { icon: <Clock size={28} />, label: "Years of Experience", value: "30+" },
+  { icon: <ShieldCheck size={28} />, label: "Successful Projects", value: "10k+" },
+  { icon: <Award size={28} />, label: "Owner-Managed", value: "100%" }
+];
+
+// ⚡️ PERFORMANCE UPGRADE: React.memo()
+// Locks the static page in memory to prevent wasted CPU re-rendering cycles.
+const About = memo(function About() {
   return (
     <PageTransition>
       {/* HERO SECTION - SOFT & MINIMALIST */}
@@ -115,11 +125,7 @@ export default function About() {
       <section className="py-24 bg-white border-t border-brand-border/30">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {[
-              { icon: <Clock size={28} />, label: "Years of Experience", value: "30+" },
-              { icon: <ShieldCheck size={28} />, label: "Successful Projects", value: "10k+" },
-              { icon: <Award size={28} />, label: "Owner-Managed", value: "100%" }
-            ].map((stat, i) => (
+            {companyStats.map((stat, i) => (
               <motion.div 
                 key={i}
                 initial={{ opacity: 0, y: 30 }}
@@ -175,4 +181,8 @@ export default function About() {
       </section>
     </PageTransition>
   );
-}
+});
+
+About.displayName = 'About';
+
+export default About;

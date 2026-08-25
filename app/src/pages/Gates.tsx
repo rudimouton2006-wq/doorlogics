@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import { createPortal } from 'react-dom'; // 🚀 ADDED PORTAL IMPORT
 import { motion, AnimatePresence } from 'motion/react';
 import { Zap, Lock, Grid, ArrowRight, ShieldCheck, Cpu, Smartphone, CheckCircle2, X, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -47,6 +47,7 @@ import p28 from '../assets/gate-pedestrian-timber-horizontal-wall.jpg';
 import p29 from '../assets/gate-timber-swing-split.jpg';
 import p30 from '../assets/gate-timber-swing-ornate-frame.jpg';
 
+// ⚡️ PERFORMANCE UPGRADE: Validated static arrays outside the component
 const catalogueItems = [
   { img: p1, title: "Silver Architectural Sliding" },
   { img: p2, title: "Black Steel Arched" },
@@ -95,7 +96,16 @@ const gateStyles = [
   { title: "Arched Timber", desc: "Solid hardwood swing gates with custom arched galvanized frames.", img: gateTimber },
 ];
 
-export default function Gates() {
+// ⚡️ PERFORMANCE UPGRADE: Extracted hidden array from the render loop
+const authorityFeatures = [
+  { icon: <ShieldCheck size={28} />, title: "Heavy Duty", desc: "We use thicker steel extrusions for superior durability and uncompromising security." },
+  { icon: <Cpu size={28} />, title: "Fast Motors", desc: "High-speed Centurion and ET NICE motors to minimize wait times at your entrance." },
+  { icon: <Smartphone size={28} />, title: "Smart Access", desc: "Open your gate via smartphone, GSM intercom, or secure remote from anywhere." }
+];
+
+// ⚡️ PERFORMANCE UPGRADE: React.memo()
+// Locks the massive background layout in memory while the Lightbox modal state changes.
+const Gates = memo(function Gates() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   useEffect(() => {
@@ -299,11 +309,7 @@ export default function Gates() {
               </h2>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
-                {[
-                  { icon: <ShieldCheck size={28} />, title: "Heavy Duty", desc: "We use thicker steel extrusions for superior durability and uncompromising security." },
-                  { icon: <Cpu size={28} />, title: "Fast Motors", desc: "High-speed Centurion and ET NICE motors to minimize wait times at your entrance." },
-                  { icon: <Smartphone size={28} />, title: "Smart Access", desc: "Open your gate via smartphone, GSM intercom, or secure remote from anywhere." }
-                ].map((item, i) => (
+                {authorityFeatures.map((item, i) => (
                   <div key={i} className="flex flex-col items-start bg-white/5 p-8 rounded-[30px] border border-white/10 hover:bg-white/10 transition-colors duration-300">
                     <div className="w-16 h-16 rounded-full bg-brand-primary/20 flex items-center justify-center text-brand-primary mb-8 shadow-inner">
                       {item.icon}
@@ -429,4 +435,8 @@ export default function Gates() {
       )}
     </PageTransition>
   );
-}
+});
+
+Gates.displayName = 'Gates';
+
+export default Gates;

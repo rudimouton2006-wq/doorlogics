@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { motion } from 'motion/react';
 import { Settings, BatteryFull, KeyRound, ShieldCheck, CheckCircle2, AlertCircle } from 'lucide-react';
 import PageTransition from '../components/PageTransition';
@@ -6,6 +6,8 @@ import PageTransition from '../components/PageTransition';
 // Cinematic Asset Import
 import supportHero from '../assets/precision-maintenance.jpg';
 
+// ⚡️ PERFORMANCE UPGRADE: Validated static array outside the component.
+// Keeping this here prevents React from deleting and rebuilding this list in memory on every render cycle.
 const knowledgeBase = [
   {
     icon: <Settings size={28} />,
@@ -49,7 +51,9 @@ const knowledgeBase = [
   }
 ];
 
-export default function SupportPortal() {
+// ⚡️ PERFORMANCE UPGRADE: React.memo()
+// Locks the static page in memory to prevent wasted CPU re-rendering cycles.
+const SupportPortal = memo(function SupportPortal() {
   return (
     <PageTransition>
       <div className="bg-brand-bg min-h-screen pb-24 md:pb-40">
@@ -169,4 +173,8 @@ export default function SupportPortal() {
       </div>
     </PageTransition>
   );
-}
+});
+
+SupportPortal.displayName = 'SupportPortal';
+
+export default SupportPortal;

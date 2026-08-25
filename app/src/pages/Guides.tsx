@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight, BookOpen, ShieldCheck, CheckCircle2, Wrench } from 'lucide-react';
 import PageTransition from '../components/PageTransition';
@@ -9,7 +9,28 @@ import heroGuides from '../assets/hardware-track-system.jpg';
 import guideMotor from '../assets/auto-et-drive-motor.jpg';
 import guideRemotes from '../assets/auto-centurion-access.jpg';
 
-export default function Guides() {
+// ⚡️ PERFORMANCE UPGRADE: Extracted static array outside the component
+// Prevents React from deleting and rebuilding this list in memory on every render cycle.
+const guidesList = [
+  { 
+    category: "Mechanical Maintenance",
+    icon: <Wrench size={24} />,
+    title: "Gate Care 101", 
+    desc: "Learn the essential protocols to keep your sliding gate track clear of debris, prevent wheel friction, and ensure your motor runs smoothly year-round.",
+    img: guideMotor
+  },
+  { 
+    category: "Security & Access",
+    icon: <ShieldCheck size={24} />,
+    title: "Remote Training", 
+    desc: "A step-by-step technical guide on how to securely program new transmitters and delete compromised or lost remotes from your entire access system.",
+    img: guideRemotes
+  }
+];
+
+// ⚡️ PERFORMANCE UPGRADE: React.memo()
+// Locks the static page in memory to prevent wasted CPU re-rendering cycles.
+const Guides = memo(function Guides() {
   return (
     <PageTransition>
       <div className="bg-brand-bg min-h-screen pb-24 md:pb-40">
@@ -63,22 +84,7 @@ export default function Guides() {
         <section className="py-12 md:py-20">
           <div className="container mx-auto px-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 max-w-7xl mx-auto">
-              {[
-                { 
-                  category: "Mechanical Maintenance",
-                  icon: <Wrench size={24} />,
-                  title: "Gate Care 101", 
-                  desc: "Learn the essential protocols to keep your sliding gate track clear of debris, prevent wheel friction, and ensure your motor runs smoothly year-round.",
-                  img: guideMotor
-                },
-                { 
-                  category: "Security & Access",
-                  icon: <ShieldCheck size={24} />,
-                  title: "Remote Training", 
-                  desc: "A step-by-step technical guide on how to securely program new transmitters and delete compromised or lost remotes from your entire access system.",
-                  img: guideRemotes
-                }
-              ].map((guide, i) => (
+              {guidesList.map((guide, i) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, y: 30 }}
@@ -165,4 +171,8 @@ export default function Guides() {
       </div>
     </PageTransition>
   );
-}
+});
+
+Guides.displayName = 'Guides';
+
+export default Guides;

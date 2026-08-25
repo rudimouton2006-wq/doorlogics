@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { BatteryFull, Smartphone, Radio, ArrowRight, CheckCircle2, ShieldCheck, Cpu, KeyRound, Settings2 } from 'lucide-react';
@@ -9,12 +9,44 @@ import heroHardware from '../assets/hardware-track-system.jpg';
 import motorEt from '../assets/auto-et-drive-motor.jpg';
 import accessCenturion from '../assets/auto-centurion-access.jpg';
 
-export default function Automation() {
+// ⚡️ PERFORMANCE UPGRADE: Extracted static arrays outside the component
+// Prevents React from deleting and rebuilding these lists in memory on every render cycle.
+const ecosystemList = [
+  { 
+    title: "Track Systems", 
+    desc: "Quiet belt-driven or powerful chain-driven motors available. Security integration: Motors and accessories available for your specific safety and security requirements.", 
+    img: heroHardware,
+    icon: <Settings2 size={24} />
+  },
+  { 
+    title: "Swing Gates", 
+    desc: "Reliable, high-torque automation designed for double and single swing gate configurations. Engineered for smooth and secure perimeter access.", 
+    img: motorEt,
+    icon: <Cpu size={24} />
+  },
+  { 
+    title: "Access Control", 
+    desc: "Secure keypads, anti-clone remotes, and smart entry systems to manage your perimeter with absolute precision.", 
+    img: accessCenturion,
+    icon: <KeyRound size={24} />
+  }
+];
+
+const featuresList = [
+  { icon: <Smartphone size={28} />, title: "Mobile Control", desc: "Open, close, or securely lock your systems using a smartphone app from anywhere." },
+  { icon: <BatteryFull size={28} />, title: "Backup Power", desc: "High-capacity deep-cycle batteries ensure flawless operation during grid power outages." },
+  { icon: <Radio size={28} />, title: "Safety Beams", desc: "Active infrared sensors instantly reverse the motor to prevent closing on vehicles or people." }
+];
+
+// ⚡️ PERFORMANCE UPGRADE: React.memo()
+// Locks the static page in memory to prevent wasted CPU re-rendering cycles.
+const Automation = memo(function Automation() {
   return (
     <PageTransition>
       {/* HERO SECTION - CINEMATIC & SOFT */}
       <section className="relative min-h-[95vh] md:min-h-screen flex flex-col items-center justify-center pt-32 pb-20 overflow-hidden text-center rounded-b-[40px] md:rounded-b-[80px] shadow-2xl">
         <div className="absolute inset-0 z-0 bg-brand-dark">
+          {/* ⚡️ PERFORMANCE: High priority fetch, async decode, GPU accelerated, drag-lock */}
           <img 
             src={heroHardware} 
             alt="Precision Tracking Hardware" 
@@ -68,26 +100,7 @@ export default function Automation() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-8 max-w-7xl mx-auto">
-            {[
-              { 
-                title: "Track Systems", 
-                desc: "Quiet belt-driven or powerful chain-driven motors available. Security integration: Motors and accessories available for your specific safety and security requirements.", 
-                img: heroHardware,
-                icon: <Settings2 size={24} />
-              },
-              { 
-                title: "Swing Gates", 
-                desc: "Reliable, high-torque automation designed for double and single swing gate configurations. Engineered for smooth and secure perimeter access.", 
-                img: motorEt,
-                icon: <Cpu size={24} />
-              },
-              { 
-                title: "Access Control", 
-                desc: "Secure keypads, anti-clone remotes, and smart entry systems to manage your perimeter with absolute precision.", 
-                img: accessCenturion,
-                icon: <KeyRound size={24} />
-              }
-            ].map((system, i) => (
+            {ecosystemList.map((system, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 30 }}
@@ -96,6 +109,7 @@ export default function Automation() {
                 transition={{ duration: 0.6, delay: i * 0.1 }}
                 className="group relative h-[450px] md:h-[500px] w-full rounded-[40px] md:rounded-[50px] overflow-hidden bg-brand-surface shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.12)] transition-all duration-500 will-change-transform will-change-opacity"
               >
+                {/* ⚡️ PERFORMANCE: Lazy loading offscreen images */}
                 <img 
                   src={system.img} 
                   alt={system.title} 
@@ -141,11 +155,7 @@ export default function Automation() {
               </h2>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-                {[
-                  { icon: <Smartphone size={28} />, title: "Mobile Control", desc: "Open, close, or securely lock your systems using a smartphone app from anywhere." },
-                  { icon: <BatteryFull size={28} />, title: "Backup Power", desc: "High-capacity deep-cycle batteries ensure flawless operation during grid power outages." },
-                  { icon: <Radio size={28} />, title: "Safety Beams", desc: "Active infrared sensors instantly reverse the motor to prevent closing on vehicles or people." }
-                ].map((feature, i) => (
+                {featuresList.map((feature, i) => (
                   <div key={i} className="flex flex-col items-center md:items-start text-center md:text-left bg-white/5 p-8 md:p-10 rounded-[40px] border border-white/10 hover:bg-white/10 transition-colors duration-300">
                     <div className="w-16 h-16 rounded-full bg-brand-primary/20 flex items-center justify-center text-brand-primary mb-8 shadow-inner">
                       {feature.icon}
@@ -189,4 +199,8 @@ export default function Automation() {
       </section>
     </PageTransition>
   );
-}
+});
+
+Automation.displayName = 'Automation';
+
+export default Automation;

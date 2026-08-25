@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import { createPortal } from 'react-dom'; // 🚀 ADDED PORTAL IMPORT
 import { motion, AnimatePresence } from 'motion/react';
 import { Warehouse, Shield, Settings, X, ChevronRight, ChevronLeft, ArrowRight, Grid, CheckCircle2 } from 'lucide-react';
@@ -31,6 +31,7 @@ import gFibreClassic from '../assets/garage-fibre-classic.jpg';
 import gFibreArched from '../assets/garage-fibre-arched.jpg';
 import gAlphenTipup from '../assets/garage-alphen-tipup.jpg';
 
+// ⚡️ PERFORMANCE UPGRADE: Validated static arrays outside the component
 const catalogueItems = [
   { img: heroGarage, title: "Premium Modern Timber" },
   { img: gTimberEstate, title: "Wide Timber Estate Door" },
@@ -62,7 +63,16 @@ const showcaseItems = [
   { img: gCharcoalSleek, title: "Double brown horizontal aluminum", span: "md:col-span-2 md:row-span-1" },
 ];
 
-export default function Garages() {
+// ⚡️ PERFORMANCE UPGRADE: Extracted hidden array from the render loop
+const featureList = [
+  { icon: <Warehouse size={24} />, title: "Any Style", desc: "Decades of experience installing bespoke sectional, roll-up, and Tip-up doors." },
+  { icon: <Settings size={24} />, title: "Smooth Tech", desc: "High-cycle torsion springs and precision nylon rollers for virtually silent, friction-free movement." },
+  { icon: <Shield size={24} />, title: "Secure Build", desc: "Bespoke engineering for unique entrance requirements, ensuring perfect structural alignment and security." }
+];
+
+// ⚡️ PERFORMANCE UPGRADE: React.memo()
+// Locks the massive background layout in memory while the Lightbox modal state changes.
+const Garages = memo(function Garages() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   useEffect(() => {
@@ -168,11 +178,7 @@ export default function Garages() {
         <section className="py-24 md:py-40 bg-brand-bg rounded-b-[40px] md:rounded-b-[80px] -mt-10 pt-32">
           <div className="container mx-auto px-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {[
-                { icon: <Warehouse size={24} />, title: "Any Style", desc: "Decades of experience installing bespoke sectional, roll-up, and Tip-up doors." },
-                { icon: <Settings size={24} />, title: "Smooth Tech", desc: "High-cycle torsion springs and precision nylon rollers for virtually silent, friction-free movement." },
-                { icon: <Shield size={24} />, title: "Secure Build", desc: "Bespoke engineering for unique entrance requirements, ensuring perfect structural alignment and security." }
-              ].map((feature, i) => (
+              {featureList.map((feature, i) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, y: 30 }}
@@ -428,4 +434,8 @@ export default function Garages() {
       )}
     </PageTransition>
   );
-}
+});
+
+Garages.displayName = 'Garages';
+
+export default Garages;

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, memo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Phone, Mail, ShieldAlert, MessageCircle, ArrowRight, Loader2, CheckCircle2 } from 'lucide-react';
 import emailjs from '@emailjs/browser';
@@ -8,7 +8,13 @@ import { cn } from '@/src/lib/utils';
 // Cinematic Asset Import
 import heroContact from '../assets/work-installation.jpg';
 
-export default function Contact() {
+// ⚡️ PERFORMANCE UPGRADE: Extracted static array outside the component
+// Prevents React from rebuilding this array in memory every time the user clicks a different inquiry type.
+const INQUIRY_TYPES = ['quote', 'repair', 'service', 'other'];
+
+// ⚡️ PERFORMANCE UPGRADE: React.memo()
+// Locks the top-level page component to prevent unnecessary re-renders from the router.
+const Contact = memo(function Contact() {
   const [inquiryType, setInquiryType] = useState('quote');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -206,7 +212,7 @@ export default function Contact() {
                     <div className="mb-10">
                       <h3 className="text-2xl md:text-3xl font-black tracking-tight text-brand-dark mb-6">How can we assist?</h3>
                       <div className="flex flex-wrap gap-3">
-                        {['quote', 'repair', 'service', 'other'].map((type) => (
+                        {INQUIRY_TYPES.map((type) => (
                           <button
                             key={type}
                             type="button"
@@ -322,4 +328,8 @@ export default function Contact() {
       </div>
     </PageTransition>
   );
-}
+});
+
+Contact.displayName = 'Contact';
+
+export default Contact;
